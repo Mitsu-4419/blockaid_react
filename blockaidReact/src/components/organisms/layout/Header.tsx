@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { memo,useState,VFC} from "react";
-import { Box, Flex, Heading, useDisclosure, Spacer, Button } from "@chakra-ui/react";
+import { Box, Flex, Heading, useDisclosure, Spacer, Button, Divider, Center } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
 import { StaticImage } from "gatsby-plugin-image";
 import {Link} from 'gatsby';
+import Language from "../../Language";
 
 export const Header: VFC = memo(() => {
   const [active, setActive] = useState(false);
@@ -36,22 +37,26 @@ export const Header: VFC = memo(() => {
             </Heading>
         </Flex>
         <Spacer></Spacer>
-        <Flex mr='3'>
+        <Flex mr='3' alignItems='center'>
             <Link to="/">
-                <Button borderRadius='md' _hover={{bgColor:'blue.200', color:'white'}} bgColor={location.pathname=='/'?"blue.600":'blue.50'} color={location.pathname=='/'?"white":'gray.800'}>HOME</Button>
+                <Button borderRadius='md' ml='1' mr='1' _hover={{bgColor:'blue.200', color:'white'}} bgColor={location.pathname=='/'?"blue.600":'blue.50'} color={location.pathname=='/'?"white":'gray.800'}>HOME</Button>
             </Link>
             <Link to="/profile">
-                <Button borderRadius='md' _hover={{bgColor:'blue.200',color:'white'}} bgColor={location.pathname=='/profile'?"blue.600":'blue.50'} color={location.pathname=='/profile'?"white":'gray.800'}>PROFILE</Button>
+                <Button borderRadius='md' ml='1' mr='1' _hover={{bgColor:'blue.200',color:'white'}} bgColor={location.pathname=='/profile'?"blue.600":'blue.50'} color={location.pathname=='/profile'?"white":'gray.800'}>PROFILE</Button>
             </Link>
             <Link to="/works">
-                <Button borderRadius='md' _hover={{bgColor:'blue.200',color:'white'}} bgColor='blue.50'>WORKS</Button>
+                <Button borderRadius='md' ml='1' mr='1' _hover={{bgColor:'blue.200',color:'white'}} bgColor='blue.50'>WORKS</Button>
             </Link>
             <Link to="/blog">
-                <Button borderRadius='md' _hover={{bgColor:'blue.200',color:'white'}} bgColor='blue.50'>BLOG</Button>
+                <Button borderRadius='md' ml='1' mr='1' _hover={{bgColor:'blue.200',color:'white'}} bgColor='blue.50'>BLOG</Button>
             </Link>
             <Link to="/contact">
-                <Button borderRadius='md' _hover={{bgColor:'blue.200',color:'white'}} bgColor='blue.50'>CONTACT</Button>
+                <Button borderRadius='md' ml='1' mr='1' _hover={{bgColor:'blue.200',color:'white'}} bgColor='blue.50'>CONTACT</Button>
             </Link>
+            <Center height="30px" ml='1' mr='1'>
+                <Divider orientation="vertical" />
+            </Center>
+            <Language />
         </Flex>
     </Flex>
     </>

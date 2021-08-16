@@ -307,9 +307,104 @@ type SitePage = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
   readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
+  readonly context: Maybe<SitePageContext>;
   readonly pluginCreator: Maybe<SitePlugin>;
   readonly pluginCreatorId: Maybe<Scalars['String']>;
 };
+
+type SitePageContext = {
+  readonly slug: Maybe<Scalars['String']>;
+  readonly language: Maybe<Scalars['String']>;
+  readonly intl: Maybe<SitePageContextIntl>;
+};
+
+type SitePageContextIntl = {
+  readonly language: Maybe<Scalars['String']>;
+  readonly languages: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly messages: Maybe<SitePageContextIntlMessages>;
+  readonly routed: Maybe<Scalars['Boolean']>;
+  readonly originalPath: Maybe<Scalars['String']>;
+  readonly redirect: Maybe<Scalars['Boolean']>;
+  readonly defaultLanguage: Maybe<Scalars['String']>;
+};
+
+type SitePageContextIntlMessages = {
+  readonly hello: Maybe<Scalars['String']>;
+  readonly posts: Maybe<Scalars['String']>;
+};
+
+type MarkdownHeading = {
+  readonly id: Maybe<Scalars['String']>;
+  readonly value: Maybe<Scalars['String']>;
+  readonly depth: Maybe<Scalars['Int']>;
+};
+
+type MarkdownHeadingLevels =
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6';
+
+type MarkdownExcerptFormats =
+  | 'PLAIN'
+  | 'HTML'
+  | 'MARKDOWN';
+
+type MarkdownWordCount = {
+  readonly paragraphs: Maybe<Scalars['Int']>;
+  readonly sentences: Maybe<Scalars['Int']>;
+  readonly words: Maybe<Scalars['Int']>;
+};
+
+type MarkdownRemark = Node & {
+  readonly id: Scalars['ID'];
+  readonly frontmatter: Maybe<MarkdownRemarkFrontmatter>;
+  readonly excerpt: Maybe<Scalars['String']>;
+  readonly rawMarkdownBody: Maybe<Scalars['String']>;
+  readonly html: Maybe<Scalars['String']>;
+  readonly htmlAst: Maybe<Scalars['JSON']>;
+  readonly excerptAst: Maybe<Scalars['JSON']>;
+  readonly headings: Maybe<ReadonlyArray<Maybe<MarkdownHeading>>>;
+  readonly timeToRead: Maybe<Scalars['Int']>;
+  readonly tableOfContents: Maybe<Scalars['String']>;
+  readonly wordCount: Maybe<MarkdownWordCount>;
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
+};
+
+
+type MarkdownRemark_excerptArgs = {
+  pruneLength?: Maybe<Scalars['Int']>;
+  truncate?: Maybe<Scalars['Boolean']>;
+  format?: Maybe<MarkdownExcerptFormats>;
+};
+
+
+type MarkdownRemark_excerptAstArgs = {
+  pruneLength?: Maybe<Scalars['Int']>;
+  truncate?: Maybe<Scalars['Boolean']>;
+};
+
+
+type MarkdownRemark_headingsArgs = {
+  depth: Maybe<MarkdownHeadingLevels>;
+};
+
+
+type MarkdownRemark_tableOfContentsArgs = {
+  absolute?: Maybe<Scalars['Boolean']>;
+  pathToSlugField?: Maybe<Scalars['String']>;
+  maxDepth: Maybe<Scalars['Int']>;
+  heading: Maybe<Scalars['String']>;
+};
+
+type MarkdownRemarkFrontmatter = {
+  readonly title: Maybe<Scalars['String']>;
+};
+
 
 type ImageFormat =
   | 'NO_CHANGE'
@@ -503,7 +598,6 @@ type ImageSharpFluid = {
   readonly presentationHeight: Scalars['Int'];
 };
 
-
 type ImagePlaceholder =
   | 'dominantColor'
   | 'tracedSVG'
@@ -559,6 +653,64 @@ type ImageSharpResize = {
   readonly height: Maybe<Scalars['Int']>;
   readonly aspectRatio: Maybe<Scalars['Float']>;
   readonly originalName: Maybe<Scalars['String']>;
+};
+
+type MdxFrontmatter = {
+  readonly title: Scalars['String'];
+};
+
+type MdxHeadingMdx = {
+  readonly value: Maybe<Scalars['String']>;
+  readonly depth: Maybe<Scalars['Int']>;
+};
+
+type HeadingsMdx =
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6';
+
+type MdxWordCount = {
+  readonly paragraphs: Maybe<Scalars['Int']>;
+  readonly sentences: Maybe<Scalars['Int']>;
+  readonly words: Maybe<Scalars['Int']>;
+};
+
+type Mdx = Node & {
+  readonly rawBody: Scalars['String'];
+  readonly fileAbsolutePath: Scalars['String'];
+  readonly frontmatter: Maybe<MdxFrontmatter>;
+  readonly slug: Maybe<Scalars['String']>;
+  readonly body: Scalars['String'];
+  readonly excerpt: Scalars['String'];
+  readonly headings: Maybe<ReadonlyArray<Maybe<MdxHeadingMdx>>>;
+  readonly html: Maybe<Scalars['String']>;
+  readonly mdxAST: Maybe<Scalars['JSON']>;
+  readonly tableOfContents: Maybe<Scalars['JSON']>;
+  readonly timeToRead: Maybe<Scalars['Int']>;
+  readonly wordCount: Maybe<MdxWordCount>;
+  readonly id: Scalars['ID'];
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
+};
+
+
+type Mdx_excerptArgs = {
+  pruneLength?: Maybe<Scalars['Int']>;
+  truncate?: Maybe<Scalars['Boolean']>;
+};
+
+
+type Mdx_headingsArgs = {
+  depth: Maybe<HeadingsMdx>;
+};
+
+
+type Mdx_tableOfContentsArgs = {
+  maxDepth: Maybe<Scalars['Int']>;
 };
 
 type ContentfulEntry = {
@@ -770,62 +922,9 @@ type ContentfulBlogHinagata = ContentfulReference & ContentfulEntry & Node & {
   readonly contentful_id: Scalars['String'];
   readonly id: Scalars['ID'];
   readonly node_locale: Scalars['String'];
-  readonly title: Maybe<Scalars['String']>;
-  readonly content: Maybe<ContentfulBlogHinagataContent>;
-  readonly postDate: Maybe<Scalars['Date']>;
-  readonly tag: Maybe<Scalars['String']>;
-  readonly mainThumbnail: Maybe<ContentfulAsset>;
-  readonly spaceId: Maybe<Scalars['String']>;
-  readonly createdAt: Maybe<Scalars['Date']>;
-  readonly updatedAt: Maybe<Scalars['Date']>;
-  readonly sys: Maybe<ContentfulBlogHinagataSys>;
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
-};
-
-
-type ContentfulBlogHinagata_postDateArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-type ContentfulBlogHinagata_createdAtArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-type ContentfulBlogHinagata_updatedAtArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-type ContentfulBlogHinagataContent = {
-  readonly raw: Maybe<Scalars['String']>;
-};
-
-type ContentfulBlogHinagataSys = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly revision: Maybe<Scalars['Int']>;
-  readonly contentType: Maybe<ContentfulBlogHinagataSysContentType>;
-};
-
-type ContentfulBlogHinagataSysContentType = {
-  readonly sys: Maybe<ContentfulBlogHinagataSysContentTypeSys>;
-};
-
-type ContentfulBlogHinagataSysContentTypeSys = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly linkType: Maybe<Scalars['String']>;
-  readonly id: Maybe<Scalars['String']>;
 };
 
 type ContentfulBlogHinagataMarkdown = ContentfulReference & ContentfulEntry & Node & {
@@ -835,6 +934,7 @@ type ContentfulBlogHinagataMarkdown = ContentfulReference & ContentfulEntry & No
   readonly title: Maybe<Scalars['String']>;
   readonly postDate: Maybe<Scalars['Date']>;
   readonly tag: Maybe<Scalars['String']>;
+  readonly slug: Maybe<Scalars['String']>;
   readonly mainThumbnail: Maybe<ContentfulAsset>;
   readonly content: Maybe<contentfulBlogHinagataMarkdownContentTextNode>;
   readonly spaceId: Maybe<Scalars['String']>;
@@ -897,6 +997,14 @@ type contentfulBlogHinagataMarkdownContentTextNode = Node & {
   readonly internal: Internal;
   readonly content: Maybe<Scalars['String']>;
   readonly sys: Maybe<contentfulBlogHinagataMarkdownContentTextNodeSys>;
+  /** Returns all children nodes filtered by type MarkdownRemark */
+  readonly childrenMarkdownRemark: Maybe<ReadonlyArray<Maybe<MarkdownRemark>>>;
+  /** Returns the first child node of type MarkdownRemark or null if there are no children of given type on this node */
+  readonly childMarkdownRemark: Maybe<MarkdownRemark>;
+  /** Returns all children nodes filtered by type Mdx */
+  readonly childrenMdx: Maybe<ReadonlyArray<Maybe<Mdx>>>;
+  /** Returns the first child node of type Mdx or null if there are no children of given type on this node */
+  readonly childMdx: Maybe<Mdx>;
 };
 
 type contentfulBlogHinagataMarkdownContentTextNodeSys = {
@@ -926,18 +1034,6 @@ type SitePluginPluginOptions = {
   readonly stripMetadata: Maybe<Scalars['Boolean']>;
   readonly defaultQuality: Maybe<Scalars['Int']>;
   readonly failOnError: Maybe<Scalars['Boolean']>;
-  readonly short_name: Maybe<Scalars['String']>;
-  readonly start_url: Maybe<Scalars['String']>;
-  readonly background_color: Maybe<Scalars['String']>;
-  readonly theme_color: Maybe<Scalars['String']>;
-  readonly display: Maybe<Scalars['String']>;
-  readonly icon: Maybe<Scalars['String']>;
-  readonly legacy: Maybe<Scalars['Boolean']>;
-  readonly theme_color_in_head: Maybe<Scalars['Boolean']>;
-  readonly cache_busting_mode: Maybe<Scalars['String']>;
-  readonly crossOrigin: Maybe<Scalars['String']>;
-  readonly include_favicon: Maybe<Scalars['Boolean']>;
-  readonly cacheDigest: Maybe<Scalars['String']>;
   readonly spaceId: Maybe<Scalars['String']>;
   readonly accessToken: Maybe<Scalars['String']>;
   readonly host: Maybe<Scalars['String']>;
@@ -949,6 +1045,13 @@ type SitePluginPluginOptions = {
   readonly useNameForId: Maybe<Scalars['Boolean']>;
   readonly resetCSS: Maybe<Scalars['Boolean']>;
   readonly isUsingColorMode: Maybe<Scalars['Boolean']>;
+  readonly extensions: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly lessBabel: Maybe<Scalars['Boolean']>;
+  readonly mediaTypes: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly root: Maybe<Scalars['String']>;
+  readonly languages: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly defaultLanguage: Maybe<Scalars['String']>;
+  readonly redirect: Maybe<Scalars['Boolean']>;
   readonly pathCheck: Maybe<Scalars['Boolean']>;
   readonly allExtensions: Maybe<Scalars['Boolean']>;
   readonly isTSX: Maybe<Scalars['Boolean']>;
@@ -1024,8 +1127,12 @@ type Query = {
   readonly allSiteFunction: SiteFunctionConnection;
   readonly sitePage: Maybe<SitePage>;
   readonly allSitePage: SitePageConnection;
+  readonly markdownRemark: Maybe<MarkdownRemark>;
+  readonly allMarkdownRemark: MarkdownRemarkConnection;
   readonly imageSharp: Maybe<ImageSharp>;
   readonly allImageSharp: ImageSharpConnection;
+  readonly mdx: Maybe<Mdx>;
+  readonly allMdx: MdxConnection;
   readonly contentfulEntry: Maybe<ContentfulEntry>;
   readonly allContentfulEntry: ContentfulEntryConnection;
   readonly contentfulAsset: Maybe<ContentfulAsset>;
@@ -1202,6 +1309,7 @@ type Query_sitePageArgs = {
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
   isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  context: Maybe<SitePageContextFilterInput>;
   pluginCreator: Maybe<SitePluginFilterInput>;
   pluginCreatorId: Maybe<StringQueryOperatorInput>;
 };
@@ -1210,6 +1318,32 @@ type Query_sitePageArgs = {
 type Query_allSitePageArgs = {
   filter: Maybe<SitePageFilterInput>;
   sort: Maybe<SitePageSortInput>;
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+};
+
+
+type Query_markdownRemarkArgs = {
+  id: Maybe<StringQueryOperatorInput>;
+  frontmatter: Maybe<MarkdownRemarkFrontmatterFilterInput>;
+  excerpt: Maybe<StringQueryOperatorInput>;
+  rawMarkdownBody: Maybe<StringQueryOperatorInput>;
+  html: Maybe<StringQueryOperatorInput>;
+  htmlAst: Maybe<JSONQueryOperatorInput>;
+  excerptAst: Maybe<JSONQueryOperatorInput>;
+  headings: Maybe<MarkdownHeadingFilterListInput>;
+  timeToRead: Maybe<IntQueryOperatorInput>;
+  tableOfContents: Maybe<StringQueryOperatorInput>;
+  wordCount: Maybe<MarkdownWordCountFilterInput>;
+  parent: Maybe<NodeFilterInput>;
+  children: Maybe<NodeFilterListInput>;
+  internal: Maybe<InternalFilterInput>;
+};
+
+
+type Query_allMarkdownRemarkArgs = {
+  filter: Maybe<MarkdownRemarkFilterInput>;
+  sort: Maybe<MarkdownRemarkSortInput>;
   skip: Maybe<Scalars['Int']>;
   limit: Maybe<Scalars['Int']>;
 };
@@ -1231,6 +1365,34 @@ type Query_imageSharpArgs = {
 type Query_allImageSharpArgs = {
   filter: Maybe<ImageSharpFilterInput>;
   sort: Maybe<ImageSharpSortInput>;
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+};
+
+
+type Query_mdxArgs = {
+  rawBody: Maybe<StringQueryOperatorInput>;
+  fileAbsolutePath: Maybe<StringQueryOperatorInput>;
+  frontmatter: Maybe<MdxFrontmatterFilterInput>;
+  slug: Maybe<StringQueryOperatorInput>;
+  body: Maybe<StringQueryOperatorInput>;
+  excerpt: Maybe<StringQueryOperatorInput>;
+  headings: Maybe<MdxHeadingMdxFilterListInput>;
+  html: Maybe<StringQueryOperatorInput>;
+  mdxAST: Maybe<JSONQueryOperatorInput>;
+  tableOfContents: Maybe<JSONQueryOperatorInput>;
+  timeToRead: Maybe<IntQueryOperatorInput>;
+  wordCount: Maybe<MdxWordCountFilterInput>;
+  id: Maybe<StringQueryOperatorInput>;
+  parent: Maybe<NodeFilterInput>;
+  children: Maybe<NodeFilterListInput>;
+  internal: Maybe<InternalFilterInput>;
+};
+
+
+type Query_allMdxArgs = {
+  filter: Maybe<MdxFilterInput>;
+  sort: Maybe<MdxSortInput>;
   skip: Maybe<Scalars['Int']>;
   limit: Maybe<Scalars['Int']>;
 };
@@ -1287,15 +1449,6 @@ type Query_contentfulBlogHinagataArgs = {
   contentful_id: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
   node_locale: Maybe<StringQueryOperatorInput>;
-  title: Maybe<StringQueryOperatorInput>;
-  content: Maybe<ContentfulBlogHinagataContentFilterInput>;
-  postDate: Maybe<DateQueryOperatorInput>;
-  tag: Maybe<StringQueryOperatorInput>;
-  mainThumbnail: Maybe<ContentfulAssetFilterInput>;
-  spaceId: Maybe<StringQueryOperatorInput>;
-  createdAt: Maybe<DateQueryOperatorInput>;
-  updatedAt: Maybe<DateQueryOperatorInput>;
-  sys: Maybe<ContentfulBlogHinagataSysFilterInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
@@ -1317,6 +1470,7 @@ type Query_contentfulBlogHinagataMarkdownArgs = {
   title: Maybe<StringQueryOperatorInput>;
   postDate: Maybe<DateQueryOperatorInput>;
   tag: Maybe<StringQueryOperatorInput>;
+  slug: Maybe<StringQueryOperatorInput>;
   mainThumbnail: Maybe<ContentfulAssetFilterInput>;
   content: Maybe<contentfulBlogHinagataMarkdownContentTextNodeFilterInput>;
   spaceId: Maybe<StringQueryOperatorInput>;
@@ -1346,6 +1500,10 @@ type Query_contentfulBlogHinagataMarkdownContentTextNodeArgs = {
   internal: Maybe<InternalFilterInput>;
   content: Maybe<StringQueryOperatorInput>;
   sys: Maybe<contentfulBlogHinagataMarkdownContentTextNodeSysFilterInput>;
+  childrenMarkdownRemark: Maybe<MarkdownRemarkFilterListInput>;
+  childMarkdownRemark: Maybe<MarkdownRemarkFilterInput>;
+  childrenMdx: Maybe<MdxFilterListInput>;
+  childMdx: Maybe<MdxFilterInput>;
 };
 
 
@@ -2500,6 +2658,27 @@ type SiteFunctionSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
+type SitePageContextFilterInput = {
+  readonly slug: Maybe<StringQueryOperatorInput>;
+  readonly language: Maybe<StringQueryOperatorInput>;
+  readonly intl: Maybe<SitePageContextIntlFilterInput>;
+};
+
+type SitePageContextIntlFilterInput = {
+  readonly language: Maybe<StringQueryOperatorInput>;
+  readonly languages: Maybe<StringQueryOperatorInput>;
+  readonly messages: Maybe<SitePageContextIntlMessagesFilterInput>;
+  readonly routed: Maybe<BooleanQueryOperatorInput>;
+  readonly originalPath: Maybe<StringQueryOperatorInput>;
+  readonly redirect: Maybe<BooleanQueryOperatorInput>;
+  readonly defaultLanguage: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextIntlMessagesFilterInput = {
+  readonly hello: Maybe<StringQueryOperatorInput>;
+  readonly posts: Maybe<StringQueryOperatorInput>;
+};
+
 type SitePluginFilterInput = {
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
@@ -2523,18 +2702,6 @@ type SitePluginPluginOptionsFilterInput = {
   readonly stripMetadata: Maybe<BooleanQueryOperatorInput>;
   readonly defaultQuality: Maybe<IntQueryOperatorInput>;
   readonly failOnError: Maybe<BooleanQueryOperatorInput>;
-  readonly short_name: Maybe<StringQueryOperatorInput>;
-  readonly start_url: Maybe<StringQueryOperatorInput>;
-  readonly background_color: Maybe<StringQueryOperatorInput>;
-  readonly theme_color: Maybe<StringQueryOperatorInput>;
-  readonly display: Maybe<StringQueryOperatorInput>;
-  readonly icon: Maybe<StringQueryOperatorInput>;
-  readonly legacy: Maybe<BooleanQueryOperatorInput>;
-  readonly theme_color_in_head: Maybe<BooleanQueryOperatorInput>;
-  readonly cache_busting_mode: Maybe<StringQueryOperatorInput>;
-  readonly crossOrigin: Maybe<StringQueryOperatorInput>;
-  readonly include_favicon: Maybe<BooleanQueryOperatorInput>;
-  readonly cacheDigest: Maybe<StringQueryOperatorInput>;
   readonly spaceId: Maybe<StringQueryOperatorInput>;
   readonly accessToken: Maybe<StringQueryOperatorInput>;
   readonly host: Maybe<StringQueryOperatorInput>;
@@ -2546,6 +2713,13 @@ type SitePluginPluginOptionsFilterInput = {
   readonly useNameForId: Maybe<BooleanQueryOperatorInput>;
   readonly resetCSS: Maybe<BooleanQueryOperatorInput>;
   readonly isUsingColorMode: Maybe<BooleanQueryOperatorInput>;
+  readonly extensions: Maybe<StringQueryOperatorInput>;
+  readonly lessBabel: Maybe<BooleanQueryOperatorInput>;
+  readonly mediaTypes: Maybe<StringQueryOperatorInput>;
+  readonly root: Maybe<StringQueryOperatorInput>;
+  readonly languages: Maybe<StringQueryOperatorInput>;
+  readonly defaultLanguage: Maybe<StringQueryOperatorInput>;
+  readonly redirect: Maybe<BooleanQueryOperatorInput>;
   readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
   readonly allExtensions: Maybe<BooleanQueryOperatorInput>;
   readonly isTSX: Maybe<BooleanQueryOperatorInput>;
@@ -2729,6 +2903,16 @@ type SitePageFieldsEnum =
   | 'internal.owner'
   | 'internal.type'
   | 'isCreatedByStatefulCreatePages'
+  | 'context.slug'
+  | 'context.language'
+  | 'context.intl.language'
+  | 'context.intl.languages'
+  | 'context.intl.messages.hello'
+  | 'context.intl.messages.posts'
+  | 'context.intl.routed'
+  | 'context.intl.originalPath'
+  | 'context.intl.redirect'
+  | 'context.intl.defaultLanguage'
   | 'pluginCreator.id'
   | 'pluginCreator.parent.id'
   | 'pluginCreator.parent.parent.id'
@@ -2776,18 +2960,6 @@ type SitePageFieldsEnum =
   | 'pluginCreator.pluginOptions.stripMetadata'
   | 'pluginCreator.pluginOptions.defaultQuality'
   | 'pluginCreator.pluginOptions.failOnError'
-  | 'pluginCreator.pluginOptions.short_name'
-  | 'pluginCreator.pluginOptions.start_url'
-  | 'pluginCreator.pluginOptions.background_color'
-  | 'pluginCreator.pluginOptions.theme_color'
-  | 'pluginCreator.pluginOptions.display'
-  | 'pluginCreator.pluginOptions.icon'
-  | 'pluginCreator.pluginOptions.legacy'
-  | 'pluginCreator.pluginOptions.theme_color_in_head'
-  | 'pluginCreator.pluginOptions.cache_busting_mode'
-  | 'pluginCreator.pluginOptions.crossOrigin'
-  | 'pluginCreator.pluginOptions.include_favicon'
-  | 'pluginCreator.pluginOptions.cacheDigest'
   | 'pluginCreator.pluginOptions.spaceId'
   | 'pluginCreator.pluginOptions.accessToken'
   | 'pluginCreator.pluginOptions.host'
@@ -2799,6 +2971,13 @@ type SitePageFieldsEnum =
   | 'pluginCreator.pluginOptions.useNameForId'
   | 'pluginCreator.pluginOptions.resetCSS'
   | 'pluginCreator.pluginOptions.isUsingColorMode'
+  | 'pluginCreator.pluginOptions.extensions'
+  | 'pluginCreator.pluginOptions.lessBabel'
+  | 'pluginCreator.pluginOptions.mediaTypes'
+  | 'pluginCreator.pluginOptions.root'
+  | 'pluginCreator.pluginOptions.languages'
+  | 'pluginCreator.pluginOptions.defaultLanguage'
+  | 'pluginCreator.pluginOptions.redirect'
   | 'pluginCreator.pluginOptions.pathCheck'
   | 'pluginCreator.pluginOptions.allExtensions'
   | 'pluginCreator.pluginOptions.isTSX'
@@ -2844,12 +3023,212 @@ type SitePageFilterInput = {
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
   readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  readonly context: Maybe<SitePageContextFilterInput>;
   readonly pluginCreator: Maybe<SitePluginFilterInput>;
   readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePageSortInput = {
   readonly fields: Maybe<ReadonlyArray<Maybe<SitePageFieldsEnum>>>;
+  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+};
+
+type MarkdownRemarkFrontmatterFilterInput = {
+  readonly title: Maybe<StringQueryOperatorInput>;
+};
+
+type MarkdownHeadingFilterListInput = {
+  readonly elemMatch: Maybe<MarkdownHeadingFilterInput>;
+};
+
+type MarkdownHeadingFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly value: Maybe<StringQueryOperatorInput>;
+  readonly depth: Maybe<IntQueryOperatorInput>;
+};
+
+type MarkdownWordCountFilterInput = {
+  readonly paragraphs: Maybe<IntQueryOperatorInput>;
+  readonly sentences: Maybe<IntQueryOperatorInput>;
+  readonly words: Maybe<IntQueryOperatorInput>;
+};
+
+type MarkdownRemarkConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<MarkdownRemarkEdge>;
+  readonly nodes: ReadonlyArray<MarkdownRemark>;
+  readonly pageInfo: PageInfo;
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly group: ReadonlyArray<MarkdownRemarkGroupConnection>;
+};
+
+
+type MarkdownRemarkConnection_distinctArgs = {
+  field: MarkdownRemarkFieldsEnum;
+};
+
+
+type MarkdownRemarkConnection_maxArgs = {
+  field: MarkdownRemarkFieldsEnum;
+};
+
+
+type MarkdownRemarkConnection_minArgs = {
+  field: MarkdownRemarkFieldsEnum;
+};
+
+
+type MarkdownRemarkConnection_sumArgs = {
+  field: MarkdownRemarkFieldsEnum;
+};
+
+
+type MarkdownRemarkConnection_groupArgs = {
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+  field: MarkdownRemarkFieldsEnum;
+};
+
+type MarkdownRemarkEdge = {
+  readonly next: Maybe<MarkdownRemark>;
+  readonly node: MarkdownRemark;
+  readonly previous: Maybe<MarkdownRemark>;
+};
+
+type MarkdownRemarkFieldsEnum =
+  | 'id'
+  | 'frontmatter.title'
+  | 'excerpt'
+  | 'rawMarkdownBody'
+  | 'html'
+  | 'htmlAst'
+  | 'excerptAst'
+  | 'headings'
+  | 'headings.id'
+  | 'headings.value'
+  | 'headings.depth'
+  | 'timeToRead'
+  | 'tableOfContents'
+  | 'wordCount.paragraphs'
+  | 'wordCount.sentences'
+  | 'wordCount.words'
+  | 'parent.id'
+  | 'parent.parent.id'
+  | 'parent.parent.parent.id'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.children.children'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.children'
+  | 'parent.children.id'
+  | 'parent.children.parent.id'
+  | 'parent.children.parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.children.children'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'children'
+  | 'children.id'
+  | 'children.parent.id'
+  | 'children.parent.parent.id'
+  | 'children.parent.parent.children'
+  | 'children.parent.children'
+  | 'children.parent.children.id'
+  | 'children.parent.children.children'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.children'
+  | 'children.children.id'
+  | 'children.children.parent.id'
+  | 'children.children.parent.children'
+  | 'children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.children.children'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type';
+
+type MarkdownRemarkGroupConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<MarkdownRemarkEdge>;
+  readonly nodes: ReadonlyArray<MarkdownRemark>;
+  readonly pageInfo: PageInfo;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+};
+
+type MarkdownRemarkFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly frontmatter: Maybe<MarkdownRemarkFrontmatterFilterInput>;
+  readonly excerpt: Maybe<StringQueryOperatorInput>;
+  readonly rawMarkdownBody: Maybe<StringQueryOperatorInput>;
+  readonly html: Maybe<StringQueryOperatorInput>;
+  readonly htmlAst: Maybe<JSONQueryOperatorInput>;
+  readonly excerptAst: Maybe<JSONQueryOperatorInput>;
+  readonly headings: Maybe<MarkdownHeadingFilterListInput>;
+  readonly timeToRead: Maybe<IntQueryOperatorInput>;
+  readonly tableOfContents: Maybe<StringQueryOperatorInput>;
+  readonly wordCount: Maybe<MarkdownWordCountFilterInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
+};
+
+type MarkdownRemarkSortInput = {
+  readonly fields: Maybe<ReadonlyArray<Maybe<MarkdownRemarkFieldsEnum>>>;
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
@@ -3029,6 +3408,207 @@ type ImageSharpGroupConnection = {
 
 type ImageSharpSortInput = {
   readonly fields: Maybe<ReadonlyArray<Maybe<ImageSharpFieldsEnum>>>;
+  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+};
+
+type MdxFrontmatterFilterInput = {
+  readonly title: Maybe<StringQueryOperatorInput>;
+};
+
+type MdxHeadingMdxFilterListInput = {
+  readonly elemMatch: Maybe<MdxHeadingMdxFilterInput>;
+};
+
+type MdxHeadingMdxFilterInput = {
+  readonly value: Maybe<StringQueryOperatorInput>;
+  readonly depth: Maybe<IntQueryOperatorInput>;
+};
+
+type MdxWordCountFilterInput = {
+  readonly paragraphs: Maybe<IntQueryOperatorInput>;
+  readonly sentences: Maybe<IntQueryOperatorInput>;
+  readonly words: Maybe<IntQueryOperatorInput>;
+};
+
+type MdxConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<MdxEdge>;
+  readonly nodes: ReadonlyArray<Mdx>;
+  readonly pageInfo: PageInfo;
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly group: ReadonlyArray<MdxGroupConnection>;
+};
+
+
+type MdxConnection_distinctArgs = {
+  field: MdxFieldsEnum;
+};
+
+
+type MdxConnection_maxArgs = {
+  field: MdxFieldsEnum;
+};
+
+
+type MdxConnection_minArgs = {
+  field: MdxFieldsEnum;
+};
+
+
+type MdxConnection_sumArgs = {
+  field: MdxFieldsEnum;
+};
+
+
+type MdxConnection_groupArgs = {
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+  field: MdxFieldsEnum;
+};
+
+type MdxEdge = {
+  readonly next: Maybe<Mdx>;
+  readonly node: Mdx;
+  readonly previous: Maybe<Mdx>;
+};
+
+type MdxFieldsEnum =
+  | 'rawBody'
+  | 'fileAbsolutePath'
+  | 'frontmatter.title'
+  | 'slug'
+  | 'body'
+  | 'excerpt'
+  | 'headings'
+  | 'headings.value'
+  | 'headings.depth'
+  | 'html'
+  | 'mdxAST'
+  | 'tableOfContents'
+  | 'timeToRead'
+  | 'wordCount.paragraphs'
+  | 'wordCount.sentences'
+  | 'wordCount.words'
+  | 'id'
+  | 'parent.id'
+  | 'parent.parent.id'
+  | 'parent.parent.parent.id'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.children.children'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.children'
+  | 'parent.children.id'
+  | 'parent.children.parent.id'
+  | 'parent.children.parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.children.children'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'children'
+  | 'children.id'
+  | 'children.parent.id'
+  | 'children.parent.parent.id'
+  | 'children.parent.parent.children'
+  | 'children.parent.children'
+  | 'children.parent.children.id'
+  | 'children.parent.children.children'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.children'
+  | 'children.children.id'
+  | 'children.children.parent.id'
+  | 'children.children.parent.children'
+  | 'children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.children.children'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type';
+
+type MdxGroupConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<MdxEdge>;
+  readonly nodes: ReadonlyArray<Mdx>;
+  readonly pageInfo: PageInfo;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+};
+
+type MdxFilterInput = {
+  readonly rawBody: Maybe<StringQueryOperatorInput>;
+  readonly fileAbsolutePath: Maybe<StringQueryOperatorInput>;
+  readonly frontmatter: Maybe<MdxFrontmatterFilterInput>;
+  readonly slug: Maybe<StringQueryOperatorInput>;
+  readonly body: Maybe<StringQueryOperatorInput>;
+  readonly excerpt: Maybe<StringQueryOperatorInput>;
+  readonly headings: Maybe<MdxHeadingMdxFilterListInput>;
+  readonly html: Maybe<StringQueryOperatorInput>;
+  readonly mdxAST: Maybe<JSONQueryOperatorInput>;
+  readonly tableOfContents: Maybe<JSONQueryOperatorInput>;
+  readonly timeToRead: Maybe<IntQueryOperatorInput>;
+  readonly wordCount: Maybe<MdxWordCountFilterInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
+};
+
+type MdxSortInput = {
+  readonly fields: Maybe<ReadonlyArray<Maybe<MdxFieldsEnum>>>;
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
@@ -3450,26 +4030,6 @@ type ContentfulAssetSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type ContentfulBlogHinagataContentFilterInput = {
-  readonly raw: Maybe<StringQueryOperatorInput>;
-};
-
-type ContentfulBlogHinagataSysFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly revision: Maybe<IntQueryOperatorInput>;
-  readonly contentType: Maybe<ContentfulBlogHinagataSysContentTypeFilterInput>;
-};
-
-type ContentfulBlogHinagataSysContentTypeFilterInput = {
-  readonly sys: Maybe<ContentfulBlogHinagataSysContentTypeSysFilterInput>;
-};
-
-type ContentfulBlogHinagataSysContentTypeSysFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly linkType: Maybe<StringQueryOperatorInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
-};
-
 type ContentfulBlogHinagataConnection = {
   readonly totalCount: Scalars['Int'];
   readonly edges: ReadonlyArray<ContentfulBlogHinagataEdge>;
@@ -3519,93 +4079,6 @@ type ContentfulBlogHinagataFieldsEnum =
   | 'contentful_id'
   | 'id'
   | 'node_locale'
-  | 'title'
-  | 'content.raw'
-  | 'postDate'
-  | 'tag'
-  | 'mainThumbnail.contentful_id'
-  | 'mainThumbnail.id'
-  | 'mainThumbnail.spaceId'
-  | 'mainThumbnail.createdAt'
-  | 'mainThumbnail.updatedAt'
-  | 'mainThumbnail.file.url'
-  | 'mainThumbnail.file.details.size'
-  | 'mainThumbnail.file.fileName'
-  | 'mainThumbnail.file.contentType'
-  | 'mainThumbnail.title'
-  | 'mainThumbnail.description'
-  | 'mainThumbnail.node_locale'
-  | 'mainThumbnail.sys.type'
-  | 'mainThumbnail.sys.revision'
-  | 'mainThumbnail.fixed.base64'
-  | 'mainThumbnail.fixed.tracedSVG'
-  | 'mainThumbnail.fixed.aspectRatio'
-  | 'mainThumbnail.fixed.width'
-  | 'mainThumbnail.fixed.height'
-  | 'mainThumbnail.fixed.src'
-  | 'mainThumbnail.fixed.srcSet'
-  | 'mainThumbnail.fixed.srcWebp'
-  | 'mainThumbnail.fixed.srcSetWebp'
-  | 'mainThumbnail.fluid.base64'
-  | 'mainThumbnail.fluid.tracedSVG'
-  | 'mainThumbnail.fluid.aspectRatio'
-  | 'mainThumbnail.fluid.src'
-  | 'mainThumbnail.fluid.srcSet'
-  | 'mainThumbnail.fluid.srcWebp'
-  | 'mainThumbnail.fluid.srcSetWebp'
-  | 'mainThumbnail.fluid.sizes'
-  | 'mainThumbnail.gatsbyImageData'
-  | 'mainThumbnail.resize.base64'
-  | 'mainThumbnail.resize.tracedSVG'
-  | 'mainThumbnail.resize.src'
-  | 'mainThumbnail.resize.width'
-  | 'mainThumbnail.resize.height'
-  | 'mainThumbnail.resize.aspectRatio'
-  | 'mainThumbnail.parent.id'
-  | 'mainThumbnail.parent.parent.id'
-  | 'mainThumbnail.parent.parent.children'
-  | 'mainThumbnail.parent.children'
-  | 'mainThumbnail.parent.children.id'
-  | 'mainThumbnail.parent.children.children'
-  | 'mainThumbnail.parent.internal.content'
-  | 'mainThumbnail.parent.internal.contentDigest'
-  | 'mainThumbnail.parent.internal.description'
-  | 'mainThumbnail.parent.internal.fieldOwners'
-  | 'mainThumbnail.parent.internal.ignoreType'
-  | 'mainThumbnail.parent.internal.mediaType'
-  | 'mainThumbnail.parent.internal.owner'
-  | 'mainThumbnail.parent.internal.type'
-  | 'mainThumbnail.children'
-  | 'mainThumbnail.children.id'
-  | 'mainThumbnail.children.parent.id'
-  | 'mainThumbnail.children.parent.children'
-  | 'mainThumbnail.children.children'
-  | 'mainThumbnail.children.children.id'
-  | 'mainThumbnail.children.children.children'
-  | 'mainThumbnail.children.internal.content'
-  | 'mainThumbnail.children.internal.contentDigest'
-  | 'mainThumbnail.children.internal.description'
-  | 'mainThumbnail.children.internal.fieldOwners'
-  | 'mainThumbnail.children.internal.ignoreType'
-  | 'mainThumbnail.children.internal.mediaType'
-  | 'mainThumbnail.children.internal.owner'
-  | 'mainThumbnail.children.internal.type'
-  | 'mainThumbnail.internal.content'
-  | 'mainThumbnail.internal.contentDigest'
-  | 'mainThumbnail.internal.description'
-  | 'mainThumbnail.internal.fieldOwners'
-  | 'mainThumbnail.internal.ignoreType'
-  | 'mainThumbnail.internal.mediaType'
-  | 'mainThumbnail.internal.owner'
-  | 'mainThumbnail.internal.type'
-  | 'spaceId'
-  | 'createdAt'
-  | 'updatedAt'
-  | 'sys.type'
-  | 'sys.revision'
-  | 'sys.contentType.sys.type'
-  | 'sys.contentType.sys.linkType'
-  | 'sys.contentType.sys.id'
   | 'parent.id'
   | 'parent.parent.id'
   | 'parent.parent.parent.id'
@@ -3705,15 +4178,6 @@ type ContentfulBlogHinagataFilterInput = {
   readonly contentful_id: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly node_locale: Maybe<StringQueryOperatorInput>;
-  readonly title: Maybe<StringQueryOperatorInput>;
-  readonly content: Maybe<ContentfulBlogHinagataContentFilterInput>;
-  readonly postDate: Maybe<DateQueryOperatorInput>;
-  readonly tag: Maybe<StringQueryOperatorInput>;
-  readonly mainThumbnail: Maybe<ContentfulAssetFilterInput>;
-  readonly spaceId: Maybe<StringQueryOperatorInput>;
-  readonly createdAt: Maybe<DateQueryOperatorInput>;
-  readonly updatedAt: Maybe<DateQueryOperatorInput>;
-  readonly sys: Maybe<ContentfulBlogHinagataSysFilterInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
@@ -3731,10 +4195,22 @@ type contentfulBlogHinagataMarkdownContentTextNodeFilterInput = {
   readonly internal: Maybe<InternalFilterInput>;
   readonly content: Maybe<StringQueryOperatorInput>;
   readonly sys: Maybe<contentfulBlogHinagataMarkdownContentTextNodeSysFilterInput>;
+  readonly childrenMarkdownRemark: Maybe<MarkdownRemarkFilterListInput>;
+  readonly childMarkdownRemark: Maybe<MarkdownRemarkFilterInput>;
+  readonly childrenMdx: Maybe<MdxFilterListInput>;
+  readonly childMdx: Maybe<MdxFilterInput>;
 };
 
 type contentfulBlogHinagataMarkdownContentTextNodeSysFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
+};
+
+type MarkdownRemarkFilterListInput = {
+  readonly elemMatch: Maybe<MarkdownRemarkFilterInput>;
+};
+
+type MdxFilterListInput = {
+  readonly elemMatch: Maybe<MdxFilterInput>;
 };
 
 type ContentfulBlogHinagataMarkdownSysFilterInput = {
@@ -3809,6 +4285,7 @@ type ContentfulBlogHinagataMarkdownFieldsEnum =
   | 'title'
   | 'postDate'
   | 'tag'
+  | 'slug'
   | 'mainThumbnail.contentful_id'
   | 'mainThumbnail.id'
   | 'mainThumbnail.spaceId'
@@ -3924,6 +4401,126 @@ type ContentfulBlogHinagataMarkdownFieldsEnum =
   | 'content.internal.type'
   | 'content.content'
   | 'content.sys.type'
+  | 'content.childrenMarkdownRemark'
+  | 'content.childrenMarkdownRemark.id'
+  | 'content.childrenMarkdownRemark.frontmatter.title'
+  | 'content.childrenMarkdownRemark.excerpt'
+  | 'content.childrenMarkdownRemark.rawMarkdownBody'
+  | 'content.childrenMarkdownRemark.html'
+  | 'content.childrenMarkdownRemark.htmlAst'
+  | 'content.childrenMarkdownRemark.excerptAst'
+  | 'content.childrenMarkdownRemark.headings'
+  | 'content.childrenMarkdownRemark.headings.id'
+  | 'content.childrenMarkdownRemark.headings.value'
+  | 'content.childrenMarkdownRemark.headings.depth'
+  | 'content.childrenMarkdownRemark.timeToRead'
+  | 'content.childrenMarkdownRemark.tableOfContents'
+  | 'content.childrenMarkdownRemark.wordCount.paragraphs'
+  | 'content.childrenMarkdownRemark.wordCount.sentences'
+  | 'content.childrenMarkdownRemark.wordCount.words'
+  | 'content.childrenMarkdownRemark.parent.id'
+  | 'content.childrenMarkdownRemark.parent.children'
+  | 'content.childrenMarkdownRemark.children'
+  | 'content.childrenMarkdownRemark.children.id'
+  | 'content.childrenMarkdownRemark.children.children'
+  | 'content.childrenMarkdownRemark.internal.content'
+  | 'content.childrenMarkdownRemark.internal.contentDigest'
+  | 'content.childrenMarkdownRemark.internal.description'
+  | 'content.childrenMarkdownRemark.internal.fieldOwners'
+  | 'content.childrenMarkdownRemark.internal.ignoreType'
+  | 'content.childrenMarkdownRemark.internal.mediaType'
+  | 'content.childrenMarkdownRemark.internal.owner'
+  | 'content.childrenMarkdownRemark.internal.type'
+  | 'content.childMarkdownRemark.id'
+  | 'content.childMarkdownRemark.frontmatter.title'
+  | 'content.childMarkdownRemark.excerpt'
+  | 'content.childMarkdownRemark.rawMarkdownBody'
+  | 'content.childMarkdownRemark.html'
+  | 'content.childMarkdownRemark.htmlAst'
+  | 'content.childMarkdownRemark.excerptAst'
+  | 'content.childMarkdownRemark.headings'
+  | 'content.childMarkdownRemark.headings.id'
+  | 'content.childMarkdownRemark.headings.value'
+  | 'content.childMarkdownRemark.headings.depth'
+  | 'content.childMarkdownRemark.timeToRead'
+  | 'content.childMarkdownRemark.tableOfContents'
+  | 'content.childMarkdownRemark.wordCount.paragraphs'
+  | 'content.childMarkdownRemark.wordCount.sentences'
+  | 'content.childMarkdownRemark.wordCount.words'
+  | 'content.childMarkdownRemark.parent.id'
+  | 'content.childMarkdownRemark.parent.children'
+  | 'content.childMarkdownRemark.children'
+  | 'content.childMarkdownRemark.children.id'
+  | 'content.childMarkdownRemark.children.children'
+  | 'content.childMarkdownRemark.internal.content'
+  | 'content.childMarkdownRemark.internal.contentDigest'
+  | 'content.childMarkdownRemark.internal.description'
+  | 'content.childMarkdownRemark.internal.fieldOwners'
+  | 'content.childMarkdownRemark.internal.ignoreType'
+  | 'content.childMarkdownRemark.internal.mediaType'
+  | 'content.childMarkdownRemark.internal.owner'
+  | 'content.childMarkdownRemark.internal.type'
+  | 'content.childrenMdx'
+  | 'content.childrenMdx.rawBody'
+  | 'content.childrenMdx.fileAbsolutePath'
+  | 'content.childrenMdx.frontmatter.title'
+  | 'content.childrenMdx.slug'
+  | 'content.childrenMdx.body'
+  | 'content.childrenMdx.excerpt'
+  | 'content.childrenMdx.headings'
+  | 'content.childrenMdx.headings.value'
+  | 'content.childrenMdx.headings.depth'
+  | 'content.childrenMdx.html'
+  | 'content.childrenMdx.mdxAST'
+  | 'content.childrenMdx.tableOfContents'
+  | 'content.childrenMdx.timeToRead'
+  | 'content.childrenMdx.wordCount.paragraphs'
+  | 'content.childrenMdx.wordCount.sentences'
+  | 'content.childrenMdx.wordCount.words'
+  | 'content.childrenMdx.id'
+  | 'content.childrenMdx.parent.id'
+  | 'content.childrenMdx.parent.children'
+  | 'content.childrenMdx.children'
+  | 'content.childrenMdx.children.id'
+  | 'content.childrenMdx.children.children'
+  | 'content.childrenMdx.internal.content'
+  | 'content.childrenMdx.internal.contentDigest'
+  | 'content.childrenMdx.internal.description'
+  | 'content.childrenMdx.internal.fieldOwners'
+  | 'content.childrenMdx.internal.ignoreType'
+  | 'content.childrenMdx.internal.mediaType'
+  | 'content.childrenMdx.internal.owner'
+  | 'content.childrenMdx.internal.type'
+  | 'content.childMdx.rawBody'
+  | 'content.childMdx.fileAbsolutePath'
+  | 'content.childMdx.frontmatter.title'
+  | 'content.childMdx.slug'
+  | 'content.childMdx.body'
+  | 'content.childMdx.excerpt'
+  | 'content.childMdx.headings'
+  | 'content.childMdx.headings.value'
+  | 'content.childMdx.headings.depth'
+  | 'content.childMdx.html'
+  | 'content.childMdx.mdxAST'
+  | 'content.childMdx.tableOfContents'
+  | 'content.childMdx.timeToRead'
+  | 'content.childMdx.wordCount.paragraphs'
+  | 'content.childMdx.wordCount.sentences'
+  | 'content.childMdx.wordCount.words'
+  | 'content.childMdx.id'
+  | 'content.childMdx.parent.id'
+  | 'content.childMdx.parent.children'
+  | 'content.childMdx.children'
+  | 'content.childMdx.children.id'
+  | 'content.childMdx.children.children'
+  | 'content.childMdx.internal.content'
+  | 'content.childMdx.internal.contentDigest'
+  | 'content.childMdx.internal.description'
+  | 'content.childMdx.internal.fieldOwners'
+  | 'content.childMdx.internal.ignoreType'
+  | 'content.childMdx.internal.mediaType'
+  | 'content.childMdx.internal.owner'
+  | 'content.childMdx.internal.type'
   | 'spaceId'
   | 'createdAt'
   | 'updatedAt'
@@ -3973,6 +4570,126 @@ type ContentfulBlogHinagataMarkdownFieldsEnum =
   | 'childrenContentfulBlogHinagataMarkdownContentTextNode.internal.type'
   | 'childrenContentfulBlogHinagataMarkdownContentTextNode.content'
   | 'childrenContentfulBlogHinagataMarkdownContentTextNode.sys.type'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.id'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.frontmatter.title'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.excerpt'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.rawMarkdownBody'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.html'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.htmlAst'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.excerptAst'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.headings'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.headings.id'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.headings.value'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.headings.depth'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.timeToRead'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.tableOfContents'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.wordCount.paragraphs'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.wordCount.sentences'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.wordCount.words'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.parent.id'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.parent.children'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.children'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.children.id'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.children.children'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.internal.content'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.internal.contentDigest'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.internal.description'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.internal.fieldOwners'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.internal.ignoreType'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.internal.mediaType'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.internal.owner'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.internal.type'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.id'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.frontmatter.title'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.excerpt'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.rawMarkdownBody'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.html'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.htmlAst'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.excerptAst'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.headings'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.headings.id'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.headings.value'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.headings.depth'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.timeToRead'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.tableOfContents'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.wordCount.paragraphs'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.wordCount.sentences'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.wordCount.words'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.parent.id'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.parent.children'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.children'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.children.id'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.children.children'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.internal.content'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.internal.contentDigest'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.internal.description'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.internal.fieldOwners'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.internal.ignoreType'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.internal.mediaType'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.internal.owner'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.internal.type'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.rawBody'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.fileAbsolutePath'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.frontmatter.title'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.slug'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.body'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.excerpt'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.headings'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.headings.value'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.headings.depth'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.html'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.mdxAST'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.tableOfContents'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.timeToRead'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.wordCount.paragraphs'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.wordCount.sentences'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.wordCount.words'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.id'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.parent.id'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.parent.children'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.children'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.children.id'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.children.children'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.internal.content'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.internal.contentDigest'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.internal.description'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.internal.fieldOwners'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.internal.ignoreType'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.internal.mediaType'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.internal.owner'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.internal.type'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.rawBody'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.fileAbsolutePath'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.frontmatter.title'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.slug'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.body'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.excerpt'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.headings'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.headings.value'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.headings.depth'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.html'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.mdxAST'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.tableOfContents'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.timeToRead'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.wordCount.paragraphs'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.wordCount.sentences'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.wordCount.words'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.id'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.parent.id'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.parent.children'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.children'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.children.id'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.children.children'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.internal.content'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.internal.contentDigest'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.internal.description'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.internal.fieldOwners'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.internal.ignoreType'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.internal.mediaType'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.internal.owner'
+  | 'childrenContentfulBlogHinagataMarkdownContentTextNode.childMdx.internal.type'
   | 'childContentfulBlogHinagataMarkdownContentTextNode.id'
   | 'childContentfulBlogHinagataMarkdownContentTextNode.parent.id'
   | 'childContentfulBlogHinagataMarkdownContentTextNode.parent.parent.id'
@@ -4013,6 +4730,126 @@ type ContentfulBlogHinagataMarkdownFieldsEnum =
   | 'childContentfulBlogHinagataMarkdownContentTextNode.internal.type'
   | 'childContentfulBlogHinagataMarkdownContentTextNode.content'
   | 'childContentfulBlogHinagataMarkdownContentTextNode.sys.type'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.id'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.frontmatter.title'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.excerpt'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.rawMarkdownBody'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.html'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.htmlAst'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.excerptAst'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.headings'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.headings.id'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.headings.value'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.headings.depth'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.timeToRead'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.tableOfContents'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.wordCount.paragraphs'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.wordCount.sentences'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.wordCount.words'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.parent.id'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.parent.children'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.children'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.children.id'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.children.children'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.internal.content'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.internal.contentDigest'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.internal.description'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.internal.fieldOwners'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.internal.ignoreType'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.internal.mediaType'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.internal.owner'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMarkdownRemark.internal.type'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.id'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.frontmatter.title'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.excerpt'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.rawMarkdownBody'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.html'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.htmlAst'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.excerptAst'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.headings'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.headings.id'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.headings.value'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.headings.depth'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.timeToRead'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.tableOfContents'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.wordCount.paragraphs'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.wordCount.sentences'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.wordCount.words'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.parent.id'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.parent.children'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.children'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.children.id'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.children.children'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.internal.content'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.internal.contentDigest'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.internal.description'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.internal.fieldOwners'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.internal.ignoreType'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.internal.mediaType'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.internal.owner'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMarkdownRemark.internal.type'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.rawBody'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.fileAbsolutePath'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.frontmatter.title'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.slug'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.body'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.excerpt'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.headings'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.headings.value'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.headings.depth'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.html'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.mdxAST'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.tableOfContents'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.timeToRead'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.wordCount.paragraphs'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.wordCount.sentences'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.wordCount.words'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.id'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.parent.id'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.parent.children'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.children'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.children.id'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.children.children'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.internal.content'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.internal.contentDigest'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.internal.description'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.internal.fieldOwners'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.internal.ignoreType'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.internal.mediaType'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.internal.owner'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childrenMdx.internal.type'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.rawBody'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.fileAbsolutePath'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.frontmatter.title'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.slug'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.body'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.excerpt'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.headings'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.headings.value'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.headings.depth'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.html'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.mdxAST'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.tableOfContents'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.timeToRead'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.wordCount.paragraphs'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.wordCount.sentences'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.wordCount.words'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.id'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.parent.id'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.parent.children'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.children'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.children.id'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.children.children'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.internal.content'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.internal.contentDigest'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.internal.description'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.internal.fieldOwners'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.internal.ignoreType'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.internal.mediaType'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.internal.owner'
+  | 'childContentfulBlogHinagataMarkdownContentTextNode.childMdx.internal.type'
   | 'parent.id'
   | 'parent.parent.id'
   | 'parent.parent.parent.id'
@@ -4115,6 +4952,7 @@ type ContentfulBlogHinagataMarkdownFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
   readonly postDate: Maybe<DateQueryOperatorInput>;
   readonly tag: Maybe<StringQueryOperatorInput>;
+  readonly slug: Maybe<StringQueryOperatorInput>;
   readonly mainThumbnail: Maybe<ContentfulAssetFilterInput>;
   readonly content: Maybe<contentfulBlogHinagataMarkdownContentTextNodeFilterInput>;
   readonly spaceId: Maybe<StringQueryOperatorInput>;
@@ -4266,7 +5104,223 @@ type contentfulBlogHinagataMarkdownContentTextNodeFieldsEnum =
   | 'internal.owner'
   | 'internal.type'
   | 'content'
-  | 'sys.type';
+  | 'sys.type'
+  | 'childrenMarkdownRemark'
+  | 'childrenMarkdownRemark.id'
+  | 'childrenMarkdownRemark.frontmatter.title'
+  | 'childrenMarkdownRemark.excerpt'
+  | 'childrenMarkdownRemark.rawMarkdownBody'
+  | 'childrenMarkdownRemark.html'
+  | 'childrenMarkdownRemark.htmlAst'
+  | 'childrenMarkdownRemark.excerptAst'
+  | 'childrenMarkdownRemark.headings'
+  | 'childrenMarkdownRemark.headings.id'
+  | 'childrenMarkdownRemark.headings.value'
+  | 'childrenMarkdownRemark.headings.depth'
+  | 'childrenMarkdownRemark.timeToRead'
+  | 'childrenMarkdownRemark.tableOfContents'
+  | 'childrenMarkdownRemark.wordCount.paragraphs'
+  | 'childrenMarkdownRemark.wordCount.sentences'
+  | 'childrenMarkdownRemark.wordCount.words'
+  | 'childrenMarkdownRemark.parent.id'
+  | 'childrenMarkdownRemark.parent.parent.id'
+  | 'childrenMarkdownRemark.parent.parent.children'
+  | 'childrenMarkdownRemark.parent.children'
+  | 'childrenMarkdownRemark.parent.children.id'
+  | 'childrenMarkdownRemark.parent.children.children'
+  | 'childrenMarkdownRemark.parent.internal.content'
+  | 'childrenMarkdownRemark.parent.internal.contentDigest'
+  | 'childrenMarkdownRemark.parent.internal.description'
+  | 'childrenMarkdownRemark.parent.internal.fieldOwners'
+  | 'childrenMarkdownRemark.parent.internal.ignoreType'
+  | 'childrenMarkdownRemark.parent.internal.mediaType'
+  | 'childrenMarkdownRemark.parent.internal.owner'
+  | 'childrenMarkdownRemark.parent.internal.type'
+  | 'childrenMarkdownRemark.children'
+  | 'childrenMarkdownRemark.children.id'
+  | 'childrenMarkdownRemark.children.parent.id'
+  | 'childrenMarkdownRemark.children.parent.children'
+  | 'childrenMarkdownRemark.children.children'
+  | 'childrenMarkdownRemark.children.children.id'
+  | 'childrenMarkdownRemark.children.children.children'
+  | 'childrenMarkdownRemark.children.internal.content'
+  | 'childrenMarkdownRemark.children.internal.contentDigest'
+  | 'childrenMarkdownRemark.children.internal.description'
+  | 'childrenMarkdownRemark.children.internal.fieldOwners'
+  | 'childrenMarkdownRemark.children.internal.ignoreType'
+  | 'childrenMarkdownRemark.children.internal.mediaType'
+  | 'childrenMarkdownRemark.children.internal.owner'
+  | 'childrenMarkdownRemark.children.internal.type'
+  | 'childrenMarkdownRemark.internal.content'
+  | 'childrenMarkdownRemark.internal.contentDigest'
+  | 'childrenMarkdownRemark.internal.description'
+  | 'childrenMarkdownRemark.internal.fieldOwners'
+  | 'childrenMarkdownRemark.internal.ignoreType'
+  | 'childrenMarkdownRemark.internal.mediaType'
+  | 'childrenMarkdownRemark.internal.owner'
+  | 'childrenMarkdownRemark.internal.type'
+  | 'childMarkdownRemark.id'
+  | 'childMarkdownRemark.frontmatter.title'
+  | 'childMarkdownRemark.excerpt'
+  | 'childMarkdownRemark.rawMarkdownBody'
+  | 'childMarkdownRemark.html'
+  | 'childMarkdownRemark.htmlAst'
+  | 'childMarkdownRemark.excerptAst'
+  | 'childMarkdownRemark.headings'
+  | 'childMarkdownRemark.headings.id'
+  | 'childMarkdownRemark.headings.value'
+  | 'childMarkdownRemark.headings.depth'
+  | 'childMarkdownRemark.timeToRead'
+  | 'childMarkdownRemark.tableOfContents'
+  | 'childMarkdownRemark.wordCount.paragraphs'
+  | 'childMarkdownRemark.wordCount.sentences'
+  | 'childMarkdownRemark.wordCount.words'
+  | 'childMarkdownRemark.parent.id'
+  | 'childMarkdownRemark.parent.parent.id'
+  | 'childMarkdownRemark.parent.parent.children'
+  | 'childMarkdownRemark.parent.children'
+  | 'childMarkdownRemark.parent.children.id'
+  | 'childMarkdownRemark.parent.children.children'
+  | 'childMarkdownRemark.parent.internal.content'
+  | 'childMarkdownRemark.parent.internal.contentDigest'
+  | 'childMarkdownRemark.parent.internal.description'
+  | 'childMarkdownRemark.parent.internal.fieldOwners'
+  | 'childMarkdownRemark.parent.internal.ignoreType'
+  | 'childMarkdownRemark.parent.internal.mediaType'
+  | 'childMarkdownRemark.parent.internal.owner'
+  | 'childMarkdownRemark.parent.internal.type'
+  | 'childMarkdownRemark.children'
+  | 'childMarkdownRemark.children.id'
+  | 'childMarkdownRemark.children.parent.id'
+  | 'childMarkdownRemark.children.parent.children'
+  | 'childMarkdownRemark.children.children'
+  | 'childMarkdownRemark.children.children.id'
+  | 'childMarkdownRemark.children.children.children'
+  | 'childMarkdownRemark.children.internal.content'
+  | 'childMarkdownRemark.children.internal.contentDigest'
+  | 'childMarkdownRemark.children.internal.description'
+  | 'childMarkdownRemark.children.internal.fieldOwners'
+  | 'childMarkdownRemark.children.internal.ignoreType'
+  | 'childMarkdownRemark.children.internal.mediaType'
+  | 'childMarkdownRemark.children.internal.owner'
+  | 'childMarkdownRemark.children.internal.type'
+  | 'childMarkdownRemark.internal.content'
+  | 'childMarkdownRemark.internal.contentDigest'
+  | 'childMarkdownRemark.internal.description'
+  | 'childMarkdownRemark.internal.fieldOwners'
+  | 'childMarkdownRemark.internal.ignoreType'
+  | 'childMarkdownRemark.internal.mediaType'
+  | 'childMarkdownRemark.internal.owner'
+  | 'childMarkdownRemark.internal.type'
+  | 'childrenMdx'
+  | 'childrenMdx.rawBody'
+  | 'childrenMdx.fileAbsolutePath'
+  | 'childrenMdx.frontmatter.title'
+  | 'childrenMdx.slug'
+  | 'childrenMdx.body'
+  | 'childrenMdx.excerpt'
+  | 'childrenMdx.headings'
+  | 'childrenMdx.headings.value'
+  | 'childrenMdx.headings.depth'
+  | 'childrenMdx.html'
+  | 'childrenMdx.mdxAST'
+  | 'childrenMdx.tableOfContents'
+  | 'childrenMdx.timeToRead'
+  | 'childrenMdx.wordCount.paragraphs'
+  | 'childrenMdx.wordCount.sentences'
+  | 'childrenMdx.wordCount.words'
+  | 'childrenMdx.id'
+  | 'childrenMdx.parent.id'
+  | 'childrenMdx.parent.parent.id'
+  | 'childrenMdx.parent.parent.children'
+  | 'childrenMdx.parent.children'
+  | 'childrenMdx.parent.children.id'
+  | 'childrenMdx.parent.children.children'
+  | 'childrenMdx.parent.internal.content'
+  | 'childrenMdx.parent.internal.contentDigest'
+  | 'childrenMdx.parent.internal.description'
+  | 'childrenMdx.parent.internal.fieldOwners'
+  | 'childrenMdx.parent.internal.ignoreType'
+  | 'childrenMdx.parent.internal.mediaType'
+  | 'childrenMdx.parent.internal.owner'
+  | 'childrenMdx.parent.internal.type'
+  | 'childrenMdx.children'
+  | 'childrenMdx.children.id'
+  | 'childrenMdx.children.parent.id'
+  | 'childrenMdx.children.parent.children'
+  | 'childrenMdx.children.children'
+  | 'childrenMdx.children.children.id'
+  | 'childrenMdx.children.children.children'
+  | 'childrenMdx.children.internal.content'
+  | 'childrenMdx.children.internal.contentDigest'
+  | 'childrenMdx.children.internal.description'
+  | 'childrenMdx.children.internal.fieldOwners'
+  | 'childrenMdx.children.internal.ignoreType'
+  | 'childrenMdx.children.internal.mediaType'
+  | 'childrenMdx.children.internal.owner'
+  | 'childrenMdx.children.internal.type'
+  | 'childrenMdx.internal.content'
+  | 'childrenMdx.internal.contentDigest'
+  | 'childrenMdx.internal.description'
+  | 'childrenMdx.internal.fieldOwners'
+  | 'childrenMdx.internal.ignoreType'
+  | 'childrenMdx.internal.mediaType'
+  | 'childrenMdx.internal.owner'
+  | 'childrenMdx.internal.type'
+  | 'childMdx.rawBody'
+  | 'childMdx.fileAbsolutePath'
+  | 'childMdx.frontmatter.title'
+  | 'childMdx.slug'
+  | 'childMdx.body'
+  | 'childMdx.excerpt'
+  | 'childMdx.headings'
+  | 'childMdx.headings.value'
+  | 'childMdx.headings.depth'
+  | 'childMdx.html'
+  | 'childMdx.mdxAST'
+  | 'childMdx.tableOfContents'
+  | 'childMdx.timeToRead'
+  | 'childMdx.wordCount.paragraphs'
+  | 'childMdx.wordCount.sentences'
+  | 'childMdx.wordCount.words'
+  | 'childMdx.id'
+  | 'childMdx.parent.id'
+  | 'childMdx.parent.parent.id'
+  | 'childMdx.parent.parent.children'
+  | 'childMdx.parent.children'
+  | 'childMdx.parent.children.id'
+  | 'childMdx.parent.children.children'
+  | 'childMdx.parent.internal.content'
+  | 'childMdx.parent.internal.contentDigest'
+  | 'childMdx.parent.internal.description'
+  | 'childMdx.parent.internal.fieldOwners'
+  | 'childMdx.parent.internal.ignoreType'
+  | 'childMdx.parent.internal.mediaType'
+  | 'childMdx.parent.internal.owner'
+  | 'childMdx.parent.internal.type'
+  | 'childMdx.children'
+  | 'childMdx.children.id'
+  | 'childMdx.children.parent.id'
+  | 'childMdx.children.parent.children'
+  | 'childMdx.children.children'
+  | 'childMdx.children.children.id'
+  | 'childMdx.children.children.children'
+  | 'childMdx.children.internal.content'
+  | 'childMdx.children.internal.contentDigest'
+  | 'childMdx.children.internal.description'
+  | 'childMdx.children.internal.fieldOwners'
+  | 'childMdx.children.internal.ignoreType'
+  | 'childMdx.children.internal.mediaType'
+  | 'childMdx.children.internal.owner'
+  | 'childMdx.children.internal.type'
+  | 'childMdx.internal.content'
+  | 'childMdx.internal.contentDigest'
+  | 'childMdx.internal.description'
+  | 'childMdx.internal.fieldOwners'
+  | 'childMdx.internal.ignoreType'
+  | 'childMdx.internal.mediaType'
+  | 'childMdx.internal.owner'
+  | 'childMdx.internal.type';
 
 type contentfulBlogHinagataMarkdownContentTextNodeGroupConnection = {
   readonly totalCount: Scalars['Int'];
@@ -4423,18 +5477,6 @@ type SitePluginFieldsEnum =
   | 'pluginOptions.stripMetadata'
   | 'pluginOptions.defaultQuality'
   | 'pluginOptions.failOnError'
-  | 'pluginOptions.short_name'
-  | 'pluginOptions.start_url'
-  | 'pluginOptions.background_color'
-  | 'pluginOptions.theme_color'
-  | 'pluginOptions.display'
-  | 'pluginOptions.icon'
-  | 'pluginOptions.legacy'
-  | 'pluginOptions.theme_color_in_head'
-  | 'pluginOptions.cache_busting_mode'
-  | 'pluginOptions.crossOrigin'
-  | 'pluginOptions.include_favicon'
-  | 'pluginOptions.cacheDigest'
   | 'pluginOptions.spaceId'
   | 'pluginOptions.accessToken'
   | 'pluginOptions.host'
@@ -4446,6 +5488,13 @@ type SitePluginFieldsEnum =
   | 'pluginOptions.useNameForId'
   | 'pluginOptions.resetCSS'
   | 'pluginOptions.isUsingColorMode'
+  | 'pluginOptions.extensions'
+  | 'pluginOptions.lessBabel'
+  | 'pluginOptions.mediaTypes'
+  | 'pluginOptions.root'
+  | 'pluginOptions.languages'
+  | 'pluginOptions.defaultLanguage'
+  | 'pluginOptions.redirect'
   | 'pluginOptions.pathCheck'
   | 'pluginOptions.allExtensions'
   | 'pluginOptions.isTSX'
@@ -4806,10 +5855,24 @@ type ContentfulContentTypeSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
+type usersmitsu4419DesktopblockaidReactblockaidReactsrctemplatesBlogDetailTsx2097265015QueryVariables = Exact<{
+  slug: Scalars['String'];
+  language: Maybe<Scalars['String']>;
+}>;
 
 
-type Unnamed_1_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
+type usersmitsu4419DesktopblockaidReactblockaidReactsrctemplatesBlogDetailTsx2097265015Query = { readonly blog: Maybe<(
+    Pick<ContentfulBlogHinagataMarkdown, 'id' | 'postDate' | 'tag' | 'title'>
+    & { readonly content: Maybe<(
+      Pick<contentfulBlogHinagataMarkdownContentTextNode, 'content'>
+      & { readonly childMdx: Maybe<Pick<Mdx, 'body'>> }
+    )> }
+  )> };
+
+type usersmitsu4419DesktopblockaidReactblockaidReactsrccomponentsseoJs63159454QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type usersmitsu4419DesktopblockaidReactblockaidReactsrccomponentsseoJs63159454Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -4861,5 +5924,15 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'functionRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+
+type ContentfulQueryQueryVariables = Exact<{
+  language: Maybe<Scalars['String']>;
+}>;
+
+
+type ContentfulQueryQuery = { readonly allContentfulBlogHinagataMarkdown: { readonly nodes: ReadonlyArray<(
+      Pick<ContentfulBlogHinagataMarkdown, 'slug' | 'title' | 'tag'>
+      & { readonly mainThumbnail: Maybe<{ readonly fluid: Maybe<Pick<ContentfulFluid, 'src'>> }> }
+    )> } };
 
 }

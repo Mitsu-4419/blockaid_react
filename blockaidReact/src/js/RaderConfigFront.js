@@ -1,5 +1,5 @@
 export const RadarDataFront = {
-    labels: ["Finger Strength", "Power", "Endurance", "Stability", "Flexability"],
+    labels: ["Vue/nuxt","Quasar","Flutter","GraphQL", "WASM", "Typescript","React.js"],
     datasets: [
       {
         label: "March",
@@ -9,14 +9,14 @@ export const RadarDataFront = {
         poingBorderColor: "#fff",
         pointHoverBackgroundColor: "#fff",
         pointHoverBorderColor: "rgba(34, 202, 236, 1)",
-        data: [5,2,3,4,5]
+        data: [5,4,4,3,2,4,4]
       }
     ]
   };
   export const RadarOptionsFront = {
     scale:{
       pointLabels:{
-        fontSize:16,
+        fontSize:15,
       },
       ticks: {
         min: 0,
@@ -30,10 +30,10 @@ export const RadarDataFront = {
     title:{
       display:true,
       fontSize:25,
-      text:'Others'
+      text:'Frontend'
     }, 
     legend: {
         display: false
-     }
+    }
   };
   

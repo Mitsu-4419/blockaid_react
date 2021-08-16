@@ -21,18 +21,18 @@ const IndexPage = () => (
                 alt="topPageSurgeon"
             />
     </Flex>
-    <Box w='100%' textAlign='center' h='20'  bgColor='red.200' mt='10'>
+    <Box w='100%' textAlign='center' h='20' mt='10'>
       <Text fontSize='42' color='gray.700' fontWeight='bold'>Skills</Text>
     </Box>
     <Flex w="95%" mr='auto' ml='auto' justify='center' h='300px'>
-      <Box>
-        <RadarChart chartType='front'w='280px' h='280px'/>
+      <Box m='5'>
+        <RadarChart chartType='front'/>
       </Box>
-      <Box>
-        <RadarChart chartType='backend'w='280px' h='280px'/>
+      <Box m='5'>
+        <RadarChart chartType='backend'/>
       </Box>
-      <Box >
-        <RadarChart chartType='others'w='280px' h='280px'/>
+      <Box m='5'>
+        <RadarChart chartType='others'/>
       </Box>
     </Flex>
   </>
