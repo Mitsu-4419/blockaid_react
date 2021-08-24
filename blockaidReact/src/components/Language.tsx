@@ -1,7 +1,5 @@
-import React, {useState, memo} from "react"
+import React, {memo} from "react"
 import { IntlContextConsumer, changeLocale } from "gatsby-plugin-intl"
-import { Switch, FormControl, FormLabel } from "@chakra-ui/react"
-import { useEffect } from "react"
 
 const languageName = {
   en: "EN",
@@ -9,15 +7,7 @@ const languageName = {
 }
 
 const Language = memo(() => {
-  const [english, setEnglish] = useState(false)
-  const [currentLoc, setCurrentLoc] = useState('ja')
-
-  const changeStatus = (currentLoc)=>{
-    console.log(english)
-    setEnglish(!english)
-    console.log(english)
-    changeLocale('en')
-  }
+  
   return (
     <div>
       <IntlContextConsumer>

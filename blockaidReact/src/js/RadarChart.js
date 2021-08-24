@@ -21,7 +21,7 @@ export const RadarChart=memo((props)=> {
         }
     },[])
     return (
-        <Radar  data={RadarData} options={RadarOption}   width={300}
-        height={300}/>
+        <Radar  data={RadarData} options={RadarOption} width={{xl:400, lg:300, md:280, sm:250}}
+        height={{xl:400, lg:300, md:280, sm:250}}/>
     );
 })

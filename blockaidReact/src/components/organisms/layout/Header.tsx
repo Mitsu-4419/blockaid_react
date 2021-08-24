@@ -1,13 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { memo,useState,VFC} from "react";
-import { Box, Flex, Heading, useDisclosure, Spacer, Button, Divider, Center } from "@chakra-ui/react";
-import { useHistory } from "react-router-dom";
+import {Flex, Heading,Spacer, Button, Divider, Center } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
 import {Link} from 'gatsby';
 import Language from "../../Language";
 
 export const Header: VFC = memo(() => {
-  const [active, setActive] = useState(false);
   
   return (
     <>

@@ -1,12 +1,12 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
-import { Button } from "@chakra-ui/button"
 import { Box,Flex,Text } from "@chakra-ui/layout"
 
 
 import Seo from "../components/seo"
 import { Header } from "../components/organisms/layout/Header"
+import { Footer} from "../components/organisms/layout/Footer"
 import { RadarChart } from "../js/RadarChart.js";
 
 const IndexPage = () => (
@@ -24,17 +24,18 @@ const IndexPage = () => (
     <Box w='100%' textAlign='center' h='20' mt='10'>
       <Text fontSize='42' color='gray.700' fontWeight='bold'>Skills</Text>
     </Box>
-    <Flex w="95%" mr='auto' ml='auto' justify='center' h='300px'>
-      <Box m='5'>
+    <Flex w="95%" mr='auto' ml='auto' justify='center' height={{xl:400, lg:300, md:280, sm:250}}>
+      <Box m={{xl:'35', lg:'25', md:'5', sm:'0'}}>
         <RadarChart chartType='front'/>
       </Box>
-      <Box m='5'>
+      <Box m={{xl:'35', lg:'25', md:'5', sm:'0'}}>
         <RadarChart chartType='backend'/>
       </Box>
-      <Box m='5'>
+      <Box m={{xl:'35', lg:'25', md:'5', sm:'0'}}>
         <RadarChart chartType='others'/>
       </Box>
     </Flex>
+    <Footer></Footer>
   </>
 )
 

@@ -5,12 +5,13 @@ import { StaticImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo"
 import { Header } from "../components/organisms/layout/Header"
+import { Footer } from "../components/organisms/layout/Footer"
 
 
 const ContactPage = () => (
   <>
     <Header/>
-    <Flex h='100vh' w='100%' justify='center' alignItems='center'>
+    <Flex h='70vh' w='100%' justify='center' alignItems='center'>
         <Box boxShadow='xl' w='60%' h='350px'>
             <Flex bgColor='white'  w='100%' h='100%' textAlign='center' alignItems='center' justify='center' fontSize='xl'>
                 <VStack spacing={12}>
@@ -21,6 +22,7 @@ const ContactPage = () => (
             </Flex>
         </Box>
     </Flex>
+    <Footer/>
   </>
 )
 

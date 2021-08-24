@@ -13,7 +13,6 @@ module.exports = {
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
   },
   plugins: [
-    `gatsby-transformer-remark`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     {
@@ -25,18 +24,6 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    // {
-    //   resolve: `gatsby-plugin-manifest`,
-    //   options: {
-    //     name: `gatsby-starter-default`,
-    //     short_name: `starter`,
-    //     start_url: `/`,
-    //     background_color: `#663399`,
-    //     theme_color: `#663399`,
-    //     display: `minimal-ui`,
-    //     icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
-    //   },
-    // },
     {
       resolve: `gatsby-source-contentful`,
       options: {
@@ -73,6 +60,7 @@ module.exports = {
         ],
       },
     },
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-intl`,
       options: {
@@ -81,9 +69,25 @@ module.exports = {
         // supported language
         languages: [`en`, `ja`],
         // language file path
-        defaultLanguage: `en`,
+        defaultLanguage: `ja`,
         // option to redirect to `/en` when connecting `/`
         redirect: false,
+      },
+    },
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images-contentful`,
+            options: {
+              maxWidth: 650,
+              backgroundColor: 'white',
+              withWebp: true,
+            },
+          },
+        ],
       },
     },
   ],

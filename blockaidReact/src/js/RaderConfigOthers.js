@@ -1,5 +1,5 @@
 export const RadarDataOthers = {
-    labels: ["Medical", "Statistics", "Docker","AI", "DataScience","BlockChain"],
+    labels: ["Medical", "Statistics", "docker","AI", "DataScience","BlockChain"],
     datasets: [
       {
         label: "March",

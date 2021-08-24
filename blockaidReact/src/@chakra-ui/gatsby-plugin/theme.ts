@@ -1,4 +1,13 @@
 import { extendTheme } from "@chakra-ui/react";
+import { createBreakpoints } from "@chakra-ui/theme-tools"
+
+const breakpoints = createBreakpoints({
+  sm: '10px',
+  md: "600px",
+  lg: "960px",
+  xl: "1280px",
+})
+
 
 const theme = extendTheme({
   styles: {
@@ -11,6 +20,9 @@ const theme = extendTheme({
         heading: "Open Sans",
       },
     }
-  }
+  },
+  breakpoints
 });
+
+
 export default theme;

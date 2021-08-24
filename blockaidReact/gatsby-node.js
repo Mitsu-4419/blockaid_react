@@ -6,27 +6,6 @@
 const path = require("path")
 // You can delete this file if you're not using it
 exports.createPages = async ({graphql, actions, reporter}) =>{
-    // return graphql(`
-    //     {
-    //       blogs: allContentfulBlogHinagataMarkdown {
-    //         edges {
-    //           node {
-    //             slug
-    //           }
-    //         }
-    //       }
-    //     }
-    // `).then((result)=>{
-    //     result.data.blogs.edges.forEach(({node})=>{
-    //         createPage({
-    //             path:`/blog/${node.node.slug}`,
-    //             component:path.resolve('./src/components/templates/BlogDetail.tsx'),
-    //             context:{
-    //                 slug:node.slug
-    //             }
-    //         })
-    //     })
-    // })
     const {createPage} = actions
 
     const blogresult = await graphql(`

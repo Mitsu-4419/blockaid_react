@@ -1,12 +1,17 @@
 import * as React from "react"
-import { Link } from "gatsby"
-import { Grid, GridItem, Box, Divider,Text, Heading, Flex,VStack } from "@chakra-ui/react"
+import { Grid, GridItem, Box,Text, Heading, Flex,VStack } from "@chakra-ui/react"
 import { StaticImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo"
 import { Header } from "../components/organisms/layout/Header"
+import { Footer } from "../components/organisms/layout/Footer"
+import { useIntl } from "gatsby-plugin-intl"
+import { ProfileText } from "../components/molecules/profileText"
 
-const ProfilePage = () => (
+const ProfilePage = () => {
+  const intl = useIntl()
+
+  return (
   <>
     <Header/>
     <Grid
@@ -22,75 +27,60 @@ const ProfilePage = () => (
           </Flex>
       </GridItem>
       <GridItem rowSpan={32} colSpan={2} ></GridItem>
-      <GridItem rowSpan={20} colSpan={11}  bg='white' >
+      <GridItem rowSpan={{xl:20, lg:20, md:8, sm:10}} colSpan={{xl:11, lg:11, md:30, sm:30}}  bg='white' >
         <Flex w='100%' h='100%' justify='center' alignItems='center'>
+            <Box w={{xl:280, lg:250, md:180, sm:150}}>
             <StaticImage
                 src="../images/CEOFace.png"
-                width={230}
                 quality={95}
                 alt="CEOFace"
             />
+            </Box>
         </Flex>
       </GridItem>
-      <GridItem rowSpan={20} colSpan={19}  bg='white' >
+      <GridItem rowSpan={{xl:20, lg:20, md:12, sm:10}} colSpan={{xl:19, lg:19, md:30, sm:30}}  bg='white' >
         <Flex h='100%' alignItems='center' p='4'>
-          <VStack align='start' spacing={3}>
+          <VStack align='start' spacing={3} fontSize={{xl:"20", lg:"18", md:"16", sm:"10"}}>
+            <ProfileText year='prof1-year' content='prof1-content'></ProfileText>
+            <ProfileText year='prof2-year' content='prof2-content'></ProfileText>
+            <ProfileText year='prof3-year' content='prof3-content'></ProfileText>
             <Flex>
-              <Text w='120px'>1983年</Text>
-              <Text>神戸市生まれ</Text>
+              <Text w='130px'>{intl.formatMessage({ id: "prof4-year" })}</Text>
+              <Text>{intl.formatMessage({ id: "prof4-1-content" })}<br/>{intl.formatMessage({ id: "prof4-2-content" })}<br/>{intl.formatMessage({ id: "prof4-3-content" })}</Text>
             </Flex>
+            <ProfileText year='prof5-year' content='prof5-content'></ProfileText>
+            <Box mt='10px' mb='10px'>
+              <Text>{intl.formatMessage({ id: "prof6-content" })}</Text>
+            </Box>
             <Flex>
-              <Text w='120px'>2001年</Text>
-              <Text>私立灘高校卒業</Text>
+              <Text w='130px'>{intl.formatMessage({ id: "prof7-year" })}</Text>
+              <Text>{intl.formatMessage({ id: "prof7-1-content" })}<br/>{intl.formatMessage({ id: "prof7-2-content" })}</Text>
             </Flex>
-            <Flex>
-              <Text w='120px'>2009年</Text>
-              <Text>大阪大学医学部医学科卒業</Text>
-            </Flex>
-            <Flex>
-              <Text w='120px'>2009年〜</Text>
-              <Text>亀田総合病院初期研修、太田記念病院一般外科、<br/>大阪大学医学部心臓外科で外科医として研鑽を積む<br/>その間にUSMLE1、２、3を取得</Text>
-            </Flex>
-            <Flex>
-              <Text w='120px'>2017年~2018年</Text>
-              <Text>Yale University Hospital CT Surgery Clinical Fellow</Text>
-            </Flex>
-            <Text>アメリカ留学を機に自分の人生を見つめ直し、外科医を辞め新しい道を模索する決意をする</Text>
-            <Flex>
-              <Text w='120px'>2019年4月</Text>
-              <Text>Tokyo Gs Academy に入学。<br/>プログラミングに出会いその魅力に取り憑かれる</Text>
-            </Flex>
-            <Flex>
-              <Text w='120px'>2020年1月</Text>
-              <Text>BlockAidを起業、複数のWebサービスを運営</Text>
-            </Flex>
-            <Flex>
-              <Text w='120px'>2021年3月〜</Text>
-              <Text>株式会社AMIにエンジニアとしてJoin</Text>
-            </Flex>
-            <Flex>
-              <Text w='120px'>2021年6月〜</Text>
-              <Text>York University(UK) Computer Science Master Cource 就学中</Text>
-            </Flex>
+            <ProfileText year='prof8-year' content='prof8-content'></ProfileText>
+            <ProfileText year='prof9-year' content='prof9-content'></ProfileText>
+            <ProfileText year='prof10-year' content='prof10-content'></ProfileText>
           </VStack>
         </Flex>
       </GridItem>
-      <GridItem rowSpan={6} colSpan={30}  bg='white' p='4'>
-        <Box m='2'>
-          <Text>主な資格</Text>
+      <GridItem rowSpan={6} colSpan={18}  bg='white' p='4'>
+        <Box m='2' fontSize={{xl:"20", lg:"18", md:"16", sm:"10"}}pl={{xl:"10", lg:"8", md:"6", sm:"4"}} pr={{xl:"10", lg:"8", md:"6", sm:"4"}}>
+          <Text fontWeight={"bold"}>{intl.formatMessage({ id: "prof-certificate" })}</Text>
           <Text>
-              医師免許、USMLE Step1,2,3, 外科専門医、心臓外科専門医、産業医専門医<br/>
-              Duolingo English Test 120, 統計検定２級、AtCoder 緑
+          {intl.formatMessage({ id: "prof-certificate-detail1" })}<br/>
+          {intl.formatMessage({ id: "prof-certificate-detail2" })}
           </Text>
         </Box>
-        <Box m='2'>
-          <Text>趣味</Text>
-          <Text>ピアノ、ランニング、釣り、ラグビー観戦、SAX</Text>
+      </GridItem>
+      <GridItem rowSpan={6} colSpan={12}  bg='white' p='4'>
+        <Box m='2'fontSize={{xl:"20", lg:"18", md:"16", sm:"10"}} pl={{xl:"10", lg:"8", md:"6", sm:"4"}} pr={{xl:"10", lg:"8", md:"6", sm:"4"}}>
+            <Text fontWeight={"bold"}>{intl.formatMessage({ id: "prof-hobby" })}</Text>
+            <Text>{intl.formatMessage({ id: "prof-hobby-detail" })}</Text>
         </Box>
       </GridItem>
       <GridItem rowSpan={2} colSpan={30}></GridItem>
     </Grid>
-  </>
-)
+    <Footer></Footer>
+  </>)
+}
 
 export default ProfilePage

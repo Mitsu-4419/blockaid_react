@@ -25,7 +25,7 @@ import Markdown from '../components/Markdown.js'
 const ProjectDetails = ({data}) => {
   // const { id } = data.markdownRemark.frontmatter
   console.log(data.blog.content)
-  console.log(data.blog.content.content)
+
   // const source = data.blog.content.content.replace(/\n/gi, '\nreplaced_text ')
   // marked.setOptions({
   //   gfm: true,
@@ -41,11 +41,10 @@ const ProjectDetails = ({data}) => {
         {data.blog.postDate}
         {data.blog.tag}
         {data.blog.title }
-        {/* {data.blog.content.content} */}
-        {/* <div dangerouslySetInnerHTML={{ __html: marked(parsedSouce) }} /> */}
       </Box>
       <Box color='red'>
-      <Markdown >{data.blog.content.childMdx.body}</Markdown>
+      {/* <Markdown >{data.blog.content.childMdx.body}</Markdown> */}
+       <div dangerouslySetInnerHTML={{ __html: data.blog.content.childMarkdownRemark.html }} />
       </Box>
       
     </>
@@ -66,6 +65,9 @@ export const query = graphql`
         content
         childMdx {
           body
+        }
+        childMarkdownRemark {
+          html
         }
       }
     }
