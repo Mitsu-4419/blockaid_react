@@ -52,7 +52,7 @@ export const Header: VFC = memo(() => {
                 <Button borderRadius='md' ml='1' mr='1' _hover={{bgColor:'blue.200',color:'white'}} bgColor='blue.50'>CONTACT</Button>
             </Link>
             <Center height="30px" ml='1' mr='1'>
-                <Divider orientation="vertical" />
+                <Divider orientation="vertical"/>
             </Center>
             <Language />
         </Flex>

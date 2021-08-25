@@ -2,49 +2,50 @@ import * as React from "react"
 import { memo, VFC } from "react";
 import { Box, Stack, Image,Text,} from "@chakra-ui/react";
 import {Link} from 'gatsby';
-import { createBreakpoints } from "@chakra-ui/theme-tools"
+import {changeDateFormat} from '../../js/changeDateFormat.js'
 
 type Props = {
   id: string;
   title:string,
   imageUrl: string;
   tag:string;
+  createdAt:string;
 };
 
-const breakpoints = createBreakpoints({
-  sm: "30em",
-  md: "600px",
-  lg: "960px",
-  xl: "1280px",
-})
-
 export const BlogCard: VFC<Props> = memo(props => {
-  const { id, title,imageUrl,tag} = props;
-
+  const { id, title,imageUrl,tag, createdAt} = props;
+  const date= changeDateFormat(createdAt)
   return (
     <>
     <Box w='100%'>
       <Link to={`/blog/${id}`} >
         <Box
             w="100%"
-            h="260px"
+            minH="260px"
             bg="white"
             borderRadius="10px"
             shadow="xl"
             _hover={{ cursor: "pointer", opacity: 0.8 }}
         >
-            <Stack textAlign="center">
-            <Image
-                w='full'
-                h='180px'
-                objectFit="cover"
-                src={imageUrl}
-                alt={tag}
-                m="auto"
-            />
-            <Text fontSize="lg" fontWeight="bold">
-                {title}
-            </Text>
+            <Stack textAlign="start">
+              <Image
+                  w='full'
+                  h='180px'
+                  objectFit="cover"
+                  src={imageUrl}
+                  alt={tag}
+                  m="auto"
+                  borderTopLeftRadius='10px'
+                  borderTopRightRadius='10px'
+              />
+              <Box minH='80px' pt='2' pb='2'pl='15' pr='15'>
+                <Text fontSize="lg" fontWeight="bold">
+                    {title}
+                </Text>
+                <Text fontSize="md" color='gray.500'>
+                    {date}
+                </Text>
+              </Box>
             </Stack>
         </Box>
       </Link>
