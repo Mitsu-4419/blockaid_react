@@ -1,4 +1,4 @@
-import React, {memo} from "react"
+import React, {memo, VFC} from "react"
 import { IntlContextConsumer, changeLocale } from "gatsby-plugin-intl"
 
 const languageName = {
@@ -6,18 +6,19 @@ const languageName = {
   ja: "JA",
 }
 
-const Language = memo(() => {
-  
+const Language = memo((props) => {
   return (
     <div>
       <IntlContextConsumer>
-        {({ languages, language: currentLocale }) =>
+        {({ languages, language: lang }) =>
           languages.map(language => (
             <a
               key={language}
-              onClick={() => changeLocale(language)}
+              onClick={() => {
+                changeLocale(language)
+              }}
               style={{
-                color: currentLocale === language ? `#2D3748` : `#CBD5E0`,
+                color: lang === language ? `#2D3748` : `#CBD5E0`,
                 margin: 10,
                 textDecoration: `underline`,
                 cursor: `pointer`,

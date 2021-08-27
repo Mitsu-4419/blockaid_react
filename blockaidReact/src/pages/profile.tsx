@@ -3,8 +3,7 @@ import { Grid, GridItem, Box,Text, Heading, Flex,VStack } from "@chakra-ui/react
 import { StaticImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo"
-import { Header } from "../components/organisms/layout/Header"
-import { Footer } from "../components/organisms/layout/Footer"
+import  Layout from "../components/Layout";
 import { useIntl } from "gatsby-plugin-intl"
 import { ProfileText } from "../components/molecules/profileText"
 
@@ -13,7 +12,7 @@ const ProfilePage = () => {
 
   return (
   <>
-    <Header/>
+     <Layout>
     <Grid
       templateRows="repeat(34, 1fr)"
       templateColumns="repeat(34, 1fr)"
@@ -79,7 +78,7 @@ const ProfilePage = () => {
       </GridItem>
       <GridItem rowSpan={2} colSpan={30}></GridItem>
     </Grid>
-    <Footer></Footer>
+    </Layout>
   </>)
 }
 

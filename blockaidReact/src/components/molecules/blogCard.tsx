@@ -9,12 +9,12 @@ type Props = {
   title:string,
   imageUrl: string;
   tag:string;
-  createdAt:string;
+  postDate:string;
 };
 
 export const BlogCard: VFC<Props> = memo(props => {
-  const { id, title,imageUrl,tag, createdAt} = props;
-  const date= changeDateFormat(createdAt)
+  const { id, title,imageUrl,tag, postDate} = props;
+  const date= changeDateFormat(postDate)
   return (
     <>
     <Box w='100%'>

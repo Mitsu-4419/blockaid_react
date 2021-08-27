@@ -1,12 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { memo,useState,VFC} from "react";
+import React, { memo,useState,VFC, useEffect} from "react";
 import {Flex, Heading,Spacer, Button, Divider, Center } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
 import {Link} from 'gatsby';
 import Language from "../../Language";
+import { changeLocale } from "gatsby-plugin-intl"
 
 export const Header: VFC = memo(() => {
-  
+
+  useEffect(()=>{
+    const currentLocal = localStorage.getItem('gatsby-intl-language')
+    changeLocale(currentLocal)
+    // setLang(currentLocal
+  },[])
   return (
     <>
     <Flex
@@ -54,7 +60,7 @@ export const Header: VFC = memo(() => {
             <Center height="30px" ml='1' mr='1'>
                 <Divider orientation="vertical"/>
             </Center>
-            <Language />
+            <Language/>
         </Flex>
     </Flex>
     </>

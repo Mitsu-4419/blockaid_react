@@ -1,14 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { memo,useState,VFC} from "react";
-import ReactMarkdown from 'react-markdown'
+import React from "react";
 import { graphql } from "gatsby"
-import { Box, Text,Flex, Heading, useDisclosure, Spacer, Button, Image } from "@chakra-ui/react";
+import { Box, Text,Flex, Image, Tag,TagLabel } from "@chakra-ui/react";
 import {Header} from "../components/organisms/layout/Header"
 import {Footer} from "../components/organisms/layout/Footer"
-import marked from "marked";
-import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
-import Markdown from '../components/Markdown.js'
-import { StaticImage } from "gatsby-plugin-image"
 import {changeDateFormat} from '../js/changeDateFormat.js'
 
 const ProjectDetails = ({data}) => {
@@ -23,18 +18,25 @@ const ProjectDetails = ({data}) => {
           <Flex justify='center' w='100%'>
             <Text fontSize='15px' color='red'>{date}</Text>
           </Flex>
-          <Box w='100%' textAlign='center'>
+          <Box w='100%' textAlign='center' mt='10px' mb='10px'>
             <Text fontSize='30' fontWeight='bold'>
               {data.blog.title }
             </Text>
           </Box>
-          <Image
-            src={data.blog.mainThumbnail.fluid.src}
-            alt="tosenkyoThumbnail"
-            mt='50px'
-            mb='50px'
-          />
-          <Box color='gray.900' fontSize='22'>
+          <Flex h='50px' pl='20px' mb='10px'>
+            <Tag size="md" colorScheme="gray" borderRadius="full" h='38px'>
+                <Text mr='5px'>#</Text>
+                <TagLabel>{data.blog.tag}</TagLabel>
+              </Tag>
+          </Flex>
+            <Image
+              src={data.blog.mainThumbnail.fluid.src}
+              alt="tosenkyoThumbnail"
+              fit='cover'
+              h='600px' 
+              w='100%'
+            />
+          <Box color='gray.900' fontSize='22' mt='4rem' mb='4rem'>
             {/* <Markdown >{data.blog.content.childMdx.body}</Markdown> */}
             <div dangerouslySetInnerHTML={{ __html: data.blog.content.childMarkdownRemark.html }} />
           </Box>
