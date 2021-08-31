@@ -63,9 +63,6 @@ export const query = graphql`
       }
       content{
         content
-        childMdx {
-          body
-        }
         childMarkdownRemark {
           html
         }
