@@ -63,7 +63,7 @@ module.exports = {
         // language file path
         defaultLanguage: `ja`,
         // option to redirect to `/en` when connecting `/`
-        redirect: false,
+        redirect: true,
       },
     },
     `gatsby-plugin-sharp`,

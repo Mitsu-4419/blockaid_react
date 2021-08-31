@@ -14,8 +14,9 @@ export const Header: VFC = memo(() => {
         setLocationName(path)
     }, [])
     useEffect(()=>{
-        const currentLang= localStorage.getItem('gatsby-intl-language')
-          changeLocale(currentLang)
+        let currentLang= localStorage.getItem('gatsby-intl-language')
+        if (currentLang==null) currentLang = "ja"
+        changeLocale(currentLang)
     },[])
 
   return (
