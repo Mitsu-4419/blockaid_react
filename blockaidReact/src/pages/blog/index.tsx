@@ -8,22 +8,49 @@ import  Layout from "../../components/Layout";
 import { BlogCard } from "../../components/molecules/blogCard"
 import { graphql } from "gatsby"
 import { useEffect } from "react";
+import { string } from "prop-types";
 
 export default function BlogPage({data}) {
-    console.log("hogehoge")
-   console.log(data)
    const [blogData, setBlogData] = useState([])
+   const [blogFlag, setblogFlag] = useState("")
    useEffect(()=>{
     console.log(data.allContentfulBlogHinagataMarkdown.nodes)
     let datanodes=[]
     data.allContentfulBlogHinagataMarkdown.nodes.map((node)=>{
-        if(node.title){
+        console.log("node.title", node.title)
+        if(typeof(node.title)==="string"){
             datanodes.push(node)
         }
     })
     setBlogData(datanodes)
+    console.log("fiodsjfosadjo;fno;")
    },[data])
 
+   const onClickChangeLife = (()=>{
+       if(blogFlag=="MyLife")setblogFlag("")
+       else{
+        setblogFlag("MyLife")
+       }
+       console.log(blogData)
+   })
+   const onClickChangeKagoshima = (()=>{
+        if(blogFlag=="Kagoshima")setblogFlag("")
+        else{
+        setblogFlag("Kagoshima")
+        }
+    })
+    const onClickChangeTechStudy = (()=>{
+        if(blogFlag=="TechStudy")setblogFlag("")
+        else{
+        setblogFlag("TechStudy")
+        }
+    })
+    const onClickChangeHobby = (()=>{
+        if(blogFlag=="Hobby")setblogFlag("")
+        else{
+        setblogFlag("Hobby")
+        }
+    })
 
    return (
     <>
@@ -34,25 +61,21 @@ export default function BlogPage({data}) {
         </Flex>
         <Box h='90vh' maxWidth={{xl:"1280px",}} ml='auto' mr='auto' pt='40px' pl='24px' pr='24px'  bg='white' shadow='sm'> 
             <Flex w='100%' ml='auto' mr='auto'>
-                    <Button _hover={{bg:'blue.100'}} _active={{bg: "#dddfe2", transform: "scale(0.98)",}} bg='gray.100'  h='100%' minH='42px' w='25%'>初めまして</Button>
-                    <Button _hover={{bg:'blue.100'}} _active={{bg: "#dddfe2", transform: "scale(0.98)",}} bg='gray.100'  h='100%' minH='42px' w='25%'>鹿児島生活</Button>
-                    <Button _hover={{bg:'blue.100'}} _active={{bg: "#dddfe2", transform: "scale(0.98)",}} bg='gray.100'  h='100%' minH='42px' w='25%'>Tech,勉強</Button>
-                    <Button _hover={{bg:'blue.100'}} _active={{bg: "#dddfe2", transform: "scale(0.98)",}} bg='gray.100'  h='100%' minH='42px' w='25%'>趣味</Button>
+                    <Button _hover={{bg:'blue.100'}} _active={{bg: "#dddfe2", transform: "scale(0.98)",}} bg='gray.100'  h='100%' minH='42px' w='25%' onClick={onClickChangeLife}>初めまして</Button>
+                    <Button _hover={{bg:'blue.100'}} _active={{bg: "#dddfe2", transform: "scale(0.98)",}} bg='gray.100'  h='100%' minH='42px' w='25%' onClick={onClickChangeKagoshima}>鹿児島生活</Button>
+                    <Button _hover={{bg:'blue.100'}} _active={{bg: "#dddfe2", transform: "scale(0.98)",}} bg='gray.100'  h='100%' minH='42px' w='25%' onClick={onClickChangeTechStudy}>Tech,勉強</Button>
+                    <Button _hover={{bg:'blue.100'}} _active={{bg: "#dddfe2", transform: "scale(0.98)",}} bg='gray.100'  h='100%' minH='42px' w='25%' onClick={onClickChangeHobby}>趣味</Button>
             </Flex>
             <Box mt='40px'>
-            {blogData.length>0?
-                (
-                    <Wrap  ml='auto' mr='auto' w='100%'>
-                        {blogData.map(content=>(
-                        <Box w={{xl:"24.3%", lg:"32.4%", md:"48.3%", sm:"99%"}} p='2' >
-                            <WrapItem key={content.slug} mx="auto" >
-                                {content.title == null? null:
-                                <BlogCard id={content.slug} title={content.title} imageUrl={content.mainThumbnail.fluid.src} tag={content.tag} postDate={content.postDate}/>}
-                            </WrapItem>
-                        </Box> 
-                    ))}
-                    </Wrap>
-                ):""}
+                <Wrap  ml='auto' mr='auto' w='100%'>
+                {blogData.map(content=>
+                <Box w={{xl:"24.3%", lg:"32.4%", md:"48.3%", sm:"99%"}} p='2' >
+                     <WrapItem key={content.id} mx="auto" >
+                        <BlogCard id={content.slug} title={content.title} imageUrl={content.mainThumbnail.fluid.src} tag={content.tag} postDate={content.postDate}/>
+                    </WrapItem>
+                </Box>
+                 )}
+                </Wrap>
             </Box>
         </Box>
     </Box>

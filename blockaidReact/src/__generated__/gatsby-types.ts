@@ -257,8 +257,6 @@ type Directory_ctimeArgs = {
 type Site = Node & {
   readonly buildTime: Maybe<Scalars['Date']>;
   readonly siteMetadata: Maybe<SiteSiteMetadata>;
-  readonly port: Maybe<Scalars['Int']>;
-  readonly host: Maybe<Scalars['String']>;
   readonly polyfill: Maybe<Scalars['Boolean']>;
   readonly pathPrefix: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
@@ -1106,6 +1104,8 @@ type SitePluginPluginOptions = {
   readonly maxWidth: Maybe<Scalars['Int']>;
   readonly backgroundColor: Maybe<Scalars['String']>;
   readonly withWebp: Maybe<Scalars['Boolean']>;
+  readonly trackingIds: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly pluginConfig: Maybe<SitePluginPluginOptionsPluginConfig>;
   readonly pathCheck: Maybe<Scalars['Boolean']>;
   readonly allExtensions: Maybe<Scalars['Boolean']>;
   readonly isTSX: Maybe<Scalars['Boolean']>;
@@ -1125,6 +1125,10 @@ type SitePluginPluginOptionsPluginsPluginOptions = {
   readonly maxWidth: Maybe<Scalars['Int']>;
   readonly backgroundColor: Maybe<Scalars['String']>;
   readonly withWebp: Maybe<Scalars['Boolean']>;
+};
+
+type SitePluginPluginOptionsPluginConfig = {
+  readonly head: Maybe<Scalars['Boolean']>;
 };
 
 type SitePluginPackageJson = {
@@ -1325,8 +1329,6 @@ type Query_allDirectoryArgs = {
 type Query_siteArgs = {
   buildTime: Maybe<DateQueryOperatorInput>;
   siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
-  port: Maybe<IntQueryOperatorInput>;
-  host: Maybe<StringQueryOperatorInput>;
   polyfill: Maybe<BooleanQueryOperatorInput>;
   pathPrefix: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
@@ -2441,8 +2443,6 @@ type SiteFieldsEnum =
   | 'siteMetadata.description'
   | 'siteMetadata.author'
   | 'siteMetadata.siteUrl'
-  | 'port'
-  | 'host'
   | 'polyfill'
   | 'pathPrefix'
   | 'id'
@@ -2544,8 +2544,6 @@ type SiteGroupConnection = {
 type SiteFilterInput = {
   readonly buildTime: Maybe<DateQueryOperatorInput>;
   readonly siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
-  readonly port: Maybe<IntQueryOperatorInput>;
-  readonly host: Maybe<StringQueryOperatorInput>;
   readonly polyfill: Maybe<BooleanQueryOperatorInput>;
   readonly pathPrefix: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
@@ -2843,6 +2841,8 @@ type SitePluginPluginOptionsFilterInput = {
   readonly maxWidth: Maybe<IntQueryOperatorInput>;
   readonly backgroundColor: Maybe<StringQueryOperatorInput>;
   readonly withWebp: Maybe<BooleanQueryOperatorInput>;
+  readonly trackingIds: Maybe<StringQueryOperatorInput>;
+  readonly pluginConfig: Maybe<SitePluginPluginOptionsPluginConfigFilterInput>;
   readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
   readonly allExtensions: Maybe<BooleanQueryOperatorInput>;
   readonly isTSX: Maybe<BooleanQueryOperatorInput>;
@@ -2866,6 +2866,10 @@ type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
   readonly maxWidth: Maybe<IntQueryOperatorInput>;
   readonly backgroundColor: Maybe<StringQueryOperatorInput>;
   readonly withWebp: Maybe<BooleanQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsPluginConfigFilterInput = {
+  readonly head: Maybe<BooleanQueryOperatorInput>;
 };
 
 type SitePluginPackageJsonFilterInput = {
@@ -3179,6 +3183,8 @@ type SitePageFieldsEnum =
   | 'pluginCreator.pluginOptions.maxWidth'
   | 'pluginCreator.pluginOptions.backgroundColor'
   | 'pluginCreator.pluginOptions.withWebp'
+  | 'pluginCreator.pluginOptions.trackingIds'
+  | 'pluginCreator.pluginOptions.pluginConfig.head'
   | 'pluginCreator.pluginOptions.pathCheck'
   | 'pluginCreator.pluginOptions.allExtensions'
   | 'pluginCreator.pluginOptions.isTSX'
@@ -5708,6 +5714,8 @@ type SitePluginFieldsEnum =
   | 'pluginOptions.maxWidth'
   | 'pluginOptions.backgroundColor'
   | 'pluginOptions.withWebp'
+  | 'pluginOptions.trackingIds'
+  | 'pluginOptions.pluginConfig.head'
   | 'pluginOptions.pathCheck'
   | 'pluginOptions.allExtensions'
   | 'pluginOptions.isTSX'
@@ -6068,6 +6076,11 @@ type ContentfulContentTypeSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
+type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type Unnamed_1_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
+
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
 type GatsbyImageSharpFixed_tracedSVGFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
@@ -6094,10 +6107,19 @@ type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
-type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
+type Unnamed_2_QueryVariables = Exact<{
+  slug: Scalars['String'];
+  language: Maybe<Scalars['String']>;
+}>;
 
 
-type Unnamed_1_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
+type Unnamed_2_Query = { readonly blog: Maybe<(
+    Pick<ContentfulBlogHinagataMarkdown, 'id' | 'tag' | 'title' | 'createdAt'>
+    & { readonly mainThumbnail: Maybe<{ readonly fluid: Maybe<Pick<ContentfulFluid, 'src'>> }>, readonly content: Maybe<(
+      Pick<contentfulBlogHinagataMarkdownContentTextNode, 'content'>
+      & { readonly childMdx: Maybe<Pick<Mdx, 'body'>>, readonly childMarkdownRemark: Maybe<Pick<MarkdownRemark, 'html'>> }
+    )> }
+  )> };
 
 type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -6119,20 +6141,6 @@ type GatsbyContentfulFluid_withWebpFragment = Pick<ContentfulFluid, 'base64' | '
 
 type GatsbyContentfulFluid_withWebp_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
-type usersmitsu4419DesktopblockaidReactblockaidReactsrctemplatesBlogDetailTsx1781017493QueryVariables = Exact<{
-  slug: Scalars['String'];
-  language: Maybe<Scalars['String']>;
-}>;
-
-
-type usersmitsu4419DesktopblockaidReactblockaidReactsrctemplatesBlogDetailTsx1781017493Query = { readonly blog: Maybe<(
-    Pick<ContentfulBlogHinagataMarkdown, 'id' | 'tag' | 'title' | 'createdAt'>
-    & { readonly mainThumbnail: Maybe<{ readonly fluid: Maybe<Pick<ContentfulFluid, 'src'>> }>, readonly content: Maybe<(
-      Pick<contentfulBlogHinagataMarkdownContentTextNode, 'content'>
-      & { readonly childMdx: Maybe<Pick<Mdx, 'body'>>, readonly childMarkdownRemark: Maybe<Pick<MarkdownRemark, 'html'>> }
-    )> }
-  )> };
-
 type ContentfulQueryQueryVariables = Exact<{
   language: Maybe<Scalars['String']>;
 }>;
@@ -6142,10 +6150,5 @@ type ContentfulQueryQuery = { readonly allContentfulBlogHinagataMarkdown: { read
       Pick<ContentfulBlogHinagataMarkdown, 'slug' | 'title' | 'createdAt' | 'postDate' | 'tag'>
       & { readonly mainThumbnail: Maybe<{ readonly fluid: Maybe<Pick<ContentfulFluid, 'src'>> }> }
     )> } };
-
-type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'functionRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
 }

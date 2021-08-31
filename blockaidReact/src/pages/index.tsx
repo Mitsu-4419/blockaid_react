@@ -1,6 +1,4 @@
-import * as React from "react"
-import { Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
+import React, {memo} from "react"
 import { Box, Text,Flex, Image } from "@chakra-ui/react";
 
 import Seo from "../components/seo"
@@ -8,7 +6,10 @@ import  Layout from "../components/Layout";
 import { RadarChart } from "../js/RadarChart.js";
 import topPageGif from '../media/intro3.gif';
 
-const IndexPage = () => (
+
+const IndexPage = memo(() => {
+  
+  return(
    <>
     <Seo title="Home" />
     <Layout>
@@ -41,6 +42,7 @@ const IndexPage = () => (
     </Box>
   </Layout>
   </>
-)
+  )
+})
 
 export default IndexPage

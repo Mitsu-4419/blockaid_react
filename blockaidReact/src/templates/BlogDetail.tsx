@@ -36,7 +36,7 @@ const ProjectDetails = ({data}) => {
               h='600px' 
               w='100%'
             />
-          <Box color='gray.900' fontSize='22' mt='4rem' mb='4rem'>
+          <Box color='gray.900' fontSize='20' mt='4rem' mb='4rem' lineHeight="10">
             {/* <Markdown >{data.blog.content.childMdx.body}</Markdown> */}
             <div dangerouslySetInnerHTML={{ __html: data.blog.content.childMarkdownRemark.html }} />
           </Box>

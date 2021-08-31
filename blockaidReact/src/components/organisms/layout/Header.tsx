@@ -8,11 +8,11 @@ import { changeLocale } from "gatsby-plugin-intl"
 
 export const Header: VFC = memo(() => {
 
-  useEffect(()=>{
-    const currentLocal = localStorage.getItem('gatsby-intl-language')
-    changeLocale(currentLocal)
-    // setLang(currentLocal
-  },[])
+    useEffect(()=>{
+        const currentLang= localStorage.getItem('gatsby-intl-language')
+          changeLocale(currentLang)
+    },[])
+
   return (
     <>
     <Flex
