@@ -7,7 +7,12 @@ import Language from "../../Language";
 import { changeLocale } from "gatsby-plugin-intl"
 
 export const Header: VFC = memo(() => {
-
+    const [loc, setLocationName] = useState('')
+    useEffect(() => {
+        const pre = window.location.pathname.split('/')[2]
+        const path = "/" + pre
+        setLocationName(path)
+    }, [])
     useEffect(()=>{
         const currentLang= localStorage.getItem('gatsby-intl-language')
           changeLocale(currentLang)
@@ -43,19 +48,19 @@ export const Header: VFC = memo(() => {
         <Spacer></Spacer>
         <Flex mr='3' alignItems='center'>
             <Link to="/">
-                <Button borderRadius='md' ml='1' mr='1' _hover={{bgColor:'blue.200', color:'white'}} bgColor={location.pathname=='/'?"blue.600":'blue.50'} color={location.pathname=='/'?"white":'gray.800'}>HOME</Button>
+                <Button borderRadius='md' ml='1' mr='1' _hover={{bgColor:'blue.200', color:'white'}} bgColor={loc=='/'?"blue.500":'blue.50'} color={loc=='/'?"white":'gray.800'}>HOME</Button>
             </Link>
             <Link to="/profile">
-                <Button borderRadius='md' ml='1' mr='1' _hover={{bgColor:'blue.200',color:'white'}} bgColor={location.pathname=='/profile'?"blue.600":'blue.50'} color={location.pathname=='/profile'?"white":'gray.800'}>PROFILE</Button>
+                <Button borderRadius='md' ml='1' mr='1' _hover={{bgColor:'blue.200',color:'white'}} bgColor={loc=='/profile'?"blue.500":'blue.50'} color={loc=='/profile'?"white":'gray.800'}>PROFILE</Button>
             </Link>
             <Link to="/works">
-                <Button borderRadius='md' ml='1' mr='1' _hover={{bgColor:'blue.200',color:'white'}} bgColor='blue.50'>WORKS</Button>
+                <Button borderRadius='md' ml='1' mr='1' _hover={{bgColor:'blue.200',color:'white'}} bgColor={loc=='/works'?"blue.500":'blue.50'} color={loc=='/works'?"white":'gray.800'}>WORKS</Button>
             </Link>
             <Link to="/blog">
-                <Button borderRadius='md' ml='1' mr='1' _hover={{bgColor:'blue.200',color:'white'}} bgColor='blue.50'>BLOG</Button>
+                <Button borderRadius='md' ml='1' mr='1' _hover={{bgColor:'blue.200',color:'white'}} bgColor={loc=='/blog'?"blue.500":'blue.50'} color={loc=='/blog'?"white":'gray.800'}>BLOG</Button>
             </Link>
             <Link to="/contact">
-                <Button borderRadius='md' ml='1' mr='1' _hover={{bgColor:'blue.200',color:'white'}} bgColor='blue.50'>CONTACT</Button>
+                <Button borderRadius='md' ml='1' mr='1' _hover={{bgColor:'blue.200',color:'white'}} bgColor={loc=='/contact'?"blue.500":'blue.50'} color={loc=='/contact'?"white":'gray.800'}>CONTACT</Button>
             </Link>
             <Center height="30px" ml='1' mr='1'>
                 <Divider orientation="vertical"/>
