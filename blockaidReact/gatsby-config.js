@@ -52,14 +52,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-typegen`,
-    { 
-      resolve: `gatsby-plugin-mdx`,
-      options: {
-        gatsbyRemarkPlugins: [
-          // 他にRemarkプラグインがある場合はここに追加していく
-        ],
-      },
-    },
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-intl`,
