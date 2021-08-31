@@ -13,6 +13,7 @@ const ProjectDetails = ({data}) => {
   return (
     <>
       <Header/>
+      {typeof(data.blog.title) ==="string"?
       <Flex w='100%' justify='center' mt='80px' mb='100px'>
         <Box maxW='750px'>
           <Flex justify='center' w='100%'>
@@ -41,6 +42,7 @@ const ProjectDetails = ({data}) => {
           </Box>
         </Box>
       </Flex>
+      :""}
       <Footer/>
     </>
   )
