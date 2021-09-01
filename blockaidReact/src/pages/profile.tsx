@@ -22,7 +22,7 @@ const ProfilePage = () => {
       <GridItem rowSpan={32} colSpan={2} ></GridItem>
       <GridItem rowSpan={4} colSpan={30}   bg='white'>
           <Flex w='95%' h='100%' ml='auto' mr='auto' borderBottom='1px' borderBottomColor='blue.200' alignItems='center'>
-            <Heading fontSize='5xl' ml='12'>Profile</Heading>
+            <Heading fontSize={{xl:"5xl", lg:"5xl", md:"4xl", sm:"4xl"}} ml='12'>Profile</Heading>
           </Flex>
       </GridItem>
       <GridItem rowSpan={32} colSpan={2} ></GridItem>
@@ -39,7 +39,7 @@ const ProfilePage = () => {
       </GridItem>
       <GridItem rowSpan={{xl:20, lg:20, md:12, sm:10}} colSpan={{xl:19, lg:19, md:30, sm:30}}  bg='white' >
         <Flex h='100%' alignItems='center' p='4'>
-          <VStack align='start' spacing={3} fontSize={{xl:"20", lg:"18", md:"16", sm:"10"}}>
+          <VStack align='start' spacing={3} fontSize={{xl:"20", lg:"18", md:"16", sm:"12"}}>
             <ProfileText year='prof1-year' content='prof1-content'></ProfileText>
             <ProfileText year='prof2-year' content='prof2-content'></ProfileText>
             <ProfileText year='prof3-year' content='prof3-content'></ProfileText>

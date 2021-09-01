@@ -7,7 +7,7 @@ import { Radar } from "react-chartjs-2";
 export const RadarChart=memo((props)=> {
     console.log(props["chartType"])
     const [RadarOption, setOption] = useState();
-    const [RadarData, setData] = useState();
+    const [RadarData, setData] = useState({});
     useEffect(()=>{
         if(props["chartType"]=="front"){
             setOption(RadarOptionsFront)
@@ -21,7 +21,6 @@ export const RadarChart=memo((props)=> {
         }
     },[])
     return (
-        <Radar  data={RadarData} options={RadarOption} width={{xl:400, lg:300, md:280, sm:250}}
-        height={{xl:400, lg:300, md:280, sm:250}}/>
+        <Radar  data={RadarData} options={RadarOption}/>
     );
 })

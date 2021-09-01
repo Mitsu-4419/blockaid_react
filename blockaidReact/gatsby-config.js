@@ -52,7 +52,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-typegen`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-intl`,
       options: {

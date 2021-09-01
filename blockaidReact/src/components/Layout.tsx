@@ -1,8 +1,8 @@
-import React from "react"
+import React,{memo} from "react"
 import { Footer } from "./organisms/layout/Footer"
 import { Header} from "./organisms/layout/Header"
 
-const Layout = ({ children }) => {
+const Layout = memo(({ children }) => {
     console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
     return (
         <>
@@ -11,6 +11,6 @@ const Layout = ({ children }) => {
             <Footer></Footer>
         </>
     )
-}
+})
 
 export default Layout

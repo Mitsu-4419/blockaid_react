@@ -8,7 +8,7 @@ import topPageGif from '../media/intro3.gif';
 
 
 const IndexPage = memo(() => {
-  
+  console.log("$$$$$$$$$$$$$$$$$$$")
   return(
    <>
     <Seo title="Home" />
@@ -28,14 +28,14 @@ const IndexPage = memo(() => {
       <Box w='100%' textAlign='center' h='20' mt='10'>
         <Text fontSize='42' color='gray.700' fontWeight='bold'>Skills</Text>
       </Box>
-      <Flex w="95%" mr='auto' ml='auto' justify='center' height={{xl:400, lg:300, md:280, sm:250}}>
-        <Box m={{xl:'35', lg:'25', md:'5', sm:'0'}}>
+      <Flex w="95%" mr='auto' ml='auto' justify='center' height={{xl:400, lg:300}} direction={{xl:"row", lg:"row", md:"column", sm:"column"}}>
+        <Box m={{xl:'35', lg:'25', md:'35', sm:'35'}} w={{xl:"30%", lg:"30%", md:"90%", sm:"90%"}}>
           <RadarChart chartType='front'/>
         </Box>
-        <Box m={{xl:'35', lg:'25', md:'5', sm:'0'}}>
+        <Box m={{xl:'35', lg:'25', md:'35', sm:'35'}}  w={{xl:"30%", lg:"30%", md:"90%", sm:"90%"}}>
           <RadarChart chartType='backend'/>
         </Box>
-        <Box m={{xl:'35', lg:'25', md:'5', sm:'0'}}>
+        <Box m={{xl:'35', lg:'25', md:'35', sm:'35'}}  w={{xl:"30%", lg:"30%", md:"90%", sm:"90%"}}>
           <RadarChart chartType='others'/>
         </Box>
       </Flex>

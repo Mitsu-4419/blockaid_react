@@ -18,17 +18,17 @@ export const Footer: VFC = memo(() => {
         <VStack>
             <Flex justify='center' mt='auto' mb='auto' w={{xl:"50%",lg:"50%",md:"50%",sm:"50%"}}>
                 <Link href="https://twitter.com/KodoOjiEngineer" isExternal>
-                    <Box w='60px' ml={{lg:4}} mr={{lg:4}}>
+                    <Box w='60px' ml="5" mr="5">
                         <StaticImage alt="twitter" src="../../../images/twitterLogo.png" quality={95}></StaticImage>
                     </Box>
                 </Link>
                 <Link href="https://www.facebook.com/mitsutomo.yamada">
-                    <Box w='60px' ml={{lg:4}} mr={{lg:4}}>
+                    <Box w='60px' ml="5" mr="5">
                         <StaticImage alt="facebook" src="../../../images/facebookLogo.png" quality={95}></StaticImage>
                     </Box>
                 </Link>
                 <Link href="https://www.linkedin.com/in/mitsutomo-yamada/">
-                    <Box w='60px' ml={{lg:4}} mr={{lg:4}}>
+                    <Box w='60px' ml="5" mr="5">
                         <StaticImage alt="linkedin" src="../../../images/linkedinLogo.png" quality={95}></StaticImage>
                     </Box>
                 </Link>
