@@ -5,6 +5,7 @@ import { Box, Text,Flex, Image, Tag,TagLabel } from "@chakra-ui/react";
 import {Header} from "../components/organisms/layout/Header"
 import {Footer} from "../components/organisms/layout/Footer"
 import {changeDateFormat} from '../js/changeDateFormat.js'
+import Seo from "../components/seo"
 
 const ProjectDetails = ({data}) => {
   console.log(data.blog.content)
@@ -12,6 +13,7 @@ const ProjectDetails = ({data}) => {
 
   return (
     <>
+      <Seo title={data.blog.title} />
       <Header/>
       {typeof(data.blog.title) ==="string"?
       <Flex w='100%' justify='center' mt='80px' mb='100px'>

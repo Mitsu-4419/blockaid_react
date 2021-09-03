@@ -11,6 +11,7 @@ const WorkPage = () => {
 
     return(
   <>
+    <Seo title='works'/>
     <Layout>
     <Box pb='150'>
         <Flex justify='center' h='120px' alignItems='center'>

@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import { Grid, GridItem, Button, Box, Divider,Text, Heading, Flex,Wrap,WrapItem,SimpleGrid} from "@chakra-ui/react"
 import { StaticImage } from "gatsby-plugin-image"
 
-import Seo from "../components/seo"
+import Seo from "../../components/seo"
 import  Layout from "../../components/Layout";
 import { BlogCard } from "../../components/molecules/blogCard"
 import { graphql } from "gatsby"
@@ -89,6 +89,7 @@ export default function BlogPage({data}) {
 
    return (
     <>
+    <Seo title="blogtop"/>
     <Layout>
     <Box pb='150px'>
         <Flex w='90%' ml='auto' mr='auto' h="150px"  justify='center' alignItems='center'>

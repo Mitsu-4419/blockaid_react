@@ -12,7 +12,8 @@ const ProfilePage = () => {
 
   return (
   <>
-     <Layout>
+    <Seo title='profile'/>
+    <Layout>
     <Grid
       templateRows="repeat(34, 1fr)"
       templateColumns="repeat(34, 1fr)"

@@ -10,6 +10,7 @@ const ContactPage = () => {
   const intl = useIntl()
   return(
   <>
+    <Seo title='contact'/>
     <Layout>
     <Flex h='70vh' w='100%' justify='center' alignItems='center'>
         <Box boxShadow='xl' w='60%' h='350px'>
