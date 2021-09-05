@@ -33,7 +33,7 @@ const WorkPage = () => {
                         />
                         </Link>
                     </Flex>
-                    <Box  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%", base:"100%"}} bg='gray.100' p='5' mt={{md:"20px", sm:'20px'}}>
+                    <Box  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%", base:"100%"}} bg='gray.100' p='5' mt={{md:"20px", sm:'20px',base:"10px"}} fontSize={{md:"18px",base:"13px"}}>
                             {
                             intl.formatMessage({ id: "work1-content" }).split('\n').map((str, index)=>{
                                 return <Text key={index}>{str}<br /></Text>
@@ -61,7 +61,7 @@ const WorkPage = () => {
                             />
                         </Link>
                     </Flex>
-                    <Box  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%", base:"100%"}} bg='gray.100' p='5' mt={{md:"20px", sm:'20px'}}>
+                    <Box  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%", base:"100%"}} bg='gray.100' p='5' mt={{md:"20px", sm:'20px',base:"10px"}} fontSize={{md:"18px",base:"13px"}}>
                         <Text>
                         {
                             intl.formatMessage({ id: "work2-content" }).split('\n').map((str, index)=>{
@@ -91,7 +91,7 @@ const WorkPage = () => {
                             />
                         </Link>
                     </Flex>
-                    <Box  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%",base:"100%"}} bg='gray.100' p='5' mt={{md:"20px", sm:'20px'}}>
+                    <Box  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%",base:"100%"}} bg='gray.100' p='5' mt={{md:"20px", sm:'20px',base:"10px"}} fontSize={{md:"18px",base:"13px"}}>
                         <Text>
                         {
                             intl.formatMessage({ id: "work3-content" }).split('\n').map((str, index)=>{
@@ -121,7 +121,7 @@ const WorkPage = () => {
                             />
                         </Link>
                     </Flex>
-                    <Box  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%",base:"100%"}} bg='gray.100' p='5' mt={{md:"20px", sm:'20px'}}>
+                    <Box  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%",base:"100%"}} bg='gray.100' p='5' mt={{md:"20px", sm:'20px',base:"10px"}} fontSize={{md:"18px",base:"13px"}}>
                         <Text>
                         {
                             intl.formatMessage({ id: "work4-content" }).split('\n').map((str, index)=>{
@@ -151,7 +151,7 @@ const WorkPage = () => {
                             />
                         </Link>
                     </Flex>
-                    <Box  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%",base:"100%"}} bg='gray.100' p='5' mt={{md:"20px", sm:'20px'}}>
+                    <Box  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%",base:"100%"}} bg='gray.100' p='5' mt={{md:"20px", sm:'20px',base:"10px"}} fontSize={{md:"18px",base:"13px"}}>
                         <Text>
                         {
                             intl.formatMessage({ id: "work5-content" }).split('\n').map((str, index)=>{
@@ -181,7 +181,7 @@ const WorkPage = () => {
                             />
                         </Link>
                     </Flex>
-                    <Box  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%",base:"100%"}} bg='gray.100' p='5' mt={{md:"20px", sm:'20px'}}>
+                    <Box  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%",base:"100%"}} bg='gray.100' p='5' mt={{md:"20px", sm:'20px',base:"10px"}} fontSize={{md:"18px",base:"13px"}}>
                         <Text>
                         {
                             intl.formatMessage({ id: "work6-content" }).split('\n').map((str, index)=>{
@@ -211,7 +211,7 @@ const WorkPage = () => {
                             />
                         </Link>
                     </Flex>
-                    <Box  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%", base:"100%"}} bg='gray.100' p='5' mt={{md:"20px", sm:'20px'}}>
+                    <Box  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%", base:"100%"}} bg='gray.100' p='5' mt={{md:"20px", sm:'20px',base:"10px"}} fontSize={{md:"18px",base:"13px"}}>
                         <Text>
                         {
                             intl.formatMessage({ id: "work7-content" }).split('\n').map((str, index)=>{

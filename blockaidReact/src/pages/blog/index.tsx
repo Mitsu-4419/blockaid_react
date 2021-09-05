@@ -92,27 +92,27 @@ export default function BlogPage({data}) {
     <Seo title="blogtop"/>
     <Layout>
     <Box pb='150px'>
-        <Flex w='90%' ml='auto' mr='auto' h="150px"  justify='center' alignItems='center'>
-            <Text fontWeight='bold' fontSize='60'>Blog</Text>
+        <Flex w='90%' ml='auto' mr='auto' h={{xl:"150px",lg:"150px",md:"120px",sm:"100px", base:"100px"}}  justify='center' alignItems='center'>
+            <Text fontWeight='bold' fontSize={{xl:"60",lg:"60",md:"50", sm:"30", base:"30"}}>Blog</Text>
         </Flex>
         <Box minH='90vh' maxWidth={{xl:"1280px",}} ml='auto' mr='auto' pt='40px' pl='24px' pr='24px'  bg='white' shadow='sm'> 
             <Flex w='100%' ml='auto' mr='auto'>
-                    <Button _hover={{bg:'blue.100'}}  bgColor={mylife?'blue.100':"gray.100"}  h='100%' minH='42px' w='25%' onClick={onClickChangeLife}>初めまして</Button>
-                    <Button _hover={{bg:'blue.100'}} bgColor={kagoshima?'blue.100':"gray.100"}   h='100%' minH='42px' w='25%' onClick={onClickChangeKagoshima}>鹿児島生活</Button>
-                    <Button _hover={{bg:'blue.100'}} bgColor={techStudy?'blue.100':"gray.100"}    h='100%' minH='42px' w='25%' onClick={onClickChangeTechStudy}>Tech,勉強</Button>
-                    <Button _hover={{bg:'blue.100'}} bgColor={hobby?'blue.100':"gray.100"}    h='100%' minH='42px' w='25%' onClick={onClickChangeHobby}>趣味</Button>
+                    <Button _hover={{bg:'blue.100'}} fontSize={{xl:"16px",lg:"16px",md:"16px",sm:"14px",base:"12px"}}  bgColor={mylife?'blue.100':"gray.100"}  h='100%' minH='42px' w='25%' onClick={onClickChangeLife}>初めまして</Button>
+                    <Button _hover={{bg:'blue.100'}} fontSize={{xl:"16px",lg:"16px",md:"16px",sm:"14px",base:"12px"}} bgColor={kagoshima?'blue.100':"gray.100"}   h='100%' minH='42px' w='25%' onClick={onClickChangeKagoshima}>鹿児島生活</Button>
+                    <Button _hover={{bg:'blue.100'}} fontSize={{xl:"16px",lg:"16px",md:"16px",sm:"14px",base:"12px"}} bgColor={techStudy?'blue.100':"gray.100"}    h='100%' minH='42px' w='25%' onClick={onClickChangeTechStudy}>Tech,勉強</Button>
+                    <Button _hover={{bg:'blue.100'}} fontSize={{xl:"16px",lg:"16px",md:"16px",sm:"14px",base:"12px"}} bgColor={hobby?'blue.100':"gray.100"}    h='100%' minH='42px' w='25%' onClick={onClickChangeHobby}>趣味</Button>
             </Flex>
             <Box mt='40px'>
                 <Wrap  ml='auto' mr='auto' w='100%'>
                 {blogData.map(content=>{
                     if(blogFlag=="all"){
-                        return <Box w={{xl:"24.3%", lg:"32.4%", md:"48.3%", sm:"99%"}} p='2' >
+                        return <Box w={{xl:"24.3%", lg:"32.4%", md:"48.3%", sm:"99%",base:"99%"}} p='2' >
                         <WrapItem key={content.id} mx="auto" >
                            <BlogCard id={content.slug} title={content.title} imageUrl={content.mainThumbnail.fluid.src} tag={content.tag} postDate={content.postDate}/>
                        </WrapItem>
                       </Box>
                     }else if(blogFlag==content.tag){
-                        return <Box w={{xl:"24.3%", lg:"32.4%", md:"48.3%", sm:"99%"}} p='2' >
+                        return <Box w={{xl:"24.3%", lg:"32.4%", md:"48.3%", sm:"99%", base:"99%"}} p='2' >
                         <WrapItem key={content.id} mx="auto" >
                            <BlogCard id={content.slug} title={content.title} imageUrl={content.mainThumbnail.fluid.src} tag={content.tag} postDate={content.postDate}/>
                        </WrapItem>

@@ -22,7 +22,7 @@ const ProjectDetails = ({data}) => {
             <Text fontSize='15px' color='red'>{date}</Text>
           </Flex>
           <Box w='100%' textAlign='center' mt='10px' mb='10px'>
-            <Text fontSize='30' fontWeight='bold'>
+            <Text fontSize={{xl:"30", lg:"30", md:"30", sm:"20", base:"20"}} fontWeight='bold'>
               {data.blog.title }
             </Text>
           </Box>
@@ -39,7 +39,7 @@ const ProjectDetails = ({data}) => {
               h='600px' 
               w='100%'
             />
-          <Box color='gray.900' fontSize='20' mt='4rem' mb='4rem' lineHeight="10">
+          <Box color='gray.900' fontSize={{xl:"20", lg:"20", md:"20", sm:"15", base:"13"}} mt='4rem' mb='4rem' lineHeight={{xl:"10", lg:"10", md:"10", sm:"8", base:"6"}} ml={{base:"12px"}} mr={{base:"12px"}}>
             <div dangerouslySetInnerHTML={{ __html: data.blog.content.childMarkdownRemark.html }} />
           </Box>
         </Box>
