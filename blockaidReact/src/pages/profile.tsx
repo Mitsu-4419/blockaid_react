@@ -21,7 +21,7 @@ const ProfilePage = () => {
     >
       <GridItem rowSpan={{xl:2,lg:2,md:1, sm:1, base:1}} colSpan={34}></GridItem>
       <GridItem rowSpan={{xl:32,lg:32,md:33, sm:33, base:33}} colSpan={{xl:2,lg:2,md:1, sm:1,base:1}} ></GridItem>
-      <GridItem rowSpan={{xl:4,lg:4,md:3, sm:3,base:0}} colSpan={{xl:30,lg:30,md:32, sm:32,base:0}} display={{base:"none"}}   bg='white'>
+      <GridItem rowSpan={{xl:4,lg:4,md:3, sm:3,base:0}} colSpan={{xl:30,lg:30,md:32, sm:32,base:0}} display={{sm:"block",base:"none"}}   bg='white'>
           <Flex w='95%' h='100%' ml='auto' mr='auto' borderBottom='1px' borderBottomColor='blue.200' alignItems='center'>
             <Heading fontSize={{xl:"5xl", lg:"5xl", md:"4xl", sm:"4xl"}} ml='12'>Profile</Heading>
           </Flex>

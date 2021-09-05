@@ -14,7 +14,7 @@ export const Footer: VFC = memo(() => {
         justify="center"
         padding={{ base: 3, md: 5 }}
         h={{ xl:"180px", lg:"180px", md: "140px", sm:"140px"}}
-        display={{base:"none"}}
+        display={{sm:"block",base:"none"}}
     >
         <VStack>
             <Flex justify='center' mt='auto' mb='auto' w={{xl:"50%",lg:"50%",md:"50%",sm:"50%", base:"40%"}}>
@@ -34,11 +34,13 @@ export const Footer: VFC = memo(() => {
                     </Box>
                 </Link>
             </Flex>
-            <Flex alignItems='center' color='white' display={{base:"none"}}>
+            <Flex alignItems='center' color='white' display={{sm:"block",base:"none"}} ml='auto' mr='auto'>
+                <Flex alignItems='center'>
                 <EmailIcon w={5} h={5} mr='2' color='white'/>
                 <Text fontSize='18'>m.yamada@blockaid-tokyo.com</Text>
+                </Flex>
             </Flex>
-            <Flex alignItems='center' color='white' display={{base:"none"}}>
+            <Flex alignItems='center' color='white' display={{sm:"block",base:"none"}}>
                 <Text fontSize='14'>@2021 built by Gatsby</Text>
             </Flex>
         </VStack>
