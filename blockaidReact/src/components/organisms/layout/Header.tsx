@@ -4,8 +4,7 @@ import {Flex, Heading,Spacer, Button, Divider, Center, Menu,MenuButton,MenuList,
 import { StaticImage } from "gatsby-plugin-image";
 import {Link} from 'gatsby';
 import Language from "../../Language";
-import { changeLocale } from "gatsby-plugin-intl"
-import { HamburgerIcon, AddIcon, ExternalLinkIcon, RepeatIcon,EditIcon  } from '@chakra-ui/icons'
+import { HamburgerIcon } from '@chakra-ui/icons'
 export const Header: VFC = memo(() => {
     const [loc, setLocationName] = useState('')
     useEffect(()=>{
@@ -41,12 +40,12 @@ export const Header: VFC = memo(() => {
                 quality={95}
                 alt="A Gatsby astronaut"
             />
-            <Heading as="h1" fontSize={{ base: "xl", md: "xl" }} ml='5'>
+            <Heading as="h1" fontSize={{ base: "md", md: "xl" }} ml='5'>
                 Ko-rin Yamada
             </Heading>
         </Flex>
         <Spacer></Spacer>
-        <Box display={{lg:"block",md:"none", sm:"none"}}>
+        <Box display={{xl:"block",lg:"block",md:"none", sm:"none", base:"none"}}>
             <Flex mr='3' alignItems='center' >
                 <Link to="/">
                     <Button borderRadius='md' ml='1' mr='1' _hover={{bgColor:'blue.200', color:'white'}} bgColor={loc=='/'?"blue.500":'blue.50'} color={loc=='/'?"white":'gray.800'}>HOME</Button>

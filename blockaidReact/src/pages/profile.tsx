@@ -17,30 +17,30 @@ const ProfilePage = () => {
     <Grid
       templateRows="repeat(34, 1fr)"
       templateColumns="repeat(34, 1fr)"
-      h='100vh'
+      h='90vh'
     >
-      <GridItem rowSpan={2} colSpan={34}></GridItem>
-      <GridItem rowSpan={32} colSpan={2} ></GridItem>
-      <GridItem rowSpan={4} colSpan={30}   bg='white'>
+      <GridItem rowSpan={{xl:2,lg:2,md:1, sm:1, base:1}} colSpan={34}></GridItem>
+      <GridItem rowSpan={{xl:32,lg:32,md:33, sm:33, base:33}} colSpan={{xl:2,lg:2,md:1, sm:1,base:1}} ></GridItem>
+      <GridItem rowSpan={{xl:4,lg:4,md:3, sm:3,base:0}} colSpan={{xl:30,lg:30,md:32, sm:32,base:0}} display={{base:"none"}}   bg='white'>
           <Flex w='95%' h='100%' ml='auto' mr='auto' borderBottom='1px' borderBottomColor='blue.200' alignItems='center'>
             <Heading fontSize={{xl:"5xl", lg:"5xl", md:"4xl", sm:"4xl"}} ml='12'>Profile</Heading>
           </Flex>
       </GridItem>
-      <GridItem rowSpan={32} colSpan={2} ></GridItem>
-      <GridItem rowSpan={{xl:20, lg:20, md:8, sm:10}} colSpan={{xl:11, lg:11, md:30, sm:30}}  bg='white' >
+      <GridItem rowSpan={{xl:34,lg:34,md:33, sm:33,base:33}} colSpan={{xl:2,lg:2,md:1, sm:1,base:1}} ></GridItem>
+      <GridItem rowSpan={{xl:20, lg:20, md:8, sm:8,base:5}} colSpan={{xl:11, lg:11, md:32, sm:32,base:32}}  bg='white' >
         <Flex w='100%' h='100%' justify='center' alignItems='center'>
-            <Box w={{xl:280, lg:250, md:180, sm:150}}>
-            <StaticImage
-                src="../images/CEOFace.png"
-                quality={95}
-                alt="CEOFace"
-            />
+            <Box w={{xl:280, lg:250, md:150, sm:120,base:"60px"}}>
+              <StaticImage
+                  src="../images/CEOFace.png"
+                  quality={95}
+                  alt="CEOFace"
+              />
             </Box>
         </Flex>
       </GridItem>
-      <GridItem rowSpan={{xl:20, lg:20, md:12, sm:10}} colSpan={{xl:19, lg:19, md:30, sm:30}}  bg='white' >
+      <GridItem rowSpan={{xl:20, lg:20, md:16, sm:16,base:21}} colSpan={{xl:19, lg:19, md:32, sm:32,base:32}}  bg='white' >
         <Flex h='100%' alignItems='center' p='4'>
-          <VStack align='start' spacing={3} fontSize={{xl:"20", lg:"18", md:"16", sm:"12"}}>
+          <VStack align='start' spacing={3} fontSize={{xl:"20", lg:"18", md:"12", sm:"10", base:"4"}}>
             <ProfileText year='prof1-year' content='prof1-content'></ProfileText>
             <ProfileText year='prof2-year' content='prof2-content'></ProfileText>
             <ProfileText year='prof3-year' content='prof3-content'></ProfileText>
@@ -62,8 +62,8 @@ const ProfilePage = () => {
           </VStack>
         </Flex>
       </GridItem>
-      <GridItem rowSpan={6} colSpan={18}  bg='white' p='4'>
-        <Box m='2' fontSize={{xl:"20", lg:"18", md:"16", sm:"10"}}pl={{xl:"10", lg:"8", md:"6", sm:"4"}} pr={{xl:"10", lg:"8", md:"6", sm:"4"}}>
+      <GridItem rowSpan={6} colSpan={{xl:18,lg:18,md:19, sm:19, base:19}}  bg='white' p={{xl:"4",lg:"4",md:"2", sm:"1", base:"1"}}>
+        <Box m='2' fontSize={{xl:"20", lg:"18", md:"16", sm:"10", base:"5"}}pl={{xl:"10", lg:"8", md:"6", sm:"4", base:"4"}} pr={{xl:"10", lg:"8", md:"6", sm:"4", base:"4"}}>
           <Text fontWeight={"bold"}>{intl.formatMessage({ id: "prof-certificate" })}</Text>
           <Text>
           {intl.formatMessage({ id: "prof-certificate-detail1" })}<br/>
@@ -71,13 +71,13 @@ const ProfilePage = () => {
           </Text>
         </Box>
       </GridItem>
-      <GridItem rowSpan={6} colSpan={12}  bg='white' p='4'>
-        <Box m='2'fontSize={{xl:"20", lg:"18", md:"16", sm:"10"}} pl={{xl:"10", lg:"8", md:"6", sm:"4"}} pr={{xl:"10", lg:"8", md:"6", sm:"4"}}>
+      <GridItem rowSpan={6} colSpan={{xl:12,lg:12,md:13, sm:13, base:13}}  bg='white' p={{xl:"4",lg:"4",md:"2", sm:"1", base:"1"}}>
+        <Box m='2'fontSize={{xl:"20", lg:"18", md:"16", sm:"10", base:"5"}} pl={{xl:"10", lg:"8", md:"6", sm:"4",base:"4"}} pr={{xl:"10", lg:"8", md:"6", sm:"4", base:"4"}}>
             <Text fontWeight={"bold"}>{intl.formatMessage({ id: "prof-hobby" })}</Text>
             <Text>{intl.formatMessage({ id: "prof-hobby-detail" })}</Text>
         </Box>
       </GridItem>
-      <GridItem rowSpan={2} colSpan={30}></GridItem>
+      <GridItem rowSpan={{xl:2,lg:2,md:1, sm:1, base:1}} colSpan={{xl:30,lg:30,md:32, sm:32,base:32}}></GridItem>
     </Grid>
     </Layout>
   </>)

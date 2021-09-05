@@ -13,31 +13,32 @@ export const Footer: VFC = memo(() => {
         bg="blue.800"
         justify="center"
         padding={{ base: 3, md: 5 }}
-        h='180px'
+        h={{ xl:"180px", lg:"180px", md: "140px", sm:"140px"}}
+        display={{base:"none"}}
     >
         <VStack>
-            <Flex justify='center' mt='auto' mb='auto' w={{xl:"50%",lg:"50%",md:"50%",sm:"50%"}}>
+            <Flex justify='center' mt='auto' mb='auto' w={{xl:"50%",lg:"50%",md:"50%",sm:"50%", base:"40%"}}>
                 <Link href="https://twitter.com/KodoOjiEngineer" isExternal>
-                    <Box w='60px' ml="5" mr="5">
+                    <Box w={{xl:"60px", lg:"60px", md:"50px", sm:"50px", base:"40px"}} ml="5" mr="5">
                         <StaticImage alt="twitter" src="../../../images/twitterLogo.png" quality={95}></StaticImage>
                     </Box>
                 </Link>
                 <Link href="https://www.facebook.com/mitsutomo.yamada">
-                    <Box w='60px' ml="5" mr="5">
+                    <Box w={{xl:"60px", lg:"60px", md:"50px", sm:"50px", base:"40px"}} ml="5" mr="5">
                         <StaticImage alt="facebook" src="../../../images/facebookLogo.png" quality={95}></StaticImage>
                     </Box>
                 </Link>
                 <Link href="https://www.linkedin.com/in/mitsutomo-yamada/">
-                    <Box w='60px' ml="5" mr="5">
+                    <Box w={{xl:"60px", lg:"60px", md:"50px", sm:"50px", base:"40px"}} ml="5" mr="5">
                         <StaticImage alt="linkedin" src="../../../images/linkedinLogo.png" quality={95}></StaticImage>
                     </Box>
                 </Link>
             </Flex>
-            <Flex alignItems='center' color='white'>
+            <Flex alignItems='center' color='white' display={{base:"none"}}>
                 <EmailIcon w={5} h={5} mr='2' color='white'/>
                 <Text fontSize='18'>m.yamada@blockaid-tokyo.com</Text>
             </Flex>
-            <Flex alignItems='center' color='white'>
+            <Flex alignItems='center' color='white' display={{base:"none"}}>
                 <Text fontSize='14'>@2021 built by Gatsby</Text>
             </Flex>
         </VStack>
