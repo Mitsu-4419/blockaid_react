@@ -17,7 +17,7 @@
     "chakra-ui-markdown-renderer": "^3.0.1",
     "chart.js": "2.9.4",
     "framer-motion": "^4.1.17",
-    "gatsby": "^3.10.2",
+    "gatsby": "^3.13.0",
     "gatsby-image": "^3.11.0",
     "gatsby-plugin-gatsby-cloud": "^2.10.1",
     "gatsby-plugin-google-gtag": "^3.12.0",
