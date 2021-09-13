@@ -37,7 +37,7 @@ const ProjectDetails = ({data}) => {
               src={data.blog.mainThumbnail.fluid.src}
               alt="tosenkyoThumbnail"
               fit='cover'
-              h='600px'     
+              h={{xl:"600px", lg:"600px", md:"400px", sm:"350px", base:"300px"}}   
             />
           </Flex>
           <Box color='gray.900' fontSize={{xl:"20", lg:"20", md:"20", sm:"15", base:"13"}} mt='4rem' mb='4rem' lineHeight={{xl:"10", lg:"10", md:"10", sm:"8", base:"6"}} ml={{base:"12px"}} mr={{base:"12px"}}>
