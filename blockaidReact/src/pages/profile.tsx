@@ -12,7 +12,7 @@ const ProfilePage = () => {
 
   return (
   <>
-    <Seo title='profile'/>
+    <Seo title="Korin Yamada's profile" description="Korin Yamada のProfile ページです"/>
     <Layout>
     <Grid
       templateRows="repeat(34, 1fr)"

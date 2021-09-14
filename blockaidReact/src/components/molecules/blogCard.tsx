@@ -30,7 +30,7 @@ export const BlogCard: VFC<Props> = (props => {
         >
             <Stack textAlign="start">
               <Image
-                  w='full'
+                  w='100%'
                   h='180px'
                   objectFit="cover"
                   src={imageUrl}

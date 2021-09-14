@@ -36,4 +36,28 @@ export const RadarDataBack = {
         display: false
     }
   };
+
+  export const RadarOptionsBack_Mini = {
+    scale:{
+      pointLabels:{
+        fontSize:10,
+      },
+      ticks: {
+        min: 0,
+        max: 5,
+        stepSize: 1,
+        display:false
+      },
+    },
+    maintainAspectRatio: false,
+    responsive: false,
+    title:{
+      display:true,
+      fontSize:18,
+      text:'Backend'
+    }, 
+    legend: {
+        display: false
+    }
+  };
   

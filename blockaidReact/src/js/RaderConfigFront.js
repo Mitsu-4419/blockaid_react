@@ -36,4 +36,28 @@ export const RadarDataFront = {
         display: false
     }
   };
+
+  export const RadarOptionsFront_Mini = {
+    scale:{
+      pointLabels:{
+        fontSize:10,
+      },
+      ticks: {
+        min: 0,
+        max: 5,
+        stepSize: 1,
+        display:false
+      },
+    },
+    maintainAspectRatio: false,
+    responsive: false,
+    title:{
+      display:true,
+      fontSize:18,
+      text:'Frontend'
+    }, 
+    legend: {
+        display: false
+    }
+  };
   

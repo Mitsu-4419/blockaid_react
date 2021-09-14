@@ -89,7 +89,7 @@ export default function BlogPage({data}) {
 
    return (
     <>
-    <Seo title="blogtop"/>
+    <Seo title="Ko-rin Yamada Blog" description='元医師、現エンジニアのKo-rin YamadaのBlog Siteです。エンジニアや鹿児島生活に関して書いています。'/>
     <Layout>
     <Box pb='150px'>
         <Flex w='90%' ml='auto' mr='auto' h={{xl:"150px",lg:"150px",md:"120px",sm:"100px", base:"100px"}}  justify='center' alignItems='center'>
