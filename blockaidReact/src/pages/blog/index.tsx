@@ -1,14 +1,12 @@
 import React, {useState} from "react";
-// import { Link } from "gatsby"
-import { Grid, GridItem, Button, Box, Divider,Text, Heading, Flex,Wrap,WrapItem,SimpleGrid} from "@chakra-ui/react"
-import { StaticImage } from "gatsby-plugin-image"
+import { Button, Box,Text, Flex,Wrap,WrapItem} from "@chakra-ui/react"
 
 import Seo from "../../components/seo"
 import  Layout from "../../components/Layout";
 import { BlogCard } from "../../components/molecules/blogCard"
 import { graphql } from "gatsby"
 import { useEffect } from "react";
-import { string } from "prop-types";
+import { useIntl } from "gatsby-plugin-intl"
 
 export default function BlogPage({data}) {
    const [defaultBlogData, setDefaultBlogData] = useState([])
@@ -18,6 +16,7 @@ export default function BlogPage({data}) {
    const [kagoshima, setKagoshima] = useState(false)
    const [techStudy, setTechStudy] = useState(false)
    const [hobby, setHobby] = useState(false)
+   const intl = useIntl()
    useEffect(()=>{
     console.log(data.allContentfulBlogHinagataMarkdown.nodes)
     let datanodes=[]
@@ -97,10 +96,10 @@ export default function BlogPage({data}) {
         </Flex>
         <Box minH='90vh' maxWidth={{xl:"1280px",}} ml='auto' mr='auto' pt='40px' pl='24px' pr='24px'  bg='white' shadow='sm'> 
             <Flex w='100%' ml='auto' mr='auto'>
-                    <Button _hover={{bg:'blue.100'}} fontSize={{xl:"16px",lg:"16px",md:"16px",sm:"14px",base:"12px"}}  bgColor={mylife?'blue.100':"gray.100"}  h='100%' minH='42px' w='25%' onClick={onClickChangeLife}>初めまして</Button>
-                    <Button _hover={{bg:'blue.100'}} fontSize={{xl:"16px",lg:"16px",md:"16px",sm:"14px",base:"12px"}} bgColor={kagoshima?'blue.100':"gray.100"}   h='100%' minH='42px' w='25%' onClick={onClickChangeKagoshima}>鹿児島生活</Button>
-                    <Button _hover={{bg:'blue.100'}} fontSize={{xl:"16px",lg:"16px",md:"16px",sm:"14px",base:"12px"}} bgColor={techStudy?'blue.100':"gray.100"}    h='100%' minH='42px' w='25%' onClick={onClickChangeTechStudy}>Tech,勉強</Button>
-                    <Button _hover={{bg:'blue.100'}} fontSize={{xl:"16px",lg:"16px",md:"16px",sm:"14px",base:"12px"}} bgColor={hobby?'blue.100':"gray.100"}    h='100%' minH='42px' w='25%' onClick={onClickChangeHobby}>趣味</Button>
+                    <Button _hover={{bg:'blue.100'}} fontSize={{xl:"16px",lg:"16px",md:"16px",sm:"14px",base:"12px"}}  bgColor={mylife?'blue.100':"gray.100"}  h='100%' minH='42px' w='25%' onClick={onClickChangeLife}>{intl.formatMessage({ id: "blogTag1" })}</Button>
+                    <Button _hover={{bg:'blue.100'}} fontSize={{xl:"16px",lg:"16px",md:"16px",sm:"14px",base:"12px"}} bgColor={kagoshima?'blue.100':"gray.100"}   h='100%' minH='42px' w='25%' onClick={onClickChangeKagoshima}>{intl.formatMessage({ id: "blogTag2" })}</Button>
+                    <Button _hover={{bg:'blue.100'}} fontSize={{xl:"16px",lg:"16px",md:"16px",sm:"14px",base:"12px"}} bgColor={techStudy?'blue.100':"gray.100"}    h='100%' minH='42px' w='25%' onClick={onClickChangeTechStudy}>{intl.formatMessage({ id: "blogTag3" })}</Button>
+                    <Button _hover={{bg:'blue.100'}} fontSize={{xl:"16px",lg:"16px",md:"16px",sm:"14px",base:"12px"}} bgColor={hobby?'blue.100':"gray.100"}    h='100%' minH='42px' w='25%' onClick={onClickChangeHobby}>{intl.formatMessage({ id: "blogTag4" })}</Button>
             </Flex>
             <Box mt='40px'>
                 <Wrap  ml='auto' mr='auto' w='100%'>
