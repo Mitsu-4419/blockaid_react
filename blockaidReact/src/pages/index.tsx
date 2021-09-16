@@ -23,6 +23,7 @@ const IndexPage = memo(() => {
                 title="topPageVideo"
                 src={topMovie}
                 autoPlay
+                muted
               />
             </AspectRatio>
           </Box>
