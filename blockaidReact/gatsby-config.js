@@ -107,5 +107,63 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allContentfulBlogHinagataMarkdown } }) => {
+              return allContentfulBlogHinagataMarkdown.edges.map(({ node }) => {
+                return {
+                  title: node.title,
+                  description: node.content.childMarkdownRemark.excerpt,
+                  date: node.createdAt,
+                  url: `${site.siteMetadata.siteUrl}/blog/${node.slug}`,
+                  guid: `${site.siteMetadata.siteUrl}/blog/${node.slug}`,
+                }
+              })
+            },
+            query: `
+              {
+                allContentfulBlogHinagataMarkdown(
+                  limit: 5 
+                  sort: { fields: createdAt, order: DESC },
+                  filter: {node_locale: {eq: "ja"}}
+                ) {
+                  edges {
+                    node {
+                      title
+                      slug
+                      content {
+                        childMarkdownRemark {
+                          excerpt
+                        }
+                      }
+                      createdAt
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/blog/rss.xml",
+            title: "KorinYamada Blog",
+            feed_url: "https://blockaid-tokyo/blog/rss.xml",
+            site_url: "https://blockaid-tokyo/blog",
+            docs: "http://github.com/dylang/node-rss",
+          },
+        ],
+      },
+    }
   ],
 }

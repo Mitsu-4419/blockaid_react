@@ -9,7 +9,6 @@ import { useEffect } from "react";
 import { useIntl } from "gatsby-plugin-intl"
 
 export default function BlogPage({data}) {
-   const [defaultBlogData, setDefaultBlogData] = useState([])
    const [blogData, setBlogData] = useState([])
    const [blogFlag, setblogFlag] = useState("all")
    const [mylife, setMyLife] = useState(false)
