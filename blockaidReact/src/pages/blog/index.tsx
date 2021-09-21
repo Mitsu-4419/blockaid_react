@@ -106,13 +106,13 @@ export default function BlogPage({data}) {
                     if(blogFlag=="all"){
                         return <Box w={{xl:"24.3%", lg:"32.4%", md:"48.3%", sm:"99%",base:"99%"}} p='2' >
                         <WrapItem key={content.id} mx="auto" >
-                           <BlogCard id={content.slug} title={content.title} imageUrl={content.mainThumbnail.fluid.src} tag={content.tag} postDate={content.postDate}/>
+                           <BlogCard id={content.slug} title={content.title} imageUrl={content.mainThumbnail.fluid.src} tag={content.tag} postDate={content.postDate} book={content.book}/>
                        </WrapItem>
                       </Box>
                     }else if(blogFlag==content.tag){
                         return <Box w={{xl:"24.3%", lg:"32.4%", md:"48.3%", sm:"99%", base:"99%"}} p='2' >
                         <WrapItem key={content.id} mx="auto" >
-                           <BlogCard id={content.slug} title={content.title} imageUrl={content.mainThumbnail.fluid.src} tag={content.tag} postDate={content.postDate}/>
+                           <BlogCard id={content.slug} title={content.title} imageUrl={content.mainThumbnail.fluid.src} tag={content.tag} postDate={content.postDate} book={content.book}/>
                        </WrapItem>
                       </Box>
                     }
@@ -143,6 +143,7 @@ export const query = graphql`
                 }
             }
             tag
+            book
         }
     }
 }

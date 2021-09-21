@@ -10,10 +10,11 @@ type Props = {
   imageUrl: string;
   tag:string;
   postDate:string;
+  book:boolean;
 };
 
 export const BlogCard: VFC<Props> = (props => {
-  const { id, title,imageUrl,tag, postDate} = props;
+  const { id, title,imageUrl,tag, postDate, book} = props;
   const date= changeDateFormat(postDate)
   console.log("dfdsafsd", date)
   return (
@@ -29,7 +30,13 @@ export const BlogCard: VFC<Props> = (props => {
             _hover={{ cursor: "pointer", opacity: 0.8 }}
         >
             <Stack textAlign="start">
-              <Image
+              {book?<Image
+                  h='180px'
+                  objectFit="cover"
+                  src={imageUrl}
+                  alt={tag}
+                  m="auto"
+              />:<Image
                   w='100%'
                   h='180px'
                   objectFit="cover"
@@ -38,7 +45,7 @@ export const BlogCard: VFC<Props> = (props => {
                   m="auto"
                   borderTopLeftRadius='10px'
                   borderTopRightRadius='10px'
-              />
+              />}
               <Box minH='80px' pt='2' pb='2'pl='15' pr='15'>
                 <Text fontSize="lg" fontWeight="bold">
                     {title}
