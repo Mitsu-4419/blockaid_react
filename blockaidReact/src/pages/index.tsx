@@ -11,6 +11,8 @@ const IndexPage = memo(() => {
   console.log("Home Page 読み込み")
   const [fadeinFlag, setfadeinFlag]= useState(false)
   setTimeout(() => { setfadeinFlag(true) },11000)
+
+  
   return(
    <>
     <Seo title='Home' description="元医師、現エンジニアのKorin Yamada のPortofolio Site, Blog です。"/>
@@ -23,6 +25,7 @@ const IndexPage = memo(() => {
                 title="topPageVideo"
                 src={topMovie}
                 autoPlay
+                playsInline
                 muted
               />
             </AspectRatio>
