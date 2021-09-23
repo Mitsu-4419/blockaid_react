@@ -10,23 +10,23 @@ export const RadarChart=memo((props)=> {
     const [RadarData, setData] = useState({});
     const window_w = window.innerWidth
     useEffect(()=>{
-        if(props["chartType"]=="front"&& window_w > 400){
+        if(props["chartType"]==="front"&& window_w > 400){
             setOption(RadarOptionsFront)
             setData(RadarDataFront)
-        }else if(props["chartType"]=="front"&& window_w <= 400){
+        }else if(props["chartType"]==="front"&& window_w <= 400){
             setOption(RadarOptionsFront_Mini)
             setData(RadarDataFront)
         }
-        else if (props["chartType"]=="backend" && window_w > 400){
+        else if (props["chartType"]==="backend" && window_w > 400){
             setOption(RadarOptionsBack)
             setData(RadarDataBack)
-        }else if(props["chartType"]=="backend" && window_w <= 400){
+        }else if(props["chartType"]==="backend" && window_w <= 400){
             setOption(RadarOptionsBack_Mini)
             setData(RadarDataBack)
-        }else if(props["chartType"]=="others" && window_w > 400){
+        }else if(props["chartType"]==="others" && window_w > 400){
             setOption(RadarOptionsOthers)
             setData(RadarDataOthers)
-        }else if(props["chartType"]=="others" && window_w <= 400){
+        }else if(props["chartType"]==="others" && window_w <= 400){
             setOption(RadarOptionsOthers_Mini)
             setData(RadarDataOthers)
         }

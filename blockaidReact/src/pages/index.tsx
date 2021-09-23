@@ -1,22 +1,20 @@
-import React, {memo, useState} from "react"
+import React, {memo, useEffect, useState} from "react"
 import { Box, Text,Flex, AspectRatio} from "@chakra-ui/react";
 
 import Seo from "../components/seo"
-import  Layout from "../components/Layout";
 import { RadarChart } from "../js/RadarChart.js";
 import topMovie from '../media/topPage3.mp4';
 import FadeIn from 'react-fade-in';
 
 const IndexPage = memo(() => {
-  console.log("Home Page 読み込み")
   const [fadeinFlag, setfadeinFlag]= useState(false)
-  setTimeout(() => { setfadeinFlag(true) },11000)
-
+  useEffect(()=>{
+    setTimeout(() => { setfadeinFlag(true) },11000)
+  },[])
   
   return(
    <>
     <Seo title='Home' description="元医師、現エンジニアのKorin Yamada のPortofolio Site, Blog です。"/>
-    <Layout>
     <Box bgColor='white' pb='100' >
       <Flex w='95%' h={{xl:fadeinFlag?"400px":"800px",lg:fadeinFlag?"400px":"800px",md:fadeinFlag?"350px":"700px",sm:fadeinFlag?"300px":"500px", base:fadeinFlag?"280px":"480px"}} mr='auto' ml='auto'  justify='center' alignItems='center'>
           <Box w={{xl:fadeinFlag?"280px":"500px",lg:fadeinFlag?"280px":"500px",md:fadeinFlag?"240px":"420px",sm:fadeinFlag?"220px":"350px",base:fadeinFlag?"200px":"330px"}} >
@@ -52,7 +50,6 @@ const IndexPage = memo(() => {
       }
 
     </Box>
-  </Layout>
   </>
   )
 })

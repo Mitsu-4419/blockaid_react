@@ -1,9 +1,7 @@
 import * as React from "react"
-// import { Link } from "gatsby"
 import { Box,Text,Flex,VStack  } from "@chakra-ui/react"
 
 import Seo from "../components/seo"
-import  Layout from "../components/Layout";
 import { useIntl } from "gatsby-plugin-intl"
 
 const ContactPage = () => {
@@ -11,8 +9,7 @@ const ContactPage = () => {
   return(
   <>
     <Seo title='contact'/>
-    <Layout>
-    <Flex h='70vh' w='100%' justify='center' alignItems='center'>
+    <Flex  minH={{md:"900px", sm:"800px",base:"600px"}} w='100%' justify='center' alignItems='center'>
         <Box boxShadow='xl' w={{ md:"60%", sm:"90%", base:"90%"}} h='350px'>
             <Flex bgColor='white'  w='100%' h='100%' textAlign='center' alignItems='center' justify='center' fontSize='xl'>
                 <VStack spacing={12} fontSize={{xl:"28px", lg:"24px", md:"22px", sm:"18px",base:"16px"}}>
@@ -23,7 +20,6 @@ const ContactPage = () => {
             </Flex>
         </Box>
     </Flex>
-    </Layout>
   </>)
 }
 

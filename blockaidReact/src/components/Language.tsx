@@ -1,4 +1,4 @@
-import React, {memo, VFC} from "react"
+import React, {memo} from "react"
 import { IntlContextConsumer, changeLocale } from "gatsby-plugin-intl"
 
 const languageName = {

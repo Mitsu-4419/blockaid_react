@@ -1,34 +1,26 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Button, Box,Text, Flex,Wrap,WrapItem} from "@chakra-ui/react"
 
 import Seo from "../../components/seo"
-import  Layout from "../../components/Layout";
 import { BlogCard } from "../../components/molecules/blogCard"
 import { graphql } from "gatsby"
-import { useEffect } from "react";
 import { useIntl } from "gatsby-plugin-intl"
 
 export default function BlogPage({data}) {
-   const [blogData, setBlogData] = useState([])
    const [blogFlag, setblogFlag] = useState("all")
    const [mylife, setMyLife] = useState(false)
    const [kagoshima, setKagoshima] = useState(false)
    const [techStudy, setTechStudy] = useState(false)
    const [hobby, setHobby] = useState(false)
    const intl = useIntl()
+
    useEffect(()=>{
-    console.log(data.allContentfulBlogHinagataMarkdown.nodes)
-    let datanodes=[]
-    data.allContentfulBlogHinagataMarkdown.nodes.map((node)=>{
-        console.log("node.title", node.title)
-        if(typeof(node.title)==="string"){
-            datanodes.push(node)
-        }
-    })
-    // setDefaultBlogData(datanodes)
-    setBlogData(datanodes)
-    console.log("blogFlag", blogFlag)
-   },[data])
+       let unmounted = false
+
+       return ()=>{
+        unmounted = true   
+    }
+   })
 
    const onClickChangeLife = (()=>{
        if(blogFlag=="MyLife"){
@@ -88,7 +80,6 @@ export default function BlogPage({data}) {
    return (
     <>
     <Seo title="Ko-rin Yamada Blog" description='元医師、現エンジニアのKo-rin YamadaのBlog Siteです。エンジニアや鹿児島生活に関して書いています。'/>
-    <Layout>
     <Box pb='150px'>
         <Flex w='90%' ml='auto' mr='auto' h={{xl:"150px",lg:"150px",md:"120px",sm:"100px", base:"100px"}}  justify='center' alignItems='center'>
             <Text fontWeight='bold' fontSize={{xl:"60",lg:"60",md:"50", sm:"30", base:"30"}}>Blog</Text>
@@ -102,29 +93,27 @@ export default function BlogPage({data}) {
             </Flex>
             <Box mt='40px'>
                 <Wrap  ml='auto' mr='auto' w='100%'>
-                {blogData.map(content=>{
-                    if(blogFlag=="all"){
-                        return <Box w={{xl:"24.3%", lg:"32.4%", md:"48.3%", sm:"99%",base:"99%"}} p='2' >
+                {data.allContentfulBlogHinagataMarkdown.nodes.map(content=>{
+                    if(blogFlag=="all" && typeof(content.title)==="string"){
+                        return <Box w={{xl:"24.3%", lg:"32.4%", md:"48.3%", sm:"99%",base:"99%"}} p='2' key={content.id}>
                         <WrapItem key={content.id} mx="auto" >
-                           <BlogCard id={content.slug} title={content.title} imageUrl={content.mainThumbnail.fluid.src} tag={content.tag} postDate={content.postDate} book={content.book}/>
+                           <BlogCard key={content.id} id={content.slug} title={content.title} imageUrl={content.mainThumbnail.fluid.src} tag={content.tag} postDate={content.postDate} book={content.book}/>
                        </WrapItem>
                       </Box>
-                    }else if(blogFlag==content.tag){
-                        return <Box w={{xl:"24.3%", lg:"32.4%", md:"48.3%", sm:"99%", base:"99%"}} p='2' >
+                    }else if(blogFlag==content.tag && typeof(content.title)==="string"){
+                        return <Box w={{xl:"24.3%", lg:"32.4%", md:"48.3%", sm:"99%", base:"99%"}} p='2' key={content.id}>
                         <WrapItem key={content.id} mx="auto" >
-                           <BlogCard id={content.slug} title={content.title} imageUrl={content.mainThumbnail.fluid.src} tag={content.tag} postDate={content.postDate} book={content.book}/>
+                           <BlogCard key={content.id} id={content.slug} title={content.title} imageUrl={content.mainThumbnail.fluid.src} tag={content.tag} postDate={content.postDate} book={content.book}/>
                        </WrapItem>
                       </Box>
                     }
                    
                 }
-                
                  )}
                 </Wrap>
             </Box>
         </Box>
     </Box>
-  </Layout>
   </>
 )
 }
@@ -144,6 +133,7 @@ export const query = graphql`
             }
             tag
             book
+            id
         }
     }
 }

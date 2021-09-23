@@ -1,234 +1,37 @@
 import * as React from "react"
-import { Box,Text, Heading, Flex,VStack,Link  } from "@chakra-ui/react"
-import { StaticImage } from "gatsby-plugin-image"
+import { Box,Heading, Flex,VStack} from "@chakra-ui/react"
 
 import Seo from "../components/seo"
-import  Layout from "../components/Layout";
-import { useIntl } from "gatsby-plugin-intl"
+import { useIntl } from "gatsby-plugin-intl";
+
+import {WorkDetail}  from "../components/molecules/workDetail";
+import janken from "../images/jankenGame.png"
+import cryptotuber from "../images/cryptotuber_logoT.jpg"
+import gamelive from "../images/gameLivelogo.png"
+import cooktuber from "../images/CookTuber_logo.png"
+import nonoshire from "../images/nonoshireLogo.png"
+import blockaid from "../images/BlockAidHP.png"
+import question from "../images/question.png"
 
 const WorkPage = () => {
     const intl = useIntl()
-
     return(
   <>
     <Seo title='Works' description="Ko-rin Yamadaのポートフォリオページです"/>
-    <Layout>
     <Box pb='150'>
         <Flex justify='center' h='120px' alignItems='center'>
             <Heading fontSize={{xl:"4xl",lg:"4xl",md:"3xl", sm:"3xl",base:"2xl"}}>{intl.formatMessage({ id: "work-title" })}</Heading>
         </Flex>
         <VStack bg='white'  w='90%' mr='auto' ml='auto' pb='60px'>
-            <Box mr='auto' ml='auto' mt='40px' mb='40px' w='90%'>
-                <Flex justify='start' w='50%'>
-                    <Heading fontSize={{xl:"4xl",lg:"4xl",md:"3xl", sm:"3xl",base:"2xl"}}>{intl.formatMessage({ id: "work1-year" })}</Heading>
-                </Flex>
-                <Flex w='100%'  mt='10' direction={{xl:"row", lg:"row", md:"column", sm:"column", base:"column"}}>
-                    <Flex w={{xl:"50%", lg:"50%", md:"100%", sm:"100%", base:"100%"}} justify='center' alignItems='center'>
-                        <Link href="https://jankengame-2cfec.firebaseapp.com/" isExternal>
-                        <StaticImage
-                            src="../images/jankenGame.png"
-                            width={260}
-                            quality={95}
-                            alt="jankengame"
-                        />
-                        </Link>
-                    </Flex>
-                    <Box  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%", base:"100%"}} bg='gray.100' p='5' mt={{md:"20px", sm:'20px',base:"10px"}} fontSize={{md:"18px",base:"13px"}}>
-                            {
-                            intl.formatMessage({ id: "work1-content" }).split('\n').map((str, index)=>{
-                                return <Text key={index}>{str}<br /></Text>
-                            }) 
-                            }
-                        <Box mt='10px'>
-                            <Text>{intl.formatMessage({ id: "work-main-tech" })}：</Text>
-                            <Text>{intl.formatMessage({ id: "work-main-tech1" })}</Text>
-                        </Box>
-                    </Box>
-                </Flex>
-            </Box>
-            <Box w='90%' mr='auto' ml='auto' mt='40px' mb='40px' >
-                <Flex justify='start' w='50%'>
-                    <Heading fontSize={{xl:"4xl",lg:"4xl",md:"3xl", sm:"3xl",base:"2xl"}}>{intl.formatMessage({ id: "work2-year" })}</Heading>
-                </Flex>
-                <Flex w='100%'  mt='10' direction={{xl:"row", lg:"row", md:"column", sm:"column",  base:"column"}}>
-                    <Flex  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%",base:"100%"}} justify='center' alignItems='center'>
-                        <Link href="https://cryptotuber.com/#/" isExternal>
-                            <StaticImage
-                                src="../images/cryptotuber_logoT.jpg"
-                                width={220}
-                                quality={95}
-                                alt="cryptotuber"
-                            />
-                        </Link>
-                    </Flex>
-                    <Box  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%", base:"100%"}} bg='gray.100' p='5' mt={{md:"20px", sm:'20px',base:"10px"}} fontSize={{md:"18px",base:"13px"}}>
-                        <Text>
-                        {
-                            intl.formatMessage({ id: "work2-content" }).split('\n').map((str, index)=>{
-                                return <Text key={index}>{str}<br /></Text>
-                            }) 
-                            }
-                        </Text>
-                        <Box mt='10px'>
-                            <Text>{intl.formatMessage({ id: "work-main-tech" })}：</Text>
-                            <Text>{intl.formatMessage({ id: "work-main-tech2" })}</Text>
-                        </Box>
-                    </Box>
-                </Flex>
-            </Box>
-            <Box w='90%' mr='auto' ml='auto' mt='40px' mb='40px' pt='30px'>
-                <Flex justify='start' w='50%'>
-                    <Heading fontSize={{xl:"4xl",lg:"4xl",md:"3xl", sm:"3xl",base:"2xl"}}>{intl.formatMessage({ id: "work3-year" })}</Heading>
-                </Flex>
-                <Flex w='100%'  mt='10' direction={{xl:"row", lg:"row", md:"column", sm:"column",  base:"column"}}>
-                    <Flex  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%",base:"100%"}} justify='center' alignItems='center'>
-                        <Link href="https://gamelive.jp" isExternal>
-                            <StaticImage
-                                src="../images/gameLivelogo.png"
-                                width={220}
-                                quality={95}
-                                alt="cryptotuber"
-                            />
-                        </Link>
-                    </Flex>
-                    <Box  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%",base:"100%"}} bg='gray.100' p='5' mt={{md:"20px", sm:'20px',base:"10px"}} fontSize={{md:"18px",base:"13px"}}>
-                        <Text>
-                        {
-                            intl.formatMessage({ id: "work3-content" }).split('\n').map((str, index)=>{
-                                return <Text key={index}>{str}<br /></Text>
-                            }) 
-                            }<br/>
-                        </Text>
-                        <Box mt='10px'>
-                            <Text>{intl.formatMessage({ id: "work-main-tech" })}：</Text>
-                            <Text>{intl.formatMessage({ id: "work-main-tech3" })}</Text>
-                        </Box>
-                    </Box>
-                </Flex>
-            </Box>
-            <Box w='90%' mr='auto' ml='auto' mt='40px' mb='40px' pt='30px'>
-                <Flex justify='start' w='50%'>
-                    <Heading fontSize={{xl:"4xl",lg:"4xl",md:"3xl", sm:"3xl",base:"2xl"}}>{intl.formatMessage({ id: "work4-year" })}</Heading>
-                </Flex>
-                <Flex w='100%'  mt='10' direction={{xl:"row", lg:"row", md:"column", sm:"column",  base:"column"}}>
-                    <Flex  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%",base:"100%"}} justify='center' alignItems='center'>
-                        <Link href="https://cooktuber.com" isExternal>
-                            <StaticImage
-                                src="../images/CookTuber_logo.png"
-                                width={220}
-                                quality={95}
-                                alt="cryptotuber"
-                            />
-                        </Link>
-                    </Flex>
-                    <Box  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%",base:"100%"}} bg='gray.100' p='5' mt={{md:"20px", sm:'20px',base:"10px"}} fontSize={{md:"18px",base:"13px"}}>
-                        <Text>
-                        {
-                            intl.formatMessage({ id: "work4-content" }).split('\n').map((str, index)=>{
-                                return <Text key={index}>{str}<br /></Text>
-                            }) 
-                            }
-                        </Text>
-                        <Box mt='10px'>
-                            <Text>{intl.formatMessage({ id: "work-main-tech" })}：</Text>
-                            <Text>{intl.formatMessage({ id: "work-main-tech4" })}</Text>
-                        </Box>
-                    </Box>
-                </Flex>
-            </Box>
-            <Box w='90%' mr='auto' ml='auto' mt='40px' mb='40px' pt='30px'>
-                <Flex justify='start' w='50%'>
-                    <Heading fontSize={{xl:"4xl",lg:"4xl",md:"3xl", sm:"3xl",base:"2xl"}}>{intl.formatMessage({ id: "work5-year" })}</Heading>
-                </Flex>
-                <Flex w='100%'  mt='10' direction={{xl:"row", lg:"row", md:"column", sm:"column", base:"column"}}>
-                    <Flex  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%", base:"100%"}} justify='center' alignItems='center'>
-                        <Link href="" isExternal>
-                            <StaticImage
-                                src="../images/nonoshireLogo.png"
-                                width={220}
-                                quality={95}
-                                alt="cryptotuber"
-                            />
-                        </Link>
-                    </Flex>
-                    <Box  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%",base:"100%"}} bg='gray.100' p='5' mt={{md:"20px", sm:'20px',base:"10px"}} fontSize={{md:"18px",base:"13px"}}>
-                        <Text>
-                        {
-                            intl.formatMessage({ id: "work5-content" }).split('\n').map((str, index)=>{
-                                return <Text key={index}>{str}<br /></Text>
-                            }) 
-                            }
-                        </Text>
-                        <Box mt='10px'>
-                            <Text>{intl.formatMessage({ id: "work-main-tech" })}：</Text>
-                            <Text>{intl.formatMessage({ id: "work-main-tech5" })}</Text>
-                        </Box>
-                    </Box>
-                </Flex>
-            </Box>
-            <Box w='90%' mr='auto' ml='auto' mt='40px' mb='40px' pt='30px'>
-                <Flex justify='start' w='50%'>
-                    <Heading fontSize={{xl:"4xl",lg:"4xl",md:"3xl", sm:"3xl",base:"2xl"}}>{intl.formatMessage({ id: "work6-year" })}</Heading>
-                </Flex>
-                <Flex w='100%'  mt='10' direction={{xl:"row", lg:"row", md:"column", sm:"column", base:"column"}}>
-                    <Flex  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%",base:"100%"}} justify='center' alignItems='center'>
-                        <Link href="" isExternal>
-                            <StaticImage
-                                src="../images/BlockAidHP.png"
-                                width={220}
-                                quality={95}
-                                alt="cryptotuber"
-                            />
-                        </Link>
-                    </Flex>
-                    <Box  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%",base:"100%"}} bg='gray.100' p='5' mt={{md:"20px", sm:'20px',base:"10px"}} fontSize={{md:"18px",base:"13px"}}>
-                        <Text>
-                        {
-                            intl.formatMessage({ id: "work6-content" }).split('\n').map((str, index)=>{
-                                return <Text key={index}>{str}<br /></Text>
-                            }) 
-                            }
-                        </Text>
-                        <Box mt='10px'>
-                            <Text>{intl.formatMessage({ id: "work-main-tech" })}：</Text>
-                            <Text>{intl.formatMessage({ id: "work-main-tech6" })}</Text>
-                        </Box>
-                    </Box>
-                </Flex>
-            </Box>
-            <Box w='90%' mr='auto' ml='auto' mt='40px' mb='40px' pt='30px'>
-                <Flex justify='start' w='50%'>
-                    <Heading fontSize={{xl:"4xl",lg:"4xl",md:"3xl", sm:"3xl",base:"2xl"}}>{intl.formatMessage({ id: "work7-year" })}</Heading>
-                </Flex>
-                <Flex w='100%'  mt='10' direction={{xl:"row", lg:"row", md:"column", sm:"column", base:"column"}}>
-                    <Flex  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%" ,base:"100%"}} justify='center' alignItems='center'>
-                        <Link href="" isExternal>
-                            <StaticImage
-                                src="../images/question.png"
-                                width={220}
-                                quality={95}
-                                alt="cryptotuber"
-                            />
-                        </Link>
-                    </Flex>
-                    <Box  w={{xl:"50%", lg:"50%", md:"100%", sm:"100%", base:"100%"}} bg='gray.100' p='5' mt={{md:"20px", sm:'20px',base:"10px"}} fontSize={{md:"18px",base:"13px"}}>
-                        <Text>
-                        {
-                            intl.formatMessage({ id: "work7-content" }).split('\n').map((str, index)=>{
-                                return <Text key={index}>{str}<br /></Text>
-                            }) 
-                            }
-                        </Text>
-                        <Box mt='10px'>
-                            <Text>{intl.formatMessage({ id: "work-main-tech" })}：</Text>
-                            <Text>{intl.formatMessage({ id: "work-main-tech7" })}</Text>
-                        </Box>
-                    </Box>
-                </Flex>
-            </Box>
+            <WorkDetail workYear="work1-year" imageUrl={janken} imageAlt='jankengame' workContent="work1-content" workTech1="work-main-tech" workTech2="work-main-tech1" link="https://jankengame-2cfec.firebaseapp.com/"/>
+            <WorkDetail workYear="work2-year" imageUrl={cryptotuber} imageAlt='cryptotuber' workContent="work2-content" workTech1="work-main-tech" workTech2="work-main-tech2" link="https://cryptotuber.com/#/"/>
+            <WorkDetail workYear="work3-year" imageUrl={gamelive} imageAlt='gamelive' workContent="work3-content" workTech1="work-main-tech" workTech2="work-main-tech3" link="https://gamelive.jp"/>
+            <WorkDetail workYear="work4-year" imageUrl={cooktuber} imageAlt='cooktuber' workContent="work4-content" workTech1="work-main-tech" workTech2="work-main-tech4" link="https://cooktuber.com"/>
+            <WorkDetail workYear="work5-year" imageUrl={nonoshire} imageAlt='nonoshire' workContent="work5-content" workTech1="work-main-tech" workTech2="work-main-tech5" link=""/>
+            <WorkDetail workYear="work6-year" imageUrl={blockaid} imageAlt='blockaid' workContent="work6-content" workTech1="work-main-tech" workTech2="work-main-tech6" link=""/>
+            <WorkDetail workYear="work7-year" imageUrl={question} imageAlt='question' workContent="work7-content" workTech1="work-main-tech" workTech2="work-main-tech7" link=""/>
         </VStack>
     </Box>
-    </Layout>
   </>
 )
 }

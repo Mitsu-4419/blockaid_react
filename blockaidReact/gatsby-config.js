@@ -6,6 +6,9 @@ if (process.env.ENVIRONMENT !== "production") {
 
 
 module.exports = {
+  flags: {
+    DEV_SSR: false,
+  },
   siteMetadata: {
     title: `Ko-rin Yamada Portfolio site`,
     description: `portfolio site of Korin Yamada who is software engineer and doctor`,
@@ -53,19 +56,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-typegen`,
-    {
-      resolve: `gatsby-plugin-intl`,
-      options: {
-        // language JSON resource path
-        path: `${__dirname}/src/intl`,
-        // supported language
-        languages: [`en`, `ja`],
-        // language file path
-        defaultLanguage: `ja`,
-        // option to redirect to `/en` when connecting `/`
-        redirect: false,
-      },
-    },
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-transformer-remark`,
@@ -164,6 +154,25 @@ module.exports = {
           },
         ],
       },
-    }
+    },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/components/Layout.tsx`),
+      },
+    },
+    {
+      resolve: `gatsby-plugin-intl`,
+      options: {
+        // language JSON resource path
+        path: `${__dirname}/src/intl`,
+        // supported language
+        languages: [`en`, `ja`],
+        // language file path
+        defaultLanguage: `ja`,
+        // option to redirect to `/en` when connecting `/`
+        redirect: false,
+      },
+    },
   ],
 }

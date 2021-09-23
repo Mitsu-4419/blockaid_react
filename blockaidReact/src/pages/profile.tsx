@@ -3,7 +3,6 @@ import { Grid, GridItem, Box,Text, Heading, Flex,VStack } from "@chakra-ui/react
 import { StaticImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo"
-import  Layout from "../components/Layout";
 import { useIntl } from "gatsby-plugin-intl"
 import { ProfileText } from "../components/molecules/profileText"
 
@@ -13,11 +12,10 @@ const ProfilePage = () => {
   return (
   <>
     <Seo title="Korin Yamada's profile" description="Korin Yamada のProfile ページです"/>
-    <Layout>
     <Grid
       templateRows="repeat(34, 1fr)"
       templateColumns="repeat(34, 1fr)"
-      h='90vh'
+      minH={{md:"900px", sm:"700px",base:"500px"}}
     >
       <GridItem rowSpan={{xl:2,lg:2,md:1, sm:1, base:1}} colSpan={34}></GridItem>
       <GridItem rowSpan={{xl:32,lg:32,md:33, sm:33, base:33}} colSpan={{xl:2,lg:2,md:1, sm:1,base:1}} ></GridItem>
@@ -29,7 +27,7 @@ const ProfilePage = () => {
       <GridItem rowSpan={{xl:34,lg:34,md:33, sm:33,base:33}} colSpan={{xl:2,lg:2,md:1, sm:1, base:1}}></GridItem>
       <GridItem rowSpan={{xl:20, lg:20, md:8, sm:7,base:5}} colSpan={{xl:11, lg:11, md:32, sm:32,base:32}}  bg='white' >
         <Flex w='100%' h='100%' justify='center' alignItems='center'>
-            <Box w={{xl:280, lg:250, md:150, sm:150,base:"60px"}}>
+            <Box w={{xl:280, lg:250, md:150, sm:150,base:100}}>
               <StaticImage
                   src="../images/CEOFace.png"
                   quality={95}
@@ -79,7 +77,6 @@ const ProfilePage = () => {
       </GridItem>
       <GridItem rowSpan={{xl:2,lg:2,md:1, sm:1, base:1}} colSpan={{xl:30,lg:30,md:32, sm:32,base:32}}></GridItem>
     </Grid>
-    </Layout>
   </>)
 }
 

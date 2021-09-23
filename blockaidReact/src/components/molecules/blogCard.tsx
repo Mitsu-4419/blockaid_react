@@ -1,7 +1,7 @@
 import * as React from "react"
 import { memo, VFC } from "react";
-import { Box, Stack, Image,Text,WrapItem} from "@chakra-ui/react";
-import {Link} from 'gatsby';
+import { Box, Stack, Image,Text} from "@chakra-ui/react";
+import {Link} from 'gatsby-plugin-intl';
 import {changeDateFormat} from '../../js/changeDateFormat.js'
 
 type Props = {
@@ -13,10 +13,9 @@ type Props = {
   book:boolean;
 };
 
-export const BlogCard: VFC<Props> = (props => {
+export const BlogCard: VFC<Props> = memo(props => {
   const { id, title,imageUrl,tag, postDate, book} = props;
   const date= changeDateFormat(postDate)
-  console.log("dfdsafsd", date)
   return (
     <>
     <Box w='100%'>

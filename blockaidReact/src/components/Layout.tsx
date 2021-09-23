@@ -6,7 +6,7 @@ const Layout = memo(({ children }) => {
     console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
     return (
         <>
-            <Header></Header>
+            <Header key="header"></Header>
                 <main>{children}</main>
             <Footer></Footer>
         </>
