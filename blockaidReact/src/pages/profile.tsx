@@ -37,7 +37,7 @@ const ProfilePage = () => {
       </GridItem>
       <GridItem rowSpan={{xl:20, lg:20, md:16, sm:16,base:19}} colSpan={{xl:19, lg:19, md:32, sm:32,base:32}}  bg='white' >
         <Flex h='100%' alignItems='center' p='4'>
-          <VStack align='start' spacing={{xl:3, lg:2, md:2, sm:2, base:2}} fontSize={{xl:"18", lg:"16", md:"15", sm:"12", base:"4"}}>
+          <VStack align='start' spacing={{xl:3, lg:2, md:2, sm:2, base:2}} fontSize={{xl:"18", lg:"16", md:"15", sm:"12", base:"10"}}>
             <ProfileText year='prof1-year' content='prof1-content'></ProfileText>
             <ProfileText year='prof2-year' content='prof2-content'></ProfileText>
             <ProfileText year='prof3-year' content='prof3-content'></ProfileText>
