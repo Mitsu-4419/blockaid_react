@@ -8,7 +8,6 @@ import { ProfileText } from "../components/molecules/profileText"
 
 const ProfilePage = () => {
   const intl = useIntl()
-
   return (
   <>
     <Seo title="Korin Yamada's profile" description="Korin Yamada のProfile ページです"/>
@@ -25,9 +24,9 @@ const ProfilePage = () => {
           </Flex>
       </GridItem>
       <GridItem rowSpan={{xl:34,lg:34,md:33, sm:33,base:33}} colSpan={{xl:2,lg:2,md:1, sm:1, base:1}}></GridItem>
-      <GridItem rowSpan={{xl:20, lg:20, md:8, sm:7,base:5}} colSpan={{xl:11, lg:11, md:32, sm:32,base:32}}  bg='white' >
+      <GridItem rowSpan={{xl:20, lg:20, md:8, sm:7,base:7}} colSpan={{xl:11, lg:11, md:32, sm:32,base:32}}  bg='white' >
         <Flex w='100%' h='100%' justify='center' alignItems='center'>
-            <Box w={{xl:280, lg:250, md:150, sm:150,base:100}}>
+            <Box w={{xl:280, lg:250, md:150, sm:150,base:120}}>
               <StaticImage
                   src="../images/CEOFace.png"
                   quality={95}
@@ -36,9 +35,9 @@ const ProfilePage = () => {
             </Box>
         </Flex>
       </GridItem>
-      <GridItem rowSpan={{xl:20, lg:20, md:16, sm:16,base:21}} colSpan={{xl:19, lg:19, md:32, sm:32,base:32}}  bg='white' >
+      <GridItem rowSpan={{xl:20, lg:20, md:16, sm:16,base:19}} colSpan={{xl:19, lg:19, md:32, sm:32,base:32}}  bg='white' >
         <Flex h='100%' alignItems='center' p='4'>
-          <VStack align='start' spacing={{xl:3, lg:2, md:2, sm:2, base:1}} fontSize={{xl:"18", lg:"16", md:"12", sm:"10", base:"4"}}>
+          <VStack align='start' spacing={{xl:3, lg:2, md:2, sm:2, base:2}} fontSize={{xl:"18", lg:"16", md:"15", sm:"12", base:"4"}}>
             <ProfileText year='prof1-year' content='prof1-content'></ProfileText>
             <ProfileText year='prof2-year' content='prof2-content'></ProfileText>
             <ProfileText year='prof3-year' content='prof3-content'></ProfileText>
@@ -61,7 +60,7 @@ const ProfilePage = () => {
         </Flex>
       </GridItem>
       <GridItem rowSpan={6} colSpan={{xl:18,lg:18,md:19, sm:19, base:19}}  bg='white' p={{xl:"4",lg:"4",md:"2", sm:"1", base:"1"}}>
-        <Box m='2' fontSize={{xl:"20", lg:"18", md:"16", sm:"10", base:"5"}}pl={{xl:"10", lg:"8", md:"6", sm:"4", base:"4"}} pr={{xl:"10", lg:"8", md:"6", sm:"4", base:"4"}}>
+        <Box m='2' fontSize={{xl:"20", lg:"18", md:"16", sm:"14", base:"8"}}pl={{xl:"10", lg:"8", md:"6", sm:"4", base:"4"}} pr={{xl:"10", lg:"8", md:"6", sm:"4", base:"4"}}>
           <Text fontWeight={"bold"}>{intl.formatMessage({ id: "prof-certificate" })}</Text>
           <Text>
           {intl.formatMessage({ id: "prof-certificate-detail1" })}<br/>
@@ -70,7 +69,7 @@ const ProfilePage = () => {
         </Box>
       </GridItem>
       <GridItem rowSpan={6} colSpan={{xl:12,lg:12,md:13, sm:13, base:13}}  bg='white' p={{xl:"4",lg:"4",md:"2", sm:"1", base:"1"}}>
-        <Box m='2'fontSize={{xl:"20", lg:"18", md:"16", sm:"10", base:"5"}} pl={{xl:"10", lg:"8", md:"6", sm:"4",base:"4"}} pr={{xl:"10", lg:"8", md:"6", sm:"4", base:"4"}}>
+        <Box m='2'fontSize={{xl:"20", lg:"18", md:"16", sm:"10", base:"8"}} pl={{xl:"10", lg:"8", md:"6", sm:"4",base:"4"}} pr={{xl:"10", lg:"8", md:"6", sm:"4", base:"4"}}>
             <Text fontWeight={"bold"}>{intl.formatMessage({ id: "prof-hobby" })}</Text>
             <Text>{intl.formatMessage({ id: "prof-hobby-detail" })}</Text>
         </Box>
