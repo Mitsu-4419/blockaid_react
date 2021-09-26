@@ -142,10 +142,10 @@ module.exports = {
                         }
                       }
                       createdAt
-                    }
-                    mainThumbnail {
-                      file {
-                        url
+                      mainThumbnail {
+                        file {
+                          url
+                        }
                       }
                     }
                   }
