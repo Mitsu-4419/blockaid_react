@@ -121,6 +121,7 @@ module.exports = {
                   date: node.createdAt,
                   url: `${site.siteMetadata.siteUrl}/blog/${node.slug}`,
                   guid: `${site.siteMetadata.siteUrl}/blog/${node.slug}`,
+                  imageUrl:node.mainThumbnail.file.url
                 }
               })
             },
@@ -141,6 +142,11 @@ module.exports = {
                         }
                       }
                       createdAt
+                    }
+                    mainThumbnail {
+                      file {
+                        url
+                      }
                     }
                   }
                 }
