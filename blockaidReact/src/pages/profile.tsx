@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Grid, GridItem, Box,Text, Heading, Flex,VStack } from "@chakra-ui/react"
 import { StaticImage } from "gatsby-plugin-image"
-
+import {Link} from "gatsby"
 import Seo from "../components/seo"
 import { useIntl } from "gatsby-plugin-intl"
 import { ProfileText } from "../components/molecules/profileText"
@@ -56,6 +56,7 @@ const ProfilePage = () => {
             <ProfileText year='prof8-year' content='prof8-content'></ProfileText>
             <ProfileText year='prof9-year' content='prof9-content'></ProfileText>
             <ProfileText year='prof10-year' content='prof10-content'></ProfileText>
+            <Link to='/blog/aboutme'><Text color='blue'>My Story</Text></Link>
           </VStack>
         </Flex>
       </GridItem>
