@@ -121,7 +121,7 @@ module.exports = {
                   date: node.createdAt,
                   url: `${site.siteMetadata.siteUrl}/blog/${node.slug}`,
                   guid: `${site.siteMetadata.siteUrl}/blog/${node.slug}`,
-                  imageUrl:node.mainThumbnail.file.url
+                  image:'./src/images/blockaid_icon_bgnone.png'
                 }
               })
             },
