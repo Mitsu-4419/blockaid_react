@@ -15,7 +15,7 @@ const ProjectDetails = ({data}) => {
 
   return (
     <>
-      <Seo title={data.blog.title} image={data.blog.mainThumbnail.file.url}/>
+      <Seo title={data.blog.title} image={data.blog.mainThumbnail.file.url?data.blog.mainThumbnail.file.url:''}/>
       {typeof(data.blog.title) ==="string"?
       <Flex w='100%' justify='center' mt='80px' mb='100px'>
         <Box maxW='750px'>
