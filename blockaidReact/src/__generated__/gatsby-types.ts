@@ -5561,6 +5561,11 @@ type ContentfulContentTypeSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
+type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type Unnamed_1_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
+
 type ContentfulQueryQueryVariables = Exact<{
   language: Maybe<Scalars['String']>;
 }>;
@@ -5584,11 +5589,6 @@ type usersmitsu4419DesktopblockaidReactblockaidReactsrctemplatesBlogDetailTsx426
       & { readonly childMarkdownRemark: Maybe<Pick<MarkdownRemark, 'html'>> }
     )> }
   )> };
-
-type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type Unnamed_1_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
 
 type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
