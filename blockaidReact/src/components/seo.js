@@ -70,7 +70,7 @@ function Seo({ description, lang, meta, title}) {
         },
         {
           name: `twitter:image`,
-          content: "https://drive.google.com/file/d/1NmpH2OHjJURtfS-V1WmdH6GGYX-RMl0m/view?usp=sharing",
+          content: '../images/BlockAidHP.png',
         },
       ].concat(meta)}
     />

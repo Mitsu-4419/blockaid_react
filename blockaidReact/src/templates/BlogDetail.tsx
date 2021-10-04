@@ -15,7 +15,7 @@ const ProjectDetails = ({data}) => {
 
   return (
     <>
-      <Seo title={data.blog.title} image='https://drive.google.com/file/d/1NmpH2OHjJURtfS-V1WmdH6GGYX-RMl0m/view?usp=sharing'/>
+      <Seo title={data.blog.title} image={'../images/BlockAidHP.png'}/>
       {typeof(data.blog.title) ==="string"?
       <Flex w='100%' justify='center' mt='80px' mb='100px'>
         <Box maxW='750px'>
