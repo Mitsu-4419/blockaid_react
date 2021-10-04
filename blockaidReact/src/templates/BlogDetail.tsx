@@ -15,7 +15,7 @@ const ProjectDetails = ({data}) => {
 
   return (
     <>
-      <Seo title={data.blog.title} image={'../images/BlockAidHP.png'}/>
+      <Seo title={data.blog.title} image={data.blog.mainThumbnail.file.url}/>
       {typeof(data.blog.title) ==="string"?
       <Flex w='100%' justify='center' mt='80px' mb='100px'>
         <Box maxW='750px'>
@@ -64,6 +64,9 @@ export const query = graphql`
       mainThumbnail {
         fluid {
           src
+        }
+        file{
+          url
         }
       }
       content{
