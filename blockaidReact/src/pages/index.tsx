@@ -7,30 +7,27 @@ import topMovie from '../media/topPage3.mp4';
 import FadeIn from 'react-fade-in';
 
 const IndexPage = memo(() => {
-  const [fadeinFlag, setfadeinFlag]= useState(false)
-  useEffect(()=>{
-    setTimeout(() => { setfadeinFlag(true) },5500)
-  },[])
+  // const [fadeinFlag, setfadeinFlag]= useState(false)
+  // useEffect(()=>{
+  //   setTimeout(() => { setfadeinFlag(true) },5500)
+  // },[])
   
   return(
    <>
     <Seo title='Home' description="元医師、現エンジニアのKorin Yamada のPortofolio Site, Blog です。"/>
     <Box bgColor='white' pb='100' >
-      <Flex w='95%' h={{xl:fadeinFlag?"400px":"800px",lg:fadeinFlag?"400px":"800px",md:fadeinFlag?"350px":"700px",sm:fadeinFlag?"300px":"500px", base:fadeinFlag?"280px":"480px"}} mr='auto' ml='auto'  justify='center' alignItems='center'>
-          <Box w={{xl:fadeinFlag?"280px":"500px",lg:fadeinFlag?"280px":"500px",md:fadeinFlag?"240px":"420px",sm:fadeinFlag?"220px":"350px",base:fadeinFlag?"200px":"330px"}} >
+      <Flex w='95%' h={{xl:"400px",lg:"400px",md:"350px",sm:"300px",base:"280px"}} mr='auto' ml='auto'  justify='center' alignItems='center'>
+          <Box w={{xl:"280px",lg:"280px",md:"240px",sm:"220px",base:"200px"}} >
             <AspectRatio maxW="400px" ratio={3 / 3}>
             <video
                 title="topPageVideo"
                 src={topMovie}
-                autoPlay
                 playsInline
                 muted
               />
             </AspectRatio>
           </Box>
-          
       </Flex>
-      {fadeinFlag?
          <FadeIn>
          <Box w='100%' textAlign='center' h='20' mt='10'>
            <Text fontSize={{xl:42,lg:42,md:38, sm:38}} color='gray.700' fontWeight='bold'>Skills</Text>
@@ -46,8 +43,7 @@ const IndexPage = memo(() => {
              <RadarChart chartType='others'/>
            </Box>
          </Flex>
-       </FadeIn>:""
-      }
+       </FadeIn>
 
     </Box>
   </>
@@ -55,3 +51,17 @@ const IndexPage = memo(() => {
 })
 
 export default IndexPage
+
+
+{/* <Flex w='95%' h={{xl:fadeinFlag?"400px":"800px",lg:fadeinFlag?"400px":"800px",md:fadeinFlag?"350px":"700px",sm:fadeinFlag?"300px":"500px", base:fadeinFlag?"280px":"480px"}} mr='auto' ml='auto'  justify='center' alignItems='center'>
+<Box w={{xl:fadeinFlag?"280px":"500px",lg:fadeinFlag?"280px":"500px",md:fadeinFlag?"240px":"420px",sm:fadeinFlag?"220px":"350px",base:fadeinFlag?"200px":"330px"}} >
+  <AspectRatio maxW="400px" ratio={3 / 3}>
+  <video
+      title="topPageVideo"
+      src={topMovie}
+      playsInline
+      muted
+    />
+  </AspectRatio>
+</Box>
+</Flex> */}
