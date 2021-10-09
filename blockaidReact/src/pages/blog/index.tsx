@@ -5,74 +5,43 @@ import Seo from "../../components/seo"
 import { BlogCard } from "../../components/molecules/blogCard"
 import { graphql } from "gatsby"
 import { useIntl } from "gatsby-plugin-intl"
+import {Link} from 'gatsby-plugin-intl';
 
 export default function BlogPage({data}) {
    const [blogFlag, setblogFlag] = useState("all")
-   const [mylife, setMyLife] = useState(false)
-   const [kagoshima, setKagoshima] = useState(false)
-   const [techStudy, setTechStudy] = useState(false)
-   const [hobby, setHobby] = useState(false)
    const intl = useIntl()
-
-   useEffect(()=>{
-       let unmounted = false
-
-       return ()=>{
-        unmounted = true   
-    }
-   })
 
    const onClickChangeLife = (()=>{
        if(blogFlag=="MyLife"){
            setblogFlag("all")
-           setMyLife(false)
        }else{
         setblogFlag("MyLife")
-        setMyLife(true)
-        setHobby(false)
-        setKagoshima(false)
-        setTechStudy(false)
        }
    })
    const onClickChangeKagoshima = (()=>{
         if(blogFlag=="Kagoshima"){
             setblogFlag("all")
-            setKagoshima(false)
         }
         else{
         setblogFlag("Kagoshima")
-        setKagoshima(true)
-        setMyLife(false)
-        setTechStudy(false)
-        setHobby(false)
         }
         
     })
     const onClickChangeTechStudy = (()=>{
         if(blogFlag=="TechStudy"){
             setblogFlag("all")
-            setTechStudy(false)
         }
         else{
         setblogFlag("TechStudy")
-        setTechStudy(true)
-        setMyLife(false)
-        setHobby(false)
-        setKagoshima(false)
         }
         
     })
     const onClickChangeHobby = (()=>{
         if(blogFlag=="Hobby"){
             setblogFlag("all")
-            setHobby(false)
         }
         else{
         setblogFlag("Hobby")
-        setHobby(true)
-        setTechStudy(false)
-        setMyLife(false)
-        setKagoshima(false)
         }
         
     })
@@ -84,12 +53,17 @@ export default function BlogPage({data}) {
         <Flex w='90%' ml='auto' mr='auto' h={{xl:"150px",lg:"150px",md:"120px",sm:"100px", base:"100px"}}  justify='center' alignItems='center'>
             <Text fontWeight='bold' fontSize={{xl:"60",lg:"60",md:"50", sm:"30", base:"30"}}>Blog</Text>
         </Flex>
+        <Flex justify='center' mb='5'>
+            <Link to='/blog/techBlog'>
+                <Text as='em' color='blue.400'>{intl.formatMessage({ id: "blogLink2" })}</Text>
+            </Link>
+        </Flex>
         <Box minH='90vh' maxWidth={{xl:"1280px",}} ml='auto' mr='auto' pt='40px' pl='24px' pr='24px'  bg='white' shadow='sm'> 
             <Flex w='100%' ml='auto' mr='auto'>
-                    <Button _hover={{bg:'blue.100'}} fontSize={{xl:"16px",lg:"16px",md:"16px",sm:"14px",base:"12px"}}  bgColor={mylife?'blue.100':"gray.100"}  h='100%' minH='42px' w='25%' onClick={onClickChangeLife}>{intl.formatMessage({ id: "blogTag1" })}</Button>
-                    <Button _hover={{bg:'blue.100'}} fontSize={{xl:"16px",lg:"16px",md:"16px",sm:"14px",base:"12px"}} bgColor={kagoshima?'blue.100':"gray.100"}   h='100%' minH='42px' w='25%' onClick={onClickChangeKagoshima}>{intl.formatMessage({ id: "blogTag2" })}</Button>
-                    <Button _hover={{bg:'blue.100'}} fontSize={{xl:"16px",lg:"16px",md:"16px",sm:"14px",base:"12px"}} bgColor={techStudy?'blue.100':"gray.100"}    h='100%' minH='42px' w='25%' onClick={onClickChangeTechStudy}>{intl.formatMessage({ id: "blogTag3" })}</Button>
-                    <Button _hover={{bg:'blue.100'}} fontSize={{xl:"16px",lg:"16px",md:"16px",sm:"14px",base:"12px"}} bgColor={hobby?'blue.100':"gray.100"}    h='100%' minH='42px' w='25%' onClick={onClickChangeHobby}>{intl.formatMessage({ id: "blogTag4" })}</Button>
+                    <Button _hover={{bg:'blue.100'}} fontSize={{xl:"16px",lg:"16px",md:"16px",sm:"14px",base:"12px"}}  bgColor={blogFlag=="MyLife"?'blue.100':"gray.50"}  h='100%' minH='42px' w='25%' onClick={onClickChangeLife}>{intl.formatMessage({ id: "blogTag1" })}</Button>
+                    <Button _hover={{bg:'blue.100'}} fontSize={{xl:"16px",lg:"16px",md:"16px",sm:"14px",base:"12px"}} bgColor={blogFlag=="Kagoshima"?'blue.100':"gray.50"}   h='100%' minH='42px' w='25%' onClick={onClickChangeKagoshima}>{intl.formatMessage({ id: "blogTag2" })}</Button>
+                    <Button _hover={{bg:'blue.100'}} fontSize={{xl:"16px",lg:"16px",md:"16px",sm:"14px",base:"12px"}} bgColor={blogFlag =='"TechStudy"'?'blue.100':"gray.50"}    h='100%' minH='42px' w='25%' onClick={onClickChangeTechStudy}>{intl.formatMessage({ id: "blogTag3" })}</Button>
+                    <Button _hover={{bg:'blue.100'}} fontSize={{xl:"16px",lg:"16px",md:"16px",sm:"14px",base:"12px"}} bgColor={blogFlag=='Hobby'?'blue.100':"gray.50"}    h='100%' minH='42px' w='25%' onClick={onClickChangeHobby}>{intl.formatMessage({ id: "blogTag4" })}</Button>
             </Flex>
             <Box mt='40px'>
                 <Wrap  ml='auto' mr='auto' w='100%'>
@@ -120,7 +94,7 @@ export default function BlogPage({data}) {
 
 export const query = graphql`
     query ContentfulQuery($language:String) {
-        allContentfulBlogHinagataMarkdown(sort: {fields: postDate, order: DESC} filter: {node_locale: {eq:$language}}) {
+        allContentfulBlogHinagataMarkdown(sort: {fields: postDate, order: DESC} filter: {node_locale: {eq:$language}, tech: {eq: false}}) {
         nodes {
             slug
             title

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { memo,useState,VFC, useEffect} from "react";
+import React, { memo,useState,VFC} from "react";
 import {Flex, Heading,Spacer, Button, Divider, Center, Menu,MenuButton,MenuList,MenuItem, IconButton,Box, MenuDivider } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
 import {Link} from 'gatsby-plugin-intl';
@@ -7,45 +7,21 @@ import Language from "../../Language";
 import { HamburgerIcon } from '@chakra-ui/icons'
 
 export const Header: VFC = memo(() => {
-    const [homeFlag, setHomeFlag] = useState(true)
-    const [profileFlag, setProfileFlag] = useState(false)
-    const [worksFlag, setWorksFlag] = useState(false)
-    const [blogFlag, setBlogFlag] = useState(false)
-    const [contactFlag, setContactFlag] = useState(false)
+    const [menuFlag, setMenuFlag] = useState("home");
     const homeChange = () =>{
-        setHomeFlag(true)
-        setBlogFlag(false)
-        setContactFlag(false)
-        setProfileFlag(false)
-        setWorksFlag(false)
+        setMenuFlag('home')
     }
     const profileChange = () =>{
-        setHomeFlag(false)
-        setBlogFlag(false)
-        setContactFlag(false)
-        setProfileFlag(true)
-        setWorksFlag(false)
+        setMenuFlag('profile')
     }
     const worksChange = () =>{
-        setHomeFlag(false)
-        setBlogFlag(false)
-        setContactFlag(false)
-        setProfileFlag(false)
-        setWorksFlag(true)
+        setMenuFlag('works')
     }
     const blogChange = () =>{
-        setHomeFlag(false)
-        setBlogFlag(true)
-        setContactFlag(false)
-        setProfileFlag(false)
-        setWorksFlag(false)
+        setMenuFlag('blog')
     }
     const contactChange = () =>{
-        setHomeFlag(false)
-        setBlogFlag(false)
-        setContactFlag(true)
-        setProfileFlag(false)
-        setWorksFlag(false)
+        setMenuFlag('contact')
     }
 
   return (
@@ -79,19 +55,19 @@ export const Header: VFC = memo(() => {
         <Box display={{xl:"block",lg:"block",md:"none", sm:"none", base:"none"}}>
             <Flex mr='3' alignItems='center' >
                 <Link to="/">
-                    <Button borderRadius='md' ml='1' mr='1' onClick={homeChange} _hover={{bg:'blue.200', color:'white'}} bg={homeFlag?"blue.500":'blue.50'} color={homeFlag?"white":'gray.800'}>HOME</Button>
+                    <Button borderRadius='md' ml='1' mr='1' onClick={homeChange} _hover={{bg:'blue.200', color:'white'}} bg={menuFlag=='home'?"blue.500":'blue.50'} color={menuFlag=='home'?"white":'gray.800'}>HOME</Button>
                 </Link>
                 <Link to="/profile">
-                    <Button borderRadius='md' ml='1' mr='1' onClick={profileChange} _hover={{bg:'blue.200',color:'white'}} bg={profileFlag?"blue.500":'blue.50'} color={profileFlag?"white":'gray.800'}>PROFILE</Button>
+                    <Button borderRadius='md' ml='1' mr='1' onClick={profileChange} _hover={{bg:'blue.200',color:'white'}} bg={menuFlag=='profile'?"blue.500":'blue.50'} color={menuFlag=='profile'?"white":'gray.800'}>PROFILE</Button>
                 </Link>
                 <Link to="/works">
-                    <Button borderRadius='md' ml='1' mr='1' onClick={worksChange} _hover={{bg:'blue.200',color:'white'}} bg={worksFlag?"blue.500":'blue.50'} color={worksFlag?"white":'gray.800'}>WORKS</Button>
+                    <Button borderRadius='md' ml='1' mr='1' onClick={worksChange} _hover={{bg:'blue.200',color:'white'}} bg={menuFlag=='works'?"blue.500":'blue.50'} color={menuFlag=='works'?"white":'gray.800'}>WORKS</Button>
                 </Link>
                 <Link to="/blog">
-                    <Button borderRadius='md' ml='1' mr='1' onClick={blogChange} _hover={{bg:'blue.200',color:'white'}} bg={blogFlag?"blue.500":'blue.50'} color={blogFlag?"white":'gray.800'}>BLOG</Button>
+                    <Button borderRadius='md' ml='1' mr='1' onClick={blogChange} _hover={{bg:'blue.200',color:'white'}} bg={menuFlag=='blog'?"blue.500":'blue.50'} color={menuFlag=='blog'?"white":'gray.800'}>BLOG</Button>
                 </Link>
                 <Link to="/contact">
-                    <Button borderRadius='md' ml='1' mr='1' onClick={contactChange} _hover={{bg:'blue.200',color:'white'}} bg={contactFlag?"blue.500":'blue.50'} color={contactFlag?"white":'gray.800'}>CONTACT</Button>
+                    <Button borderRadius='md' ml='1' mr='1' onClick={contactChange} _hover={{bg:'blue.200',color:'white'}} bg={menuFlag=='contact'?"blue.500":'blue.50'} color={menuFlag=='contact'?"white":'gray.800'}>CONTACT</Button>
                 </Link>
                 <Center height="30px" ml='1' mr='1'>
                     <Divider orientation="vertical"/>

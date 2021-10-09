@@ -9,7 +9,7 @@ import FadeIn from 'react-fade-in';
 const IndexPage = memo(() => {
   const [fadeinFlag, setfadeinFlag]= useState(false)
   useEffect(()=>{
-    setTimeout(() => { setfadeinFlag(true) },11000)
+    setTimeout(() => { setfadeinFlag(true) },5500)
   },[])
   
   return(

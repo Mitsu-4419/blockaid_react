@@ -51,8 +51,13 @@
     "work-main-tech7":"React, Typscript, Django, python, pyTorch,GCP",
     "contact1":"Medical DX や,その他なんでも",
     "contact2":"気軽にご連絡ください！",
-    "blogTag1":"初めまして",
+    "blogTag1":"MyLife",
     "blogTag2":"鹿児島生活",
     "blogTag3":"Tech 勉強",
-    "blogTag4":"趣味"
+    "blogTag4":"趣味",
+    "blogTag5":"Tech",
+    "blogTag6":"AtCoder",
+    "blogTag7":"Computer Science",
+    "blogLink1":"雑記ブログへ",
+    "blogLink2":"Tech Blogへ"
 }

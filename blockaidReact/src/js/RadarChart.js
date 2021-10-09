@@ -1,7 +1,5 @@
 import React, {useState,memo, useEffect} from "react";
-import { RadarDataFront, RadarOptionsFront, RadarOptionsFront_Mini } from "./RaderConfigFront";
-import { RadarDataBack, RadarOptionsBack, RadarOptionsBack_Mini } from "./RaderConfigBackend";
-import { RadarDataOthers, RadarOptionsOthers, RadarOptionsOthers_Mini } from "./RaderConfigOthers";
+import { RadarDataBack, RadarOptions } from "./RaderConfigBackend";
 import { Radar } from "react-chartjs-2";
 
 export const RadarChart=memo((props)=> {
@@ -11,24 +9,23 @@ export const RadarChart=memo((props)=> {
     const window_w = window.innerWidth
     useEffect(()=>{
         if(props["chartType"]==="front"&& window_w > 400){
-            setOption(RadarOptionsFront)
-            setData(RadarDataFront)
+            setOption(RadarOptions('Frontend',25))
+            setData(RadarDataBack(["Vue/nuxt","Quasar","Flutter","GraphQL", "WASM", "Typescript","React.js"], "rgba(34, 202, 236, .2)", "rgba(34, 202, 236, 1)", [5,4,4,3,2,4,4]))
         }else if(props["chartType"]==="front"&& window_w <= 400){
-            setOption(RadarOptionsFront_Mini)
-            setData(RadarDataFront)
-        }
-        else if (props["chartType"]==="backend" && window_w > 400){
-            setOption(RadarOptionsBack)
-            setData(RadarDataBack)
+            setOption(RadarOptions('Frontend',18))
+            setData(RadarDataBack(["Vue/nuxt","Quasar","Flutter","GraphQL", "WASM", "Typescript","React.js"], "rgba(34, 202, 236, .2)", "rgba(34, 202, 236, 1)", [5,4,4,3,2,4,4]))
+        }else if (props["chartType"]==="backend" && window_w > 400){
+            setOption(RadarOptions('Backend',25))
+            setData(RadarDataBack(["Node.js", "Python", "Django","C,C++", "GCP", "Firebase","Solidity"], "rgba(34, 236, 88, .2)", "rgba(34, 236, 88, 1)", [4,4,4,2,4,5,3]))
         }else if(props["chartType"]==="backend" && window_w <= 400){
-            setOption(RadarOptionsBack_Mini)
-            setData(RadarDataBack)
+            setOption(RadarOptions('Backend',18))
+            setData(RadarDataBack(["Node.js", "Python", "Django","C,C++", "GCP", "Firebase","Solidity"], "rgba(34, 236, 88, .2)", "rgba(34, 236, 88, 1)", [4,4,4,2,4,5,3]))
         }else if(props["chartType"]==="others" && window_w > 400){
-            setOption(RadarOptionsOthers)
-            setData(RadarDataOthers)
+            setOption(RadarOptions('Others',25))
+            setData(RadarDataBack(["Medical", "Statistics", "docker","AI", "DataScience","BlockChain"], "rgba(236, 68, 34, .2)","rgba(236, 68, 34, 1)", [5,3,3,3,3,3]))
         }else if(props["chartType"]==="others" && window_w <= 400){
-            setOption(RadarOptionsOthers_Mini)
-            setData(RadarDataOthers)
+            setOption(RadarOptions('Others',18))
+            setData(RadarDataBack(["Medical", "Statistics", "docker","AI", "DataScience","BlockChain"], "rgba(236, 68, 34, .2)","rgba(236, 68, 34, 1)", [5,3,3,3,3,3]))
         }
     },[])
     return (

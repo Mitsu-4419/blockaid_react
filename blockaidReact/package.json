@@ -1,9 +1,9 @@
 {
   "name": "gatsby-starter-default",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Ko-rin Yamada portfolio site",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Ko-rin Yamada <m.yamada@blockaid-tokyo.com>",
   "dependencies": {
     "@chakra-ui/gatsby-plugin": "^2.0.1",
     "@chakra-ui/icons": "^1.0.15",

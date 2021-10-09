@@ -1,19 +1,23 @@
-export const RadarDataBack = {
-    labels: ["Node.js", "Python", "Django","C,C++", "GCP", "Firebase","Solidity"],
+export const RadarDataBack =(labelList, bgColor,borderColor, dataList) =>
+   {
+     return {
+    labels:labelList,
     datasets: [
-      {
-        label: "March",
-        backgroundColor: "rgba(34, 236, 88, .2)",
-        borderColor: "rgba(34, 236, 88, 1)",
-        pointBackgroundColor: "rgba(34, 202, 236, 1)",
-        poingBorderColor: "#fff",
-        pointHoverBackgroundColor: "#fff",
-        pointHoverBorderColor: "rgba(34, 202, 236, 1)",
-        data: [4,4,4,2,4,5,3]
-      }
-    ]
+        {
+          label: "March",
+          backgroundColor: bgColor,
+          borderColor: borderColor,
+          pointBackgroundColor: "rgba(34, 202, 236, 1)",
+          poingBorderColor: "#fff",
+          pointHoverBackgroundColor: "#fff",
+          pointHoverBorderColor: "rgba(34, 202, 236, 1)",
+          data: dataList
+        }
+      ]
+    }
   };
-  export const RadarOptionsBack = {
+  export const RadarOptions = (place, font_size) =>{ 
+    return {
     scale:{
       pointLabels:{
         fontSize:15,
@@ -29,35 +33,11 @@ export const RadarDataBack = {
     responsive: false,
     title:{
       display:true,
-      fontSize:25,
-      text:'Backend'
+      fontSize:font_size,
+      text:place
     }, 
     legend: {
         display: false
     }
-  };
-
-  export const RadarOptionsBack_Mini = {
-    scale:{
-      pointLabels:{
-        fontSize:10,
-      },
-      ticks: {
-        min: 0,
-        max: 5,
-        stepSize: 1,
-        display:false
-      },
-    },
-    maintainAspectRatio: false,
-    responsive: false,
-    title:{
-      display:true,
-      fontSize:18,
-      text:'Backend'
-    }, 
-    legend: {
-        display: false
-    }
-  };
-  
+  }
+};

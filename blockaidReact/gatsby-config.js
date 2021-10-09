@@ -5,6 +5,7 @@ if (process.env.ENVIRONMENT !== "production") {
 }
 
 
+
 module.exports = {
   flags: {
     DEV_SSR: false,
