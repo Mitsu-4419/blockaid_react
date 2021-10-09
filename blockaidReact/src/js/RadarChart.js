@@ -1,12 +1,18 @@
 import React, {useState,memo, useEffect} from "react";
 import { RadarDataBack, RadarOptions } from "./RaderConfigBackend";
 import { Radar } from "react-chartjs-2";
+import { use } from "marked";
 
 export const RadarChart=memo((props)=> {
     console.log(props["chartType"])
+
     const [RadarOption, setOption] = useState();
     const [RadarData, setData] = useState({});
-    const window_w = window.innerWidth
+    const [window_w, setWindow] = useState('');
+    useEffect(()=>{
+        setWindow(window.innerWidth)
+    }, [])
+   
     useEffect(()=>{
         if(props["chartType"]==="front"&& window_w > 400){
             setOption(RadarOptions('Frontend',25))
